@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -8,413 +7,174 @@
 <title>Home — Pat's Trip Hub</title>
 <style>
 :root {
-  --cream:    #fbf6ed;
-  --paper:    #ffffff;
-  --ink:      #1f1f23;
-  --ink-soft: #4a4a55;
-  --teal:     #2d5a4a;
-  --teal-2:   #1f3f33;
-  --teal-light: #e6efea;
-  --gold:     #c8893a;
-  --gold-2:   #a86f24;
-  --coral:    #d4684c;
-  --coral-bg: #fbe9e3;
-  --rule:     #e6dcc8;
-  --selected: #f0e8d6;
-  --green-bg: #e6f0e9;
-  --shadow:   0 1px 2px rgba(40,30,15,0.04), 0 4px 12px rgba(40,30,15,0.06);
+  --cream:#fbf6ed;--paper:#ffffff;--ink:#1f1f23;--ink-soft:#4a4a55;
+  --teal:#2d5a4a;--teal-2:#1f3f33;--teal-light:#e6efea;
+  --gold:#c8893a;--gold-2:#a86f24;
+  --coral:#d4684c;--coral-bg:#fbe9e3;
+  --rule:#e6dcc8;--selected:#f0e8d6;--green-bg:#e6f0e9;--green-2:#4a7058;
+  --shadow:0 1px 2px rgba(40,30,15,0.04),0 4px 12px rgba(40,30,15,0.06);
 }
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body { margin: 0; padding: 0; }
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body { margin:0;padding:0; }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  font-size: 19px;
-  line-height: 1.6;
-  min-height: 100vh;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;
+  background:var(--cream); color:var(--ink); font-size:19px; line-height:1.6; min-height:100vh;
 }
-.container { max-width: 700px; margin: 0 auto; padding: 24px 22px 100px; }
+.container { max-width:740px; margin:0 auto; padding:24px 22px 100px; }
 .topbar {
-  background: var(--teal);
-  color: white;
-  padding: 18px 22px;
-  position: sticky; top: 0; z-index: 50;
-  display: flex; justify-content: space-between; align-items: center;
-  border-bottom: 3px solid var(--gold);
+  background:var(--teal); color:white; padding:18px 22px;
+  position:sticky; top:0; z-index:50;
+  display:flex; justify-content:space-between; align-items:center;
+  border-bottom:3px solid var(--gold);
 }
-.topbar .home {
-  color: white; text-decoration: none;
-  font-weight: 600; font-size: 15px;
-  letter-spacing: 0.05em;
-  display: flex; align-items: center; gap: 8px;
-}
-.topbar .home:hover { color: var(--cream); }
-.topbar .stamp { font-size: 12px; color: rgba(255,255,255,0.75); }
-h1 {
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: 600;
-  font-size: 36px; line-height: 1.2;
-  color: var(--teal-2);
-  margin: 14px 0 12px;
-  letter-spacing: -0.01em;
-}
-h2 {
-  font-family: Georgia, serif;
-  font-size: 26px; line-height: 1.3;
-  color: var(--teal-2);
-  margin: 30px 0 12px;
-}
-h3 {
-  font-size: 19px; line-height: 1.35;
-  color: var(--teal-2);
-  margin: 20px 0 8px;
-  font-weight: 700;
-}
-p, li { font-size: 19px; line-height: 1.6; }
-.eyebrow {
-  color: var(--teal); font-size: 13px; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.lede { color: var(--ink-soft); font-size: 18px; margin: 0 0 18px; }
-.timestamp { font-size: 14px; color: var(--ink-soft); font-style: italic; margin-bottom: 16px; }
-
-/* Cards */
-.card {
-  background: var(--paper);
-  border: 1.5px solid var(--rule);
-  border-radius: 14px;
-  padding: 22px 24px;
-  margin: 14px 0;
-  box-shadow: var(--shadow);
-}
-.card-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.18s ease;
-}
-.card-link:hover {
-  border-color: var(--gold);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(40,30,15,0.10);
-}
-.card-link.urgent {
-  border-color: var(--coral);
-  background: var(--coral-bg);
-}
-.card-link.urgent:hover { border-color: var(--coral); }
-.card-link.done {
-  background: var(--green-bg);
-  border-color: #b5c9b8;
-}
-.card-icon {
-  font-size: 36px;
-  margin-bottom: 6px;
-  display: block;
-}
-.card-title {
-  font-family: Georgia, serif;
-  font-weight: 600;
-  font-size: 22px;
-  color: var(--teal-2);
-  margin: 0 0 6px;
-}
-.card-desc {
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.5;
-  margin: 0;
-}
-.card-meta {
-  margin-top: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-.meta-urgent { color: var(--coral); }
-.meta-info { color: var(--teal); }
-.meta-done { color: #4a7058; }
-
-/* Status pill */
-.status-strip {
-  background: var(--paper);
-  border: 1.5px solid var(--rule);
-  border-radius: 14px;
-  padding: 16px 20px;
-  margin: 18px 0;
-}
-.status-strip .label {
-  font-size: 12px; font-weight: 700;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--gold-2);
-  margin-bottom: 6px;
-}
-.status-strip .value {
-  font-family: Georgia, serif;
-  font-size: 21px;
-  color: var(--teal-2);
-}
-
-/* Form bits */
-.field-block { margin: 22px 0; }
-.field-label {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 8px;
-  font-size: 17px;
-  color: var(--teal-2);
-}
-.field-help {
-  font-size: 15px;
-  color: var(--ink-soft);
-  margin-bottom: 10px;
-  line-height: 1.45;
-}
-textarea, input[type="text"], select {
-  width: 100%;
-  border: 2px solid var(--rule);
-  border-radius: 10px;
-  background: var(--paper);
-  padding: 14px 16px;
-  font-family: inherit;
-  font-size: 17px;
-  color: var(--ink);
-  line-height: 1.5;
-  resize: vertical;
-  -webkit-appearance: none;
-  appearance: none;
-  transition: border-color 0.18s ease;
-}
-textarea:focus, input[type="text"]:focus, select:focus {
-  outline: none; border-color: var(--teal);
-}
-textarea { min-height: 110px; }
-.options { display: flex; flex-direction: column; gap: 10px; margin: 8px 0 18px; }
-.option {
-  background: var(--paper);
-  border: 2px solid var(--rule);
-  border-radius: 12px;
-  padding: 14px 16px;
-  cursor: pointer;
-  transition: all 0.18s ease;
-  display: flex; align-items: flex-start; gap: 12px;
-}
-.option:hover { border-color: var(--gold); }
-.option.selected { border-color: var(--teal); background: var(--selected); }
-.option .checkbox {
-  width: 22px; height: 22px;
-  border: 2px solid var(--rule);
-  border-radius: 6px;
-  flex-shrink: 0; margin-top: 2px;
-  display: flex; align-items: center; justify-content: center;
-}
-.option.selected .checkbox { background: var(--teal); border-color: var(--teal); }
-.option.selected .checkbox::after { content: "✓"; color: white; font-weight: 700; }
-.option.radio .checkbox { border-radius: 99px; }
-.option .opt-text { flex: 1; font-size: 17px; line-height: 1.45; }
-
-.btn {
-  display: inline-block;
-  padding: 16px 28px;
-  border-radius: 99px;
-  border: none;
-  font-family: inherit;
-  font-size: 17px;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.18s ease;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.btn-primary {
-  background: var(--teal);
-  color: white;
-  box-shadow: 0 2px 8px rgba(45, 90, 74, 0.25);
-}
-.btn-primary:hover { background: var(--teal-2); transform: translateY(-1px); }
-.btn-block { width: 100%; }
-.btn-row { display: flex; gap: 12px; margin: 20px 0; }
-.btn-secondary {
-  background: var(--paper);
-  color: var(--teal);
-  border: 1.5px solid var(--rule);
-}
-
-/* Tables for comparisons */
-.compare-table {
-  background: var(--paper);
-  border: 1.5px solid var(--rule);
-  border-radius: 14px;
-  overflow: hidden;
-  margin: 16px 0;
-}
-.compare-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  border-bottom: 1px solid var(--rule);
-}
-.compare-row:last-child { border-bottom: none; }
-.compare-row.head {
-  background: var(--teal-light);
-  font-weight: 700;
-  color: var(--teal-2);
-}
-.compare-cell {
-  padding: 14px 18px;
-  font-size: 16px;
-  line-height: 1.45;
-  border-bottom: 1px dashed var(--rule);
-}
-.compare-cell:last-child { border-bottom: none; }
-.compare-cell .cell-label {
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold-2);
-  margin-bottom: 4px;
-}
-@media (min-width: 700px) {
-  .compare-row { grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr; }
-  .compare-cell { border-bottom: none; border-right: 1px dashed var(--rule); }
-  .compare-cell:last-child { border-right: none; }
-  .compare-cell .cell-label { display: none; }
-}
-
-/* Highlights */
-.callout {
-  background: linear-gradient(135deg, #f4ecd8, #f0e6cf);
-  border: 1px solid var(--rule);
-  border-radius: 14px;
-  padding: 16px 20px;
-  margin: 18px 0;
-  color: var(--teal-2);
-  font-size: 17px;
-  line-height: 1.55;
-}
-.callout strong { color: var(--gold-2); }
-.callout.urgent {
-  background: var(--coral-bg);
-  border-color: var(--coral);
-}
-.callout.done {
-  background: var(--green-bg);
-  border-color: #b5c9b8;
-}
-
-/* Footer block */
-footer {
-  margin: 50px auto 30px;
-  text-align: center;
-  color: var(--ink-soft);
-  font-size: 14px;
-  padding: 0 22px;
-}
-footer a { color: var(--teal); }
-
-/* Lists with breathing room */
-ul.tight, ol.tight { padding-left: 22px; }
-ul.tight li, ol.tight li { margin-bottom: 6px; }
-
-/* Anchor offset for sticky topbar */
-.anchor { display: block; position: relative; top: -85px; visibility: hidden; }
+.topbar .home { color:white; text-decoration:none; font-weight:600; font-size:15px; letter-spacing:0.05em; }
+.topbar .stamp { font-size:12px; color:rgba(255,255,255,0.75); }
+h1 { font-family:Georgia,serif; font-weight:600; font-size:34px; line-height:1.2; color:var(--teal-2); margin:14px 0 12px; letter-spacing:-0.01em; }
+h2 { font-family:Georgia,serif; font-size:25px; line-height:1.3; color:var(--teal-2); margin:30px 0 12px; }
+h3 { font-size:19px; line-height:1.35; color:var(--teal-2); margin:20px 0 8px; font-weight:700; }
+p, li { font-size:18px; line-height:1.6; }
+.eyebrow { color:var(--teal); font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:8px; }
+.lede { color:var(--ink-soft); font-size:18px; margin:0 0 18px; }
+.card { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:22px 24px; margin:14px 0; box-shadow:var(--shadow); }
+.card-link { display:block; text-decoration:none; color:inherit; transition:all 0.18s ease; }
+.card-link:hover { border-color:var(--gold); transform:translateY(-2px); box-shadow:0 4px 16px rgba(40,30,15,0.10); }
+.card-link.urgent .card { border-color:var(--coral); background:var(--coral-bg); }
+.card-link.done .card { background:var(--green-bg); border-color:#b5c9b8; }
+.card-icon { font-size:34px; margin-bottom:6px; display:block; }
+.card-title { font-family:Georgia,serif; font-weight:600; font-size:21px; color:var(--teal-2); margin:0 0 6px; }
+.card-desc { color:var(--ink-soft); font-size:16px; line-height:1.5; margin:0; }
+.card-meta { margin-top:10px; font-size:13px; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; }
+.meta-urgent { color:var(--coral); }
+.meta-info { color:var(--teal); }
+.meta-done { color:var(--green-2); }
+.status-strip { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; }
+.status-strip .label { font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-2); margin-bottom:6px; }
+.status-strip .value { font-family:Georgia,serif; font-size:20px; color:var(--teal-2); }
+.field-block { margin:22px 0; }
+.field-label { display:block; font-weight:700; margin-bottom:8px; font-size:17px; color:var(--teal-2); }
+.field-help { font-size:15px; color:var(--ink-soft); margin-bottom:10px; line-height:1.45; }
+textarea, input[type="text"], select { width:100%; border:2px solid var(--rule); border-radius:10px; background:var(--paper); padding:14px 16px; font-family:inherit; font-size:17px; color:var(--ink); line-height:1.5; resize:vertical; -webkit-appearance:none; appearance:none; }
+textarea:focus, input[type="text"]:focus, select:focus { outline:none; border-color:var(--teal); }
+textarea { min-height:110px; }
+.options { display:flex; flex-direction:column; gap:10px; margin:8px 0 18px; }
+.option { background:var(--paper); border:2px solid var(--rule); border-radius:12px; padding:14px 16px; cursor:pointer; transition:all 0.18s ease; display:flex; align-items:flex-start; gap:12px; }
+.option:hover { border-color:var(--gold); }
+.option.selected { border-color:var(--teal); background:var(--selected); }
+.option .checkbox { width:22px; height:22px; border:2px solid var(--rule); border-radius:6px; flex-shrink:0; margin-top:2px; display:flex; align-items:center; justify-content:center; }
+.option.selected .checkbox { background:var(--teal); border-color:var(--teal); }
+.option.selected .checkbox::after { content:"✓"; color:white; font-weight:700; }
+.option.radio .checkbox { border-radius:99px; }
+.option .opt-text { flex:1; font-size:17px; line-height:1.45; }
+.btn { display:inline-block; padding:16px 28px; border-radius:99px; border:none; font-family:inherit; font-size:17px; font-weight:600; cursor:pointer; text-align:center; text-decoration:none; transition:all 0.18s ease; -webkit-appearance:none; appearance:none; }
+.btn-primary { background:var(--teal); color:white; box-shadow:0 2px 8px rgba(45,90,74,0.25); }
+.btn-block { width:100%; }
+.btn-row { display:flex; gap:12px; margin:20px 0; }
+.callout { background:linear-gradient(135deg,#f4ecd8,#f0e6cf); border:1px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; color:var(--teal-2); font-size:17px; line-height:1.55; }
+.callout strong { color:var(--gold-2); }
+.callout.urgent { background:var(--coral-bg); border-color:var(--coral); }
+.callout.done { background:var(--green-bg); border-color:#b5c9b8; }
+.callout.note { background:#eef4f1; border-color:#bfd4c9; }
+ul.tight, ol.tight { padding-left:22px; }
+ul.tight li, ol.tight li { margin-bottom:6px; }
+footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:14px; padding:0 22px; }
+footer a { color:var(--teal); }
+.flight-row { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px dashed var(--rule); }
+.flight-row:last-child { border-bottom:none; }
+.flight-leg { flex:1; }
+.flight-time { font-family:Georgia,serif; font-size:17px; color:var(--teal-2); font-weight:600; }
+.flight-detail { font-size:14px; color:var(--ink-soft); margin-top:2px; }
+.cabin-tag { display:inline-block; padding:3px 10px; border-radius:99px; font-size:13px; font-weight:600; letter-spacing:0.04em; }
+.cabin-polaris { background:#0d4f3f; color:white; }
+.cabin-prem { background:#5a85a4; color:white; }
+.cabin-first { background:var(--gold-2); color:white; }
+.cabin-econ { background:#888; color:white; }
+.cabin-coach { background:#7a6650; color:white; }
+.q-block { background:var(--paper); border-left:4px solid var(--gold); padding:14px 18px; margin:16px 0; border-radius:0 10px 10px 0; }
+.q-block .q { color:var(--gold-2); font-size:14px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px; }
 </style>
-</head>
-<body>
+</head><body>
 <header class="topbar">
-  <a class="home" href="index.html">✈️ Pat's Trip Hub </a>
-  <div class="stamp">Updated April 28, 2026 — 11:30 PM PT</div>
+  <a class="home" href="index.html">✈️ Pat's Trip Hub · Home</a>
+  <div class="stamp">Updated April 29, 2026 — 2:55 PM PT</div>
 </header>
 <div class="container">
+<p class="eyebrow">Pat's Trip Hub · Apr 29 update</p>
+<h1>Hi Pat ❤️</h1>
+<p class="lede"><strong>Update Apr 29 (afternoon):</strong> I missed your messages last night. I have now integrated everything you sent — Medicare answers, the 7 trip-detail questions, France cancellation, your insurance question. Three urgent items below need your input today; the rest is for review whenever you're ready.</p>
 
-<p class="eyebrow">Pat's Trip Hub</p>
-<h1>Hi Pat — everything in one place. ❤️</h1>
-<p class="lede">This is your living trip dashboard. Bookmark this link — it never changes. Every update I make appears here, organized by what's most important. No more hunting through emails or shared folders.</p>
-
-<div class="status-strip">
-  <div class="label">Where things stand right now</div>
-  <div class="value">3 things need your input · 2 things I'm working on · Trip is locked &amp; on track</div>
+<div class="callout done">
+  <strong>✅ What I have from you (all integrated below):</strong> Feedback form (Apr 28 7:16 PM) · Medicare voice memo + transcript (Apr 29 ~9:50 PM PT — see <a href="archive.html#medicare">archive</a>) · 7-question trip update (Apr 29 5:44 AM) · France cancellation confirmation (Apr 29 4:11 AM) · Banie handling Kruger (no need for Sabi Sabi research).
 </div>
 
-<h2>🚨 Needs your input tonight or tomorrow morning</h2>
+<div class="status-strip">
+  <div class="label">Where things stand</div>
+  <div class="value"><strong>2 things need you today.</strong> 1 thing is just for your review.</div>
+</div>
 
-<a class="card-link urgent" href="medicare.html">
-  <div class="card">
-    <span class="card-icon">📋</span>
-    <div class="card-title">Send me your Medicare answers</div>
-    <p class="card-desc">You called Medicare this morning. I built a quick form so you can type the answers in directly and email them to me. Takes about 3 minutes. (You already sent the answers via email — I'll mark this complete once I've confirmed.)</p>
-    <div class="card-meta meta-urgent">⏱ Urgent · ~3 minutes</div>
-  </div>
-</a>
+<h2>🚨 Decisions needed today</h2>
 
 <a class="card-link urgent" href="insurance.html">
   <div class="card">
     <span class="card-icon">🛡️</span>
-    <div class="card-title">Pick a travel insurance plan</div>
-    <p class="card-desc">Side-by-side comparison of all 4 companies (IMG, Travel Guard, Allianz, Trawick). Includes airlift/evacuation coverage, medical, and senior reviews. Pick at the bottom — friendly form, opens email when ready.</p>
-    <div class="card-meta meta-urgent">⏱ Decision by Friday May 1</div>
+    <div class="card-title">1. Pick the travel insurance plan</div>
+    <p class="card-desc"><strong>Now includes the IMG SE vs Travel Guard senior-review research you asked for.</strong> Plus answers to your 4 questions: do you need flights booked first (no), who books (you do), which card to use, and ratings comparison. Form to submit your pick at the bottom.</p>
+    <div class="card-meta meta-urgent">⏱ Pre-existing waiver deadline Fri May 1</div>
   </div>
 </a>
 
 <a class="card-link urgent" href="flights.html">
   <div class="card">
     <span class="card-icon">✈️</span>
-    <div class="card-title">Review the updated flight plan</div>
-    <p class="card-desc">Now reflects Fiona's update: Norwich first, Inverness second. Includes both Sacramento → Newark options, all UA legs, Norwich → Aberdeen and Inverness → Heathrow flights, plus the Hilton T2 stopover. Sign-off form at the bottom.</p>
-    <div class="card-meta meta-info">📌 Holding for your green-light before booking</div>
+    <div class="card-title">2. Sign off on the full flight plan</div>
+    <p class="card-desc">All 7 of your questions from last night answered: SMF→EWR options with Denver stopover detail · UA cabin clearly labeled (Polaris, Premium Plus, First) for every leg · Newark Marriott early check-in confirmed · LHR→Norwich BUS schedule (you were right — I had train wrong) · Norwich→Aberdeen · Inverness→LHR afternoon BA · EWR→SMF return comparison (Denver vs SFO connection).</p>
+    <div class="card-meta meta-urgent">⏱ Once green-lit, Alex books today</div>
   </div>
 </a>
 
-<h2>📚 Reference (look any time)</h2>
+<h2>📚 Reference</h2>
 
 <a class="card-link" href="archive.html">
   <div class="card">
     <span class="card-icon">📖</span>
-    <div class="card-title">Decision log &amp; archive</div>
-    <p class="card-desc">Every decision we've made, every document I've sent, every step taken — in one timeline you can scroll through.</p>
-    <div class="card-meta meta-info">Visual history</div>
+    <div class="card-title">Decision &amp; document log</div>
+    <p class="card-desc">Includes Medicare call summary you sent last night. Every step, dated, in one timeline.</p>
+    <div class="card-meta meta-info">Always available</div>
   </div>
 </a>
 
-<a class="card-link" href="alt-france.html">
+<a class="card-link" href="medicare.html">
   <div class="card">
-    <span class="card-icon">🇫🇷</span>
-    <div class="card-title">Hypothetical: France instead of UK</div>
-    <p class="card-desc">If Fiona's France idea firms up — what flights, costs, and miles look like if you go to Paris instead of London. Separate from the main plan.</p>
-    <div class="card-meta meta-info">Hypothetical · waiting on Fiona</div>
+    <span class="card-icon">📋</span>
+    <div class="card-title">Add to / correct your Medicare answers (optional)</div>
+    <p class="card-desc">I have your voice-memo answers in detail. This page is just a backup form if you want to add or fix anything.</p>
+    <div class="card-meta meta-done">Already received via voice memo — optional</div>
   </div>
 </a>
 
 <a class="card-link done" href="https://bit.ly/4t4Aw5c">
   <div class="card">
     <span class="card-icon">✅</span>
-    <div class="card-title">Feedback form (already submitted)</div>
-    <p class="card-desc">Your responses landed at 7:16 PM tonight. Thank you — every change I'm making here is based on what you told me.</p>
+    <div class="card-title">Your feedback form (already submitted)</div>
+    <p class="card-desc">Submitted Apr 28 7:16 PM. The whole dashboard format is the response. Thank you.</p>
     <div class="card-meta meta-done">Done</div>
   </div>
 </a>
 
+<h2>⚠️ Removed from the plan</h2>
+<div class="card">
+  <p style="margin:0 0 10px;"><strong>France swap:</strong> Per your text Apr 29 4:11 AM — definitely cancelled. UK plan stands: Norwich first, Inverness second.</p>
+  <p style="margin:0;"><strong>Sabi Sabi / Kruger lodging:</strong> Banie is handling. I won't research further. (Was on the previous dashboard — removed.)</p>
+</div>
+
 <h2>📞 Quick contact card</h2>
 <div class="card">
-  <p style="margin:0 0 10px;"><strong>Claude Concierge:</strong> reach me anytime by texting Alex (530-219-8094). He'll relay anything urgent.</p>
-  <p style="margin:0 0 10px;"><strong>Mmilo (safari):</strong> info@mmilotours.com · +27 12 654 5308 · Booking ref Y9ABNJ · Balance ZAR 44,606 due May 21</p>
+  <p style="margin:0 0 10px;"><strong>Claude Concierge (me):</strong> reach me by texting Alex at 530-219-8094 — he relays anything urgent.</p>
+  <p style="margin:0 0 10px;"><strong>Mmilo (safari):</strong> info@mmilotours.com · +27 12 654 5308 · Booking ref Y9ABNJ · <strong>Balance ZAR 44,606 due Thu May 21</strong></p>
   <p style="margin:0;"><strong>Trip dates:</strong> Sun Jun 28 (depart Sacramento) → Thu Jul 30 (return Sacramento) · 33 days</p>
 </div>
-
-<div class="callout">
-  <strong>About this site:</strong> I update it whenever something changes. Refresh anytime to see the latest. If you ever feel lost, just come back here — every road leads home. Each page also has a way to send me feedback or your answers.
-</div>
-
 </div>
 <footer>
-  <p>One link to remember: <a href="index.html"><strong>bit.ly/pat-trip-hub</strong></a> · Updated as we go.<br>
+  <p>One link to remember: <a href="index.html"><strong>bit.ly/pat-trip-hub</strong></a> · I update this as we go.<br>
   Built for Pat with care by Claude Concierge.</p>
 </footer>
-</body>
-</html>
+</body></html>
