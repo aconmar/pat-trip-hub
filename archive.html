@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -8,399 +7,161 @@
 <title>Archive — Pat's Trip Hub</title>
 <style>
 :root {
-  --cream:    #fbf6ed;
-  --paper:    #ffffff;
-  --ink:      #1f1f23;
-  --ink-soft: #4a4a55;
-  --teal:     #2d5a4a;
-  --teal-2:   #1f3f33;
-  --teal-light: #e6efea;
-  --gold:     #c8893a;
-  --gold-2:   #a86f24;
-  --coral:    #d4684c;
-  --coral-bg: #fbe9e3;
-  --rule:     #e6dcc8;
-  --selected: #f0e8d6;
-  --green-bg: #e6f0e9;
-  --shadow:   0 1px 2px rgba(40,30,15,0.04), 0 4px 12px rgba(40,30,15,0.06);
+  --cream:#fbf6ed;--paper:#ffffff;--ink:#1f1f23;--ink-soft:#4a4a55;
+  --teal:#2d5a4a;--teal-2:#1f3f33;--teal-light:#e6efea;
+  --gold:#c8893a;--gold-2:#a86f24;
+  --coral:#d4684c;--coral-bg:#fbe9e3;
+  --rule:#e6dcc8;--selected:#f0e8d6;--green-bg:#e6f0e9;--green-2:#4a7058;
+  --shadow:0 1px 2px rgba(40,30,15,0.04),0 4px 12px rgba(40,30,15,0.06);
 }
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body { margin: 0; padding: 0; }
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body { margin:0;padding:0; }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  font-size: 19px;
-  line-height: 1.6;
-  min-height: 100vh;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;
+  background:var(--cream); color:var(--ink); font-size:19px; line-height:1.6; min-height:100vh;
 }
-.container { max-width: 700px; margin: 0 auto; padding: 24px 22px 100px; }
+.container { max-width:740px; margin:0 auto; padding:24px 22px 100px; }
 .topbar {
-  background: var(--teal);
-  color: white;
-  padding: 18px 22px;
-  position: sticky; top: 0; z-index: 50;
-  display: flex; justify-content: space-between; align-items: center;
-  border-bottom: 3px solid var(--gold);
+  background:var(--teal); color:white; padding:18px 22px;
+  position:sticky; top:0; z-index:50;
+  display:flex; justify-content:space-between; align-items:center;
+  border-bottom:3px solid var(--gold);
 }
-.topbar .home {
-  color: white; text-decoration: none;
-  font-weight: 600; font-size: 15px;
-  letter-spacing: 0.05em;
-  display: flex; align-items: center; gap: 8px;
-}
-.topbar .home:hover { color: var(--cream); }
-.topbar .stamp { font-size: 12px; color: rgba(255,255,255,0.75); }
-h1 {
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: 600;
-  font-size: 36px; line-height: 1.2;
-  color: var(--teal-2);
-  margin: 14px 0 12px;
-  letter-spacing: -0.01em;
-}
-h2 {
-  font-family: Georgia, serif;
-  font-size: 26px; line-height: 1.3;
-  color: var(--teal-2);
-  margin: 30px 0 12px;
-}
-h3 {
-  font-size: 19px; line-height: 1.35;
-  color: var(--teal-2);
-  margin: 20px 0 8px;
-  font-weight: 700;
-}
-p, li { font-size: 19px; line-height: 1.6; }
-.eyebrow {
-  color: var(--teal); font-size: 13px; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.lede { color: var(--ink-soft); font-size: 18px; margin: 0 0 18px; }
-.timestamp { font-size: 14px; color: var(--ink-soft); font-style: italic; margin-bottom: 16px; }
-
-/* Cards */
-.card {
-  background: var(--paper);
-  border: 1.5px solid var(--rule);
-  border-radius: 14px;
-  padding: 22px 24px;
-  margin: 14px 0;
-  box-shadow: var(--shadow);
-}
-.card-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.18s ease;
-}
-.card-link:hover {
-  border-color: var(--gold);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(40,30,15,0.10);
-}
-.card-link.urgent {
-  border-color: var(--coral);
-  background: var(--coral-bg);
-}
-.card-link.urgent:hover { border-color: var(--coral); }
-.card-link.done {
-  background: var(--green-bg);
-  border-color: #b5c9b8;
-}
-.card-icon {
-  font-size: 36px;
-  margin-bottom: 6px;
-  display: block;
-}
-.card-title {
-  font-family: Georgia, serif;
-  font-weight: 600;
-  font-size: 22px;
-  color: var(--teal-2);
-  margin: 0 0 6px;
-}
-.card-desc {
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.5;
-  margin: 0;
-}
-.card-meta {
-  margin-top: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-.meta-urgent { color: var(--coral); }
-.meta-info { color: var(--teal); }
-.meta-done { color: #4a7058; }
-
-/* Status pill */
-.status-strip {
-  background: var(--paper);
-  border: 1.5px solid var(--rule);
-  border-radius: 14px;
-  padding: 16px 20px;
-  margin: 18px 0;
-}
-.status-strip .label {
-  font-size: 12px; font-weight: 700;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--gold-2);
-  margin-bottom: 6px;
-}
-.status-strip .value {
-  font-family: Georgia, serif;
-  font-size: 21px;
-  color: var(--teal-2);
-}
-
-/* Form bits */
-.field-block { margin: 22px 0; }
-.field-label {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 8px;
-  font-size: 17px;
-  color: var(--teal-2);
-}
-.field-help {
-  font-size: 15px;
-  color: var(--ink-soft);
-  margin-bottom: 10px;
-  line-height: 1.45;
-}
-textarea, input[type="text"], select {
-  width: 100%;
-  border: 2px solid var(--rule);
-  border-radius: 10px;
-  background: var(--paper);
-  padding: 14px 16px;
-  font-family: inherit;
-  font-size: 17px;
-  color: var(--ink);
-  line-height: 1.5;
-  resize: vertical;
-  -webkit-appearance: none;
-  appearance: none;
-  transition: border-color 0.18s ease;
-}
-textarea:focus, input[type="text"]:focus, select:focus {
-  outline: none; border-color: var(--teal);
-}
-textarea { min-height: 110px; }
-.options { display: flex; flex-direction: column; gap: 10px; margin: 8px 0 18px; }
-.option {
-  background: var(--paper);
-  border: 2px solid var(--rule);
-  border-radius: 12px;
-  padding: 14px 16px;
-  cursor: pointer;
-  transition: all 0.18s ease;
-  display: flex; align-items: flex-start; gap: 12px;
-}
-.option:hover { border-color: var(--gold); }
-.option.selected { border-color: var(--teal); background: var(--selected); }
-.option .checkbox {
-  width: 22px; height: 22px;
-  border: 2px solid var(--rule);
-  border-radius: 6px;
-  flex-shrink: 0; margin-top: 2px;
-  display: flex; align-items: center; justify-content: center;
-}
-.option.selected .checkbox { background: var(--teal); border-color: var(--teal); }
-.option.selected .checkbox::after { content: "✓"; color: white; font-weight: 700; }
-.option.radio .checkbox { border-radius: 99px; }
-.option .opt-text { flex: 1; font-size: 17px; line-height: 1.45; }
-
-.btn {
-  display: inline-block;
-  padding: 16px 28px;
-  border-radius: 99px;
-  border: none;
-  font-family: inherit;
-  font-size: 17px;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.18s ease;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.btn-primary {
-  background: var(--teal);
-  color: white;
-  box-shadow: 0 2px 8px rgba(45, 90, 74, 0.25);
-}
-.btn-primary:hover { background: var(--teal-2); transform: translateY(-1px); }
-.btn-block { width: 100%; }
-.btn-row { display: flex; gap: 12px; margin: 20px 0; }
-.btn-secondary {
-  background: var(--paper);
-  color: var(--teal);
-  border: 1.5px solid var(--rule);
-}
-
-/* Tables for comparisons */
-.compare-table {
-  background: var(--paper);
-  border: 1.5px solid var(--rule);
-  border-radius: 14px;
-  overflow: hidden;
-  margin: 16px 0;
-}
-.compare-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  border-bottom: 1px solid var(--rule);
-}
-.compare-row:last-child { border-bottom: none; }
-.compare-row.head {
-  background: var(--teal-light);
-  font-weight: 700;
-  color: var(--teal-2);
-}
-.compare-cell {
-  padding: 14px 18px;
-  font-size: 16px;
-  line-height: 1.45;
-  border-bottom: 1px dashed var(--rule);
-}
-.compare-cell:last-child { border-bottom: none; }
-.compare-cell .cell-label {
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold-2);
-  margin-bottom: 4px;
-}
-@media (min-width: 700px) {
-  .compare-row { grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr; }
-  .compare-cell { border-bottom: none; border-right: 1px dashed var(--rule); }
-  .compare-cell:last-child { border-right: none; }
-  .compare-cell .cell-label { display: none; }
-}
-
-/* Highlights */
-.callout {
-  background: linear-gradient(135deg, #f4ecd8, #f0e6cf);
-  border: 1px solid var(--rule);
-  border-radius: 14px;
-  padding: 16px 20px;
-  margin: 18px 0;
-  color: var(--teal-2);
-  font-size: 17px;
-  line-height: 1.55;
-}
-.callout strong { color: var(--gold-2); }
-.callout.urgent {
-  background: var(--coral-bg);
-  border-color: var(--coral);
-}
-.callout.done {
-  background: var(--green-bg);
-  border-color: #b5c9b8;
-}
-
-/* Footer block */
-footer {
-  margin: 50px auto 30px;
-  text-align: center;
-  color: var(--ink-soft);
-  font-size: 14px;
-  padding: 0 22px;
-}
-footer a { color: var(--teal); }
-
-/* Lists with breathing room */
-ul.tight, ol.tight { padding-left: 22px; }
-ul.tight li, ol.tight li { margin-bottom: 6px; }
-
-/* Anchor offset for sticky topbar */
-.anchor { display: block; position: relative; top: -85px; visibility: hidden; }
+.topbar .home { color:white; text-decoration:none; font-weight:600; font-size:15px; letter-spacing:0.05em; }
+.topbar .stamp { font-size:12px; color:rgba(255,255,255,0.75); }
+h1 { font-family:Georgia,serif; font-weight:600; font-size:34px; line-height:1.2; color:var(--teal-2); margin:14px 0 12px; letter-spacing:-0.01em; }
+h2 { font-family:Georgia,serif; font-size:25px; line-height:1.3; color:var(--teal-2); margin:30px 0 12px; }
+h3 { font-size:19px; line-height:1.35; color:var(--teal-2); margin:20px 0 8px; font-weight:700; }
+p, li { font-size:18px; line-height:1.6; }
+.eyebrow { color:var(--teal); font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:8px; }
+.lede { color:var(--ink-soft); font-size:18px; margin:0 0 18px; }
+.card { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:22px 24px; margin:14px 0; box-shadow:var(--shadow); }
+.card-link { display:block; text-decoration:none; color:inherit; transition:all 0.18s ease; }
+.card-link:hover { border-color:var(--gold); transform:translateY(-2px); box-shadow:0 4px 16px rgba(40,30,15,0.10); }
+.card-link.urgent .card { border-color:var(--coral); background:var(--coral-bg); }
+.card-link.done .card { background:var(--green-bg); border-color:#b5c9b8; }
+.card-icon { font-size:34px; margin-bottom:6px; display:block; }
+.card-title { font-family:Georgia,serif; font-weight:600; font-size:21px; color:var(--teal-2); margin:0 0 6px; }
+.card-desc { color:var(--ink-soft); font-size:16px; line-height:1.5; margin:0; }
+.card-meta { margin-top:10px; font-size:13px; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; }
+.meta-urgent { color:var(--coral); }
+.meta-info { color:var(--teal); }
+.meta-done { color:var(--green-2); }
+.status-strip { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; }
+.status-strip .label { font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-2); margin-bottom:6px; }
+.status-strip .value { font-family:Georgia,serif; font-size:20px; color:var(--teal-2); }
+.field-block { margin:22px 0; }
+.field-label { display:block; font-weight:700; margin-bottom:8px; font-size:17px; color:var(--teal-2); }
+.field-help { font-size:15px; color:var(--ink-soft); margin-bottom:10px; line-height:1.45; }
+textarea, input[type="text"], select { width:100%; border:2px solid var(--rule); border-radius:10px; background:var(--paper); padding:14px 16px; font-family:inherit; font-size:17px; color:var(--ink); line-height:1.5; resize:vertical; -webkit-appearance:none; appearance:none; }
+textarea:focus, input[type="text"]:focus, select:focus { outline:none; border-color:var(--teal); }
+textarea { min-height:110px; }
+.options { display:flex; flex-direction:column; gap:10px; margin:8px 0 18px; }
+.option { background:var(--paper); border:2px solid var(--rule); border-radius:12px; padding:14px 16px; cursor:pointer; transition:all 0.18s ease; display:flex; align-items:flex-start; gap:12px; }
+.option:hover { border-color:var(--gold); }
+.option.selected { border-color:var(--teal); background:var(--selected); }
+.option .checkbox { width:22px; height:22px; border:2px solid var(--rule); border-radius:6px; flex-shrink:0; margin-top:2px; display:flex; align-items:center; justify-content:center; }
+.option.selected .checkbox { background:var(--teal); border-color:var(--teal); }
+.option.selected .checkbox::after { content:"✓"; color:white; font-weight:700; }
+.option.radio .checkbox { border-radius:99px; }
+.option .opt-text { flex:1; font-size:17px; line-height:1.45; }
+.btn { display:inline-block; padding:16px 28px; border-radius:99px; border:none; font-family:inherit; font-size:17px; font-weight:600; cursor:pointer; text-align:center; text-decoration:none; transition:all 0.18s ease; -webkit-appearance:none; appearance:none; }
+.btn-primary { background:var(--teal); color:white; box-shadow:0 2px 8px rgba(45,90,74,0.25); }
+.btn-block { width:100%; }
+.btn-row { display:flex; gap:12px; margin:20px 0; }
+.callout { background:linear-gradient(135deg,#f4ecd8,#f0e6cf); border:1px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; color:var(--teal-2); font-size:17px; line-height:1.55; }
+.callout strong { color:var(--gold-2); }
+.callout.urgent { background:var(--coral-bg); border-color:var(--coral); }
+.callout.done { background:var(--green-bg); border-color:#b5c9b8; }
+.callout.note { background:#eef4f1; border-color:#bfd4c9; }
+ul.tight, ol.tight { padding-left:22px; }
+ul.tight li, ol.tight li { margin-bottom:6px; }
+footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:14px; padding:0 22px; }
+footer a { color:var(--teal); }
+.flight-row { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px dashed var(--rule); }
+.flight-row:last-child { border-bottom:none; }
+.flight-leg { flex:1; }
+.flight-time { font-family:Georgia,serif; font-size:17px; color:var(--teal-2); font-weight:600; }
+.flight-detail { font-size:14px; color:var(--ink-soft); margin-top:2px; }
+.cabin-tag { display:inline-block; padding:3px 10px; border-radius:99px; font-size:13px; font-weight:600; letter-spacing:0.04em; }
+.cabin-polaris { background:#0d4f3f; color:white; }
+.cabin-prem { background:#5a85a4; color:white; }
+.cabin-first { background:var(--gold-2); color:white; }
+.cabin-econ { background:#888; color:white; }
+.cabin-coach { background:#7a6650; color:white; }
+.q-block { background:var(--paper); border-left:4px solid var(--gold); padding:14px 18px; margin:16px 0; border-radius:0 10px 10px 0; }
+.q-block .q { color:var(--gold-2); font-size:14px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px; }
 </style>
-</head>
-<body>
+</head><body>
 <header class="topbar">
   <a class="home" href="index.html">✈️ Pat's Trip Hub · Home</a>
-  <div class="stamp">Updated April 28, 2026 — 11:30 PM PT</div>
+  <div class="stamp">Updated April 29, 2026 — 2:55 PM PT</div>
 </header>
 <div class="container">
-
 <p class="eyebrow">Visual log</p>
 <h1>Decision &amp; document log</h1>
-<p class="lede">Every decision, every document, every step — in order. Newest at top.</p>
+<p class="lede">Newest at top. Includes Medicare summary you sent Apr 28 evening.</p>
 
-<div class="card">
-  <h3>📅 Tue Apr 28, 11:30 PM PT — Dashboard launched</h3>
-  <p>Built this living dashboard. From now on, this URL is your one home. All previous packets are archived in the shared folder; you don't need to look there.</p>
+<div class="card" id="apr29-update">
+  <h3>📅 Wed Apr 29, 2:55 PM PT — Dashboard rebuild after Pat's frustration</h3>
+  <p>Pat texted at 12:12 PM expressing disappointment that yesterday's dashboard had not been updated with her Apr 28 evening Medicare answers and 7 trip-detail questions. Acknowledged in iMessage at 2:46 PM PT. This update integrates: IMG SE vs Travel Guard senior reviews (her urgent ask), full flight detail with cabin labels and times, LHR→Norwich coach schedule (corrected from train), Norwich-first/Inverness-second routing, Sabi Sabi removed (Banie handling), France swap removed, all 7 trip questions addressed.</p>
+</div>
+
+<div class="card" id="medicare">
+  <h3>📅 Tue Apr 28, ~9:50 PM PT — Medicare call summary (received)</h3>
+  <p>Pat called Medicare in the morning Apr 28. Voice memo + transcript sent same evening. Summary of what Medicare's representative told her:</p>
+  <ul class="tight">
+    <li><strong>Pat has Original Medicare Part A (hospital) and Part B (medical).</strong></li>
+    <li><strong>Anthem Blue Cross is supplemental</strong> to Medicare and only covers what Medicare covers first. Anthem will <strong>not</strong> pay if Medicare doesn't.</li>
+    <li><strong>Medicare covers Pat in the U.S. and U.S. territories</strong> (Puerto Rico, etc.) — but <strong>not in South Africa, Zambia, or the UK.</strong></li>
+    <li><strong>If hospitalized abroad,</strong> Pat would pay out-of-pocket and the foreign hospital would submit itemized bills (date of service, place, description, etc.) to Medicare within 30 days. Medicare reviews and may reimburse partially. Process can take up to 60 days.</li>
+    <li><strong>Bottom line: supplemental travel insurance is the actual safety net.</strong> Medical evacuation back to the U.S. is critical because once in the U.S., Medicare covers the rest.</li>
+  </ul>
+  <p><strong>Decisions this drove:</strong> Plan that includes airlift to U.S. is essential. Both IMG SE + Medjet Annual and Travel Guard Preferred + Medjet Annual deliver this.</p>
 </div>
 
 <div class="card">
   <h3>📅 Tue Apr 28, 7:16 PM PT — Pat's feedback form completed ✅</h3>
-  <p>Pat completed the 7-question feedback form. Key signals: feeling overwhelmed, too many separate documents, can't see the big picture, wants single dashboard + visual updates. Mockup pick: "Mix of both." Insurance pick: held pending Anthem call. <strong>This dashboard is the response.</strong></p>
+  <p>7-question form completed. Key signals: feeling overwhelmed, too many separate documents, can't see big picture, wants single dashboard with visual updates. This dashboard structure is the response.</p>
 </div>
 
 <div class="card">
-  <h3>📅 Tue Apr 28, 9:30 PM PT — Fiona's France suggestion</h3>
-  <p>Pat received call from Fiona suggesting France instead of Inverness. Pat asked Concierge to map out hypothetical France routing. See <a href="alt-france.html">France hypothetical page</a>.</p>
-</div>
-
-<div class="card">
-  <h3>📅 Tue Apr 28, ~9:50 PM PT — Medicare call answers received</h3>
-  <p>Pat called Medicare in the morning, answered all 6 questions Concierge had prepared, sent transcript via voice memo + structured email response. Key takeaways: Medicare doesn't cover care abroad except in narrow circumstances; no evacuation coverage; submit foreign bills within 30 days for review; Anthem won't pay supplementally for anything Medicare doesn't pay. <strong>Confirms the supplemental insurance plan is the actual safety net.</strong></p>
+  <h3>📅 Tue Apr 28, ~9:30 PM PT — Fiona's France suggestion received</h3>
+  <p>Fiona suggested Pat could come to France instead of Inverness. Pat asked Concierge to map France hypothetical. <strong>Apr 29 4:11 AM update from Pat: France definitely cancelled.</strong> UK plan stands.</p>
 </div>
 
 <div class="card">
   <h3>📅 Mon Apr 27 — Mmilo confirmation cleared</h3>
-  <p>Mmilo confirmed: all Proflight Zambia flights ticketed within package. Both park fees (South Luangwa, Kafue) prepaid. Balance ZAR 44,606 due Thu May 21.</p>
+  <p>Mmilo confirmed: all Proflight Zambia flights ticketed within package. Both park fees prepaid (S Luangwa, Kafue). Balance ZAR 44,606 due Thu May 21.</p>
 </div>
 
 <div class="card">
   <h3>📅 Mon Apr 27 — Cowork-caught factual corrections</h3>
-  <p>5 factual errors caught and fixed via Cowork audit: UA flight numbers reversed (UA 188 outbound, UA 187 return); UA 14/17 are 767-300ER not 757; Polaris pricing $14.5–21.9K all-Polaris (not $11.7K); IMG SE plan required not Choice (Choice has $10K cap); Medjet must be Annual not Short-Term (33-day trip exceeds 30-day max). All errors avoided before reaching Pat. New SOP_VERIFICATION protocol now in place.</p>
+  <p>5 errors caught/fixed before reaching Pat: UA flight numbers reversed (UA 188 outbound, UA 187 return); UA 14/17 are 767-300ER not 757; Polaris pricing $14.5-21.9K; IMG SE plan required not Choice (Choice $10K cap); Medjet Annual not Short-Term (33-day trip exceeds 30-day max).</p>
 </div>
 
 <div class="card">
-  <h3>📅 Sun Apr 26 — Kruger options shortlisted</h3>
-  <p>Sabi Sabi Earth Lodge (Stay 4 Pay 3 promo, ~$7.4K), Lukimbi (~$6K), Arathusa (~$2.5K) shortlisted. Sabi Sabi quote requested. Decision pending.</p>
-</div>
-
-<div class="card">
-  <h3>📅 Sun Apr 19 — Pat's voice memo with priorities</h3>
-  <p>Pat recorded 2-minute voice memo articulating priorities: comfort, affordability, low complication; preferences include front-of-plane, window seat, lie-flat for long-haul. Inverness ≥5 days, Norwich ~3 days, either side first.</p>
+  <h3>📅 Sun Apr 19 — Pat's voice memo: priorities</h3>
+  <p>Pat recorded priorities: comfort, affordability, low complication; front-of-plane preferred; window seat; lie-flat for long-haul.</p>
 </div>
 
 <div class="card">
   <h3>📅 Fri Apr 17 — Mmilo deposit paid</h3>
-  <p>Pat paid ZAR 44,606 to Mmilo Tours via Visa ending 4788. Booking confirmed. Balance ZAR 44,606 due May 21, 2026.</p>
+  <p>ZAR 44,606 deposit paid via Visa ending 4788. Booking confirmed.</p>
 </div>
 
 <div class="card">
   <h3>📅 Thu Apr 16 — Africa flights ticketed</h3>
-  <p>Airlink JNB → Livingstone Jul 1 (conf Y9ABNJ, seat 3F) and Zambia Airways Lusaka → JNB Jul 9 (conf YDHXGT, seat 12A) ticketed via Mmilo.</p>
+  <p>Airlink JNB→LVI Jul 1 (Y9ABNJ, seat 3F) and Zambia Airways LUN→JNB Jul 9 (YDHXGT, seat 12A).</p>
 </div>
 
 <div class="card">
-  <h3>📅 Sun Apr 12 — Banie sent safari itinerary v1</h3>
-  <p>Banie Penzhorn (UCD colleague organizing the safari) sent the 9-day Mmilo itinerary. Updated to v2 a few days later swapping Wildlife Camp for Track &amp; Trail River Camp at Patrick's recommendation.</p>
+  <h3>📅 Sun Apr 12 — Banie sent safari itinerary</h3>
+  <p>Banie Penzhorn (UCD colleague, safari organizer) shared 9-day itinerary. Updated to v2 swapping Wildlife Camp for Track &amp; Trail River Camp.</p>
 </div>
-
-<h2>📂 Older packets (now archived)</h2>
-<div class="card">
-  <p>Versions 1–6 of the trip packet are archived in the iCloud shared folder. <strong>You don't need to look at them anymore</strong> — everything current is on this dashboard. They're kept only for reference.</p>
-</div>
-
 </div>
 <footer>
-  <p>One link to remember: <a href="index.html"><strong>bit.ly/pat-trip-hub</strong></a> · Updated as we go.<br>
+  <p>One link to remember: <a href="index.html"><strong>bit.ly/pat-trip-hub</strong></a> · I update this as we go.<br>
   Built for Pat with care by Claude Concierge.</p>
 </footer>
-</body>
-</html>
+</body></html>
