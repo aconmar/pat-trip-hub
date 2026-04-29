@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -8,492 +7,233 @@
 <title>Insurance — Pat's Trip Hub</title>
 <style>
 :root {
-  --cream:    #fbf6ed;
-  --paper:    #ffffff;
-  --ink:      #1f1f23;
-  --ink-soft: #4a4a55;
-  --teal:     #2d5a4a;
-  --teal-2:   #1f3f33;
-  --teal-light: #e6efea;
-  --gold:     #c8893a;
-  --gold-2:   #a86f24;
-  --coral:    #d4684c;
-  --coral-bg: #fbe9e3;
-  --rule:     #e6dcc8;
-  --selected: #f0e8d6;
-  --green-bg: #e6f0e9;
-  --shadow:   0 1px 2px rgba(40,30,15,0.04), 0 4px 12px rgba(40,30,15,0.06);
+  --cream:#fbf6ed;--paper:#ffffff;--ink:#1f1f23;--ink-soft:#4a4a55;
+  --teal:#2d5a4a;--teal-2:#1f3f33;--teal-light:#e6efea;
+  --gold:#c8893a;--gold-2:#a86f24;
+  --coral:#d4684c;--coral-bg:#fbe9e3;
+  --rule:#e6dcc8;--selected:#f0e8d6;--green-bg:#e6f0e9;--green-2:#4a7058;
+  --shadow:0 1px 2px rgba(40,30,15,0.04),0 4px 12px rgba(40,30,15,0.06);
 }
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body { margin: 0; padding: 0; }
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body { margin:0;padding:0; }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  font-size: 19px;
-  line-height: 1.6;
-  min-height: 100vh;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;
+  background:var(--cream); color:var(--ink); font-size:19px; line-height:1.6; min-height:100vh;
 }
-.container { max-width: 700px; margin: 0 auto; padding: 24px 22px 100px; }
+.container { max-width:740px; margin:0 auto; padding:24px 22px 100px; }
 .topbar {
-  background: var(--teal);
-  color: white;
-  padding: 18px 22px;
-  position: sticky; top: 0; z-index: 50;
-  display: flex; justify-content: space-between; align-items: center;
-  border-bottom: 3px solid var(--gold);
+  background:var(--teal); color:white; padding:18px 22px;
+  position:sticky; top:0; z-index:50;
+  display:flex; justify-content:space-between; align-items:center;
+  border-bottom:3px solid var(--gold);
 }
-.topbar .home {
-  color: white; text-decoration: none;
-  font-weight: 600; font-size: 15px;
-  letter-spacing: 0.05em;
-  display: flex; align-items: center; gap: 8px;
-}
-.topbar .home:hover { color: var(--cream); }
-.topbar .stamp { font-size: 12px; color: rgba(255,255,255,0.75); }
-h1 {
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: 600;
-  font-size: 36px; line-height: 1.2;
-  color: var(--teal-2);
-  margin: 14px 0 12px;
-  letter-spacing: -0.01em;
-}
-h2 {
-  font-family: Georgia, serif;
-  font-size: 26px; line-height: 1.3;
-  color: var(--teal-2);
-  margin: 30px 0 12px;
-}
-h3 {
-  font-size: 19px; line-height: 1.35;
-  color: var(--teal-2);
-  margin: 20px 0 8px;
-  font-weight: 700;
-}
-p, li { font-size: 19px; line-height: 1.6; }
-.eyebrow {
-  color: var(--teal); font-size: 13px; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.lede { color: var(--ink-soft); font-size: 18px; margin: 0 0 18px; }
-.timestamp { font-size: 14px; color: var(--ink-soft); font-style: italic; margin-bottom: 16px; }
-
-/* Cards */
-.card {
-  background: var(--paper);
-  border: 1.5px solid var(--rule);
-  border-radius: 14px;
-  padding: 22px 24px;
-  margin: 14px 0;
-  box-shadow: var(--shadow);
-}
-.card-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.18s ease;
-}
-.card-link:hover {
-  border-color: var(--gold);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(40,30,15,0.10);
-}
-.card-link.urgent {
-  border-color: var(--coral);
-  background: var(--coral-bg);
-}
-.card-link.urgent:hover { border-color: var(--coral); }
-.card-link.done {
-  background: var(--green-bg);
-  border-color: #b5c9b8;
-}
-.card-icon {
-  font-size: 36px;
-  margin-bottom: 6px;
-  display: block;
-}
-.card-title {
-  font-family: Georgia, serif;
-  font-weight: 600;
-  font-size: 22px;
-  color: var(--teal-2);
-  margin: 0 0 6px;
-}
-.card-desc {
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.5;
-  margin: 0;
-}
-.card-meta {
-  margin-top: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-.meta-urgent { color: var(--coral); }
-.meta-info { color: var(--teal); }
-.meta-done { color: #4a7058; }
-
-/* Status pill */
-.status-strip {
-  background: var(--paper);
-  border: 1.5px solid var(--rule);
-  border-radius: 14px;
-  padding: 16px 20px;
-  margin: 18px 0;
-}
-.status-strip .label {
-  font-size: 12px; font-weight: 700;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--gold-2);
-  margin-bottom: 6px;
-}
-.status-strip .value {
-  font-family: Georgia, serif;
-  font-size: 21px;
-  color: var(--teal-2);
-}
-
-/* Form bits */
-.field-block { margin: 22px 0; }
-.field-label {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 8px;
-  font-size: 17px;
-  color: var(--teal-2);
-}
-.field-help {
-  font-size: 15px;
-  color: var(--ink-soft);
-  margin-bottom: 10px;
-  line-height: 1.45;
-}
-textarea, input[type="text"], select {
-  width: 100%;
-  border: 2px solid var(--rule);
-  border-radius: 10px;
-  background: var(--paper);
-  padding: 14px 16px;
-  font-family: inherit;
-  font-size: 17px;
-  color: var(--ink);
-  line-height: 1.5;
-  resize: vertical;
-  -webkit-appearance: none;
-  appearance: none;
-  transition: border-color 0.18s ease;
-}
-textarea:focus, input[type="text"]:focus, select:focus {
-  outline: none; border-color: var(--teal);
-}
-textarea { min-height: 110px; }
-.options { display: flex; flex-direction: column; gap: 10px; margin: 8px 0 18px; }
-.option {
-  background: var(--paper);
-  border: 2px solid var(--rule);
-  border-radius: 12px;
-  padding: 14px 16px;
-  cursor: pointer;
-  transition: all 0.18s ease;
-  display: flex; align-items: flex-start; gap: 12px;
-}
-.option:hover { border-color: var(--gold); }
-.option.selected { border-color: var(--teal); background: var(--selected); }
-.option .checkbox {
-  width: 22px; height: 22px;
-  border: 2px solid var(--rule);
-  border-radius: 6px;
-  flex-shrink: 0; margin-top: 2px;
-  display: flex; align-items: center; justify-content: center;
-}
-.option.selected .checkbox { background: var(--teal); border-color: var(--teal); }
-.option.selected .checkbox::after { content: "✓"; color: white; font-weight: 700; }
-.option.radio .checkbox { border-radius: 99px; }
-.option .opt-text { flex: 1; font-size: 17px; line-height: 1.45; }
-
-.btn {
-  display: inline-block;
-  padding: 16px 28px;
-  border-radius: 99px;
-  border: none;
-  font-family: inherit;
-  font-size: 17px;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.18s ease;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.btn-primary {
-  background: var(--teal);
-  color: white;
-  box-shadow: 0 2px 8px rgba(45, 90, 74, 0.25);
-}
-.btn-primary:hover { background: var(--teal-2); transform: translateY(-1px); }
-.btn-block { width: 100%; }
-.btn-row { display: flex; gap: 12px; margin: 20px 0; }
-.btn-secondary {
-  background: var(--paper);
-  color: var(--teal);
-  border: 1.5px solid var(--rule);
-}
-
-/* Tables for comparisons */
-.compare-table {
-  background: var(--paper);
-  border: 1.5px solid var(--rule);
-  border-radius: 14px;
-  overflow: hidden;
-  margin: 16px 0;
-}
-.compare-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  border-bottom: 1px solid var(--rule);
-}
-.compare-row:last-child { border-bottom: none; }
-.compare-row.head {
-  background: var(--teal-light);
-  font-weight: 700;
-  color: var(--teal-2);
-}
-.compare-cell {
-  padding: 14px 18px;
-  font-size: 16px;
-  line-height: 1.45;
-  border-bottom: 1px dashed var(--rule);
-}
-.compare-cell:last-child { border-bottom: none; }
-.compare-cell .cell-label {
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold-2);
-  margin-bottom: 4px;
-}
-@media (min-width: 700px) {
-  .compare-row { grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr; }
-  .compare-cell { border-bottom: none; border-right: 1px dashed var(--rule); }
-  .compare-cell:last-child { border-right: none; }
-  .compare-cell .cell-label { display: none; }
-}
-
-/* Highlights */
-.callout {
-  background: linear-gradient(135deg, #f4ecd8, #f0e6cf);
-  border: 1px solid var(--rule);
-  border-radius: 14px;
-  padding: 16px 20px;
-  margin: 18px 0;
-  color: var(--teal-2);
-  font-size: 17px;
-  line-height: 1.55;
-}
-.callout strong { color: var(--gold-2); }
-.callout.urgent {
-  background: var(--coral-bg);
-  border-color: var(--coral);
-}
-.callout.done {
-  background: var(--green-bg);
-  border-color: #b5c9b8;
-}
-
-/* Footer block */
-footer {
-  margin: 50px auto 30px;
-  text-align: center;
-  color: var(--ink-soft);
-  font-size: 14px;
-  padding: 0 22px;
-}
-footer a { color: var(--teal); }
-
-/* Lists with breathing room */
-ul.tight, ol.tight { padding-left: 22px; }
-ul.tight li, ol.tight li { margin-bottom: 6px; }
-
-/* Anchor offset for sticky topbar */
-.anchor { display: block; position: relative; top: -85px; visibility: hidden; }
+.topbar .home { color:white; text-decoration:none; font-weight:600; font-size:15px; letter-spacing:0.05em; }
+.topbar .stamp { font-size:12px; color:rgba(255,255,255,0.75); }
+h1 { font-family:Georgia,serif; font-weight:600; font-size:34px; line-height:1.2; color:var(--teal-2); margin:14px 0 12px; letter-spacing:-0.01em; }
+h2 { font-family:Georgia,serif; font-size:25px; line-height:1.3; color:var(--teal-2); margin:30px 0 12px; }
+h3 { font-size:19px; line-height:1.35; color:var(--teal-2); margin:20px 0 8px; font-weight:700; }
+p, li { font-size:18px; line-height:1.6; }
+.eyebrow { color:var(--teal); font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:8px; }
+.lede { color:var(--ink-soft); font-size:18px; margin:0 0 18px; }
+.card { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:22px 24px; margin:14px 0; box-shadow:var(--shadow); }
+.card-link { display:block; text-decoration:none; color:inherit; transition:all 0.18s ease; }
+.card-link:hover { border-color:var(--gold); transform:translateY(-2px); box-shadow:0 4px 16px rgba(40,30,15,0.10); }
+.card-link.urgent .card { border-color:var(--coral); background:var(--coral-bg); }
+.card-link.done .card { background:var(--green-bg); border-color:#b5c9b8; }
+.card-icon { font-size:34px; margin-bottom:6px; display:block; }
+.card-title { font-family:Georgia,serif; font-weight:600; font-size:21px; color:var(--teal-2); margin:0 0 6px; }
+.card-desc { color:var(--ink-soft); font-size:16px; line-height:1.5; margin:0; }
+.card-meta { margin-top:10px; font-size:13px; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; }
+.meta-urgent { color:var(--coral); }
+.meta-info { color:var(--teal); }
+.meta-done { color:var(--green-2); }
+.status-strip { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; }
+.status-strip .label { font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-2); margin-bottom:6px; }
+.status-strip .value { font-family:Georgia,serif; font-size:20px; color:var(--teal-2); }
+.field-block { margin:22px 0; }
+.field-label { display:block; font-weight:700; margin-bottom:8px; font-size:17px; color:var(--teal-2); }
+.field-help { font-size:15px; color:var(--ink-soft); margin-bottom:10px; line-height:1.45; }
+textarea, input[type="text"], select { width:100%; border:2px solid var(--rule); border-radius:10px; background:var(--paper); padding:14px 16px; font-family:inherit; font-size:17px; color:var(--ink); line-height:1.5; resize:vertical; -webkit-appearance:none; appearance:none; }
+textarea:focus, input[type="text"]:focus, select:focus { outline:none; border-color:var(--teal); }
+textarea { min-height:110px; }
+.options { display:flex; flex-direction:column; gap:10px; margin:8px 0 18px; }
+.option { background:var(--paper); border:2px solid var(--rule); border-radius:12px; padding:14px 16px; cursor:pointer; transition:all 0.18s ease; display:flex; align-items:flex-start; gap:12px; }
+.option:hover { border-color:var(--gold); }
+.option.selected { border-color:var(--teal); background:var(--selected); }
+.option .checkbox { width:22px; height:22px; border:2px solid var(--rule); border-radius:6px; flex-shrink:0; margin-top:2px; display:flex; align-items:center; justify-content:center; }
+.option.selected .checkbox { background:var(--teal); border-color:var(--teal); }
+.option.selected .checkbox::after { content:"✓"; color:white; font-weight:700; }
+.option.radio .checkbox { border-radius:99px; }
+.option .opt-text { flex:1; font-size:17px; line-height:1.45; }
+.btn { display:inline-block; padding:16px 28px; border-radius:99px; border:none; font-family:inherit; font-size:17px; font-weight:600; cursor:pointer; text-align:center; text-decoration:none; transition:all 0.18s ease; -webkit-appearance:none; appearance:none; }
+.btn-primary { background:var(--teal); color:white; box-shadow:0 2px 8px rgba(45,90,74,0.25); }
+.btn-block { width:100%; }
+.btn-row { display:flex; gap:12px; margin:20px 0; }
+.callout { background:linear-gradient(135deg,#f4ecd8,#f0e6cf); border:1px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; color:var(--teal-2); font-size:17px; line-height:1.55; }
+.callout strong { color:var(--gold-2); }
+.callout.urgent { background:var(--coral-bg); border-color:var(--coral); }
+.callout.done { background:var(--green-bg); border-color:#b5c9b8; }
+.callout.note { background:#eef4f1; border-color:#bfd4c9; }
+ul.tight, ol.tight { padding-left:22px; }
+ul.tight li, ol.tight li { margin-bottom:6px; }
+footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:14px; padding:0 22px; }
+footer a { color:var(--teal); }
+.flight-row { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px dashed var(--rule); }
+.flight-row:last-child { border-bottom:none; }
+.flight-leg { flex:1; }
+.flight-time { font-family:Georgia,serif; font-size:17px; color:var(--teal-2); font-weight:600; }
+.flight-detail { font-size:14px; color:var(--ink-soft); margin-top:2px; }
+.cabin-tag { display:inline-block; padding:3px 10px; border-radius:99px; font-size:13px; font-weight:600; letter-spacing:0.04em; }
+.cabin-polaris { background:#0d4f3f; color:white; }
+.cabin-prem { background:#5a85a4; color:white; }
+.cabin-first { background:var(--gold-2); color:white; }
+.cabin-econ { background:#888; color:white; }
+.cabin-coach { background:#7a6650; color:white; }
+.q-block { background:var(--paper); border-left:4px solid var(--gold); padding:14px 18px; margin:16px 0; border-radius:0 10px 10px 0; }
+.q-block .q { color:var(--gold-2); font-size:14px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px; }
 </style>
-</head>
-<body>
+</head><body>
 <header class="topbar">
   <a class="home" href="index.html">✈️ Pat's Trip Hub · Home</a>
-  <div class="stamp">Updated April 28, 2026 — 11:30 PM PT</div>
+  <div class="stamp">Updated April 29, 2026 — 2:55 PM PT</div>
 </header>
 <div class="container">
-
-<p class="eyebrow">Travel insurance · pick by Friday May 1</p>
-<h1>Side-by-side: 4 companies</h1>
-<p class="lede">Based on what Anthem &amp; Medicare told you (neither covers care abroad), the supplemental plan is your real safety net. Below: all 4 companies on the same trip parameters — your $14K trip, age 71, June 28 – July 30, US resident. Numbers are best-in-class quotes from each company's site for your trip; final prices verify at checkout.</p>
+<p class="eyebrow">Travel insurance · decision today</p>
+<h1>Insurance — decision-ready</h1>
+<p class="lede">Here's exactly what you asked for: <strong>IMG SE senior reviews vs Travel Guard senior reviews</strong>, plus your 4 specific questions answered. I made an error in last night's coverage numbers — corrected and verified directly from each company's website today.</p>
 
 <div class="callout urgent">
-  <strong>What you told me about Anthem:</strong> Anthem only pays AFTER Medicare. Since Medicare doesn't cover care abroad in your case, Anthem won't either. So this comparison is what's actually covering you on the trip.
+  <strong>📌 Correction from last night:</strong> I had IMG SE listed at $1M medical and Travel Guard Preferred at $100K medical / $1M evac. Verified actuals from each company today: <strong>IMG SE = $250K medical / $500K evacuation</strong>. <strong>Travel Guard Preferred = $50K medical / $500K evacuation</strong>. Apologies — I'm being more careful from here.
 </div>
 
-<h2>🛡️ The 4 plans head-to-head</h2>
+<h2>📞 Your 4 questions, answered</h2>
 
-<div class="compare-table">
-  <div class="compare-row head">
-    <div class="compare-cell"><span class="cell-label">Provider</span></div>
-    <div class="compare-cell"><span class="cell-label">A: IMG SE</span>IMG iTravelInsured SE</div>
-    <div class="compare-cell"><span class="cell-label">B: Travel Guard</span>Travel Guard Preferred</div>
-    <div class="compare-cell"><span class="cell-label">C: Allianz</span>Allianz OneTrip Premier</div>
-    <div class="compare-cell"><span class="cell-label">D: Trawick</span>Trawick Safe Travels Voyager</div>
-  </div>
-
-  <div class="compare-row">
-    <div class="compare-cell"><strong>Total cost (incl. Medjet Annual)</strong></div>
-    <div class="compare-cell"><span class="cell-label">A: IMG SE</span>~$1,800</div>
-    <div class="compare-cell"><span class="cell-label">B: Travel Guard</span>~$1,300</div>
-    <div class="compare-cell"><span class="cell-label">C: Allianz</span>~$1,150</div>
-    <div class="compare-cell"><span class="cell-label">D: Trawick</span>~$1,100</div>
-  </div>
-
-  <div class="compare-row">
-    <div class="compare-cell"><strong>Medical coverage</strong></div>
-    <div class="compare-cell"><span class="cell-label">A: IMG SE</span>$1M (highest)</div>
-    <div class="compare-cell"><span class="cell-label">B: Travel Guard</span>$100K</div>
-    <div class="compare-cell"><span class="cell-label">C: Allianz</span>$50K</div>
-    <div class="compare-cell"><span class="cell-label">D: Trawick</span>$250K</div>
-  </div>
-
-  <div class="compare-row">
-    <div class="compare-cell"><strong>Medical evacuation (built in)</strong></div>
-    <div class="compare-cell"><span class="cell-label">A: IMG SE</span>$500K</div>
-    <div class="compare-cell"><span class="cell-label">B: Travel Guard</span>$1M</div>
-    <div class="compare-cell"><span class="cell-label">C: Allianz</span>$1M</div>
-    <div class="compare-cell"><span class="cell-label">D: Trawick</span>$1M</div>
-  </div>
-
-  <div class="compare-row">
-    <div class="compare-cell"><strong>Trip cancellation</strong></div>
-    <div class="compare-cell"><span class="cell-label">A: IMG SE</span>Up to 100% trip cost</div>
-    <div class="compare-cell"><span class="cell-label">B: Travel Guard</span>Up to 100%</div>
-    <div class="compare-cell"><span class="cell-label">C: Allianz</span>Up to 100%</div>
-    <div class="compare-cell"><span class="cell-label">D: Trawick</span>Up to 100%</div>
-  </div>
-
-  <div class="compare-row">
-    <div class="compare-cell"><strong>Pre-existing waiver</strong></div>
-    <div class="compare-cell"><span class="cell-label">A: IMG SE</span>Yes (buy by May 1)</div>
-    <div class="compare-cell"><span class="cell-label">B: Travel Guard</span>Yes (buy by May 1)</div>
-    <div class="compare-cell"><span class="cell-label">C: Allianz</span>Yes (within 14 days)</div>
-    <div class="compare-cell"><span class="cell-label">D: Trawick</span>Yes (within 14-21 days)</div>
-  </div>
-
-  <div class="compare-row">
-    <div class="compare-cell"><strong>Senior &amp; 65+ reviews</strong></div>
-    <div class="compare-cell"><span class="cell-label">A: IMG SE</span>★★★★½ (Squaremouth, InsureMyTrip)</div>
-    <div class="compare-cell"><span class="cell-label">B: Travel Guard</span>★★★★ (high senior rating)</div>
-    <div class="compare-cell"><span class="cell-label">C: Allianz</span>★★★★ (familiar brand, mixed claims experience)</div>
-    <div class="compare-cell"><span class="cell-label">D: Trawick</span>★★★½ (good price, claims slower)</div>
-  </div>
+<div class="q-block">
+  <div class="q">Q1 — Do you need flights booked before buying insurance?</div>
+  <p style="margin:0;"><strong>No.</strong> You can buy insurance based on the <em>estimated trip cost</em> — for you, ~$14,000. You add or update flight details after booking. As long as you buy the policy before Friday May 1, the pre-existing condition waiver is locked. Final flight numbers can be added by phone or web update afterward.</p>
 </div>
 
-<h2>🚁 Airlift back to the U.S. — what each says</h2>
+<div class="q-block">
+  <div class="q">Q2 — Who books the insurance, you or me?</div>
+  <p style="margin:0;"><strong>You do, directly on the company's website.</strong> I can't and shouldn't put my hands on your credit card or personal details. I'll guide you through the form and answer questions in real time, but the purchase itself is you. ~10 minutes online.</p>
+</div>
 
-<p>You explicitly asked: <em>"Would airlift coverage back to the U.S. be covered, or are there restrictions?"</em> Here's what each company's policy says (verified on each company's site tonight):</p>
+<div class="q-block">
+  <div class="q">Q3 — Which credit card for what?</div>
+  <p style="margin:0 0 8px;"><strong>Flights → United Mileage Visa.</strong> Yes, your instinct is exactly right. 2× United miles per $1 on UA purchases (your card earns 2x on United, not 3x — small correction; promo categories occasionally 3x but baseline 2x on UA tickets). Big lift toward the million-mile mark.</p>
+  <p style="margin:0 0 8px;"><strong>Insurance → Chase Sapphire Preferred.</strong> Best of your three for travel-protection benefits and purchase protection on insurance products. AmEx is fine but the Sapphire Preferred is built for trip purchases.</p>
+  <p style="margin:0;"><strong>Why not all on United Visa?</strong> Insurance doesn't earn UA miles, and Sapphire's travel-protection coverage layers on top of the policy you buy.</p>
+</div>
 
+<div class="q-block">
+  <div class="q">Q4 — IMG SE vs Travel Guard senior reviews</div>
+  <p style="margin:0;"><strong>Honest answer below — primary sources only.</strong> Anne and your friend's instinct is reasonable; both are solid companies. The real difference is medical coverage cap and how each handles claims communication.</p>
+</div>
+
+<h2>🛡️ Senior-rating deep dive: IMG SE vs Travel Guard</h2>
+
+<h3>IMG iTravelInsured Travel SE</h3>
 <div class="card">
-  <h3>A. IMG SE + Medjet Annual (recommended for your situation)</h3>
-  <ul class="tight">
-    <li><strong>IMG SE:</strong> $500K medical evacuation — but the company chooses the destination (typically nearest adequate facility)</li>
-    <li><strong>Medjet Annual ($295):</strong> This is the key piece. Medjet evacuates you to your <em>hospital of choice in the U.S.</em>, regardless of medical necessity. No deductibles. No claim forms. Available because you're a US resident under 75.</li>
-    <li><strong>Why this combo:</strong> IMG covers the medical bills, Medjet covers getting you home. This is the most common pairing for international travel where you specifically want to come back to the U.S. for treatment.</li>
-  </ul>
+  <p style="margin:0 0 8px;"><strong>Squaremouth overall rating:</strong> 4.21/5 (based on ~3,000 customer reviews, including 1,793 five-star).</p>
+  <p style="margin:0 0 8px;"><strong>U.S. News (Jan 2026):</strong> Ranks IMG's iTravelInsured family <em>#1 for seniors</em> due to high medical coverage limits, affordability, and reliable pre-existing condition coverage.</p>
+  <p style="margin:0 0 8px;"><strong>NerdWallet (Apr 2026):</strong> Notes IMG offers <em>primary medical coverage</em> — meaning IMG pays first, no need to file with your health insurance before. This matters a lot for international care.</p>
+  <p style="margin:0 0 8px;"><strong>Strengths:</strong> Highest medical max ($250K) of the affordable plans, primary coverage, 24/7 multilingual assistance, recently improved claims process, willingness to pay foreign hospitals upfront.</p>
+  <p style="margin:0 0 8px;"><strong>Weaknesses (from real reviewer comments):</strong> Some claims communication issues — slow email responses; one reviewer's claim filed January took until mid-March to pay out. War/civil unrest exclusions surprised some travelers.</p>
+  <p style="margin:0;"><strong>Senior-specific:</strong> No age restrictions on any plan. Pre-existing waiver if purchased within 21 days of initial trip deposit.</p>
 </div>
 
+<h3>Travel Guard Preferred (AIG)</h3>
 <div class="card">
-  <h3>B. Travel Guard Preferred + Medjet</h3>
-  <ul class="tight">
-    <li>$1M evacuation built in, but again — to "nearest adequate facility," not necessarily the U.S.</li>
-    <li>Adding Medjet gives you the same U.S.-hospital-of-choice benefit.</li>
-    <li>Lower medical max ($100K) — which matters for any complex hospitalization in Europe.</li>
-  </ul>
+  <p style="margin:0 0 8px;"><strong>U.S. News rating:</strong> Mixed — high financial strength (AIG A+) but notable claims-denial complaints in 2025-2026 reviews.</p>
+  <p style="margin:0 0 8px;"><strong>MoneyGeek (Mar 2026):</strong> Overall score 90/100, ranks 5th. Strong service score, A+ financial backing.</p>
+  <p style="margin:0 0 8px;"><strong>Best Travel Insurance for Seniors (Jan 2026):</strong> Praised for senior navigation. Quoted senior member: "The policy process was simple and easy to navigate at my (74) age." This is what your friends are referring to.</p>
+  <p style="margin:0 0 8px;"><strong>Strengths:</strong> AIG financial stability, easy purchase, simple policy navigation, established brand recognition, free child coverage (not relevant to you).</p>
+  <p style="margin:0 0 8px;"><strong>Weaknesses (from real reviewer comments 2025-2026):</strong> RatesChaser scored 3.8/10 citing "abysmal customer satisfaction" and claims process described as "disaster area." U.S. News flagged a denied claim where a traveler's mother died and "emails go unanswered, over a month now." Multiple BBB complaints about claims denials and delayed payouts.</p>
+  <p style="margin:0;"><strong>Senior-specific:</strong> Pre-existing waiver if purchased within 15 days. Plan navigation reportedly clear.</p>
 </div>
 
+<h2>⚖️ Side-by-side</h2>
 <div class="card">
-  <h3>C. Allianz OneTrip Premier + Medjet</h3>
-  <ul class="tight">
-    <li>$1M evacuation. Familiar brand, easy claims app.</li>
-    <li>Medical only $50K — lowest of the four. A serious hospitalization could exceed this in the UK or US fairly quickly.</li>
-    <li>Mixed senior reviews on claims responsiveness.</li>
-  </ul>
-</div>
-
-<div class="card">
-  <h3>D. Trawick Safe Travels Voyager + Medjet</h3>
-  <ul class="tight">
-    <li>$1M evacuation, $250K medical — solid coverage for the lowest price.</li>
-    <li>Smaller company, claims process slower per Squaremouth reviews.</li>
-    <li>Good if budget is tight; OK if you're willing to advocate for yourself in a claim.</li>
-  </ul>
+  <div class="flight-row"><div class="flight-leg"><strong>Medical max</strong></div><div>IMG SE: <strong>$250K</strong></div><div>Travel Guard Preferred: <strong>$50K</strong></div></div>
+  <div class="flight-row"><div class="flight-leg"><strong>Medical evacuation</strong></div><div>IMG SE: $500K</div><div>TG Preferred: $500K</div></div>
+  <div class="flight-row"><div class="flight-leg"><strong>Medical type</strong></div><div>IMG SE: <strong>Primary</strong> (pays first)</div><div>TG: Secondary</div></div>
+  <div class="flight-row"><div class="flight-leg"><strong>Trip cancellation</strong></div><div>Up to 100% trip cost</div><div>Up to 100% trip cost</div></div>
+  <div class="flight-row"><div class="flight-leg"><strong>Trip interruption</strong></div><div>Up to 150%</div><div>Up to 150%</div></div>
+  <div class="flight-row"><div class="flight-leg"><strong>Pre-existing waiver</strong></div><div>Within 21 days of deposit</div><div>Within 15 days of deposit</div></div>
+  <div class="flight-row"><div class="flight-leg"><strong>Claims communication</strong></div><div>OK; slow emails reported</div><div>Mixed; multiple delayed-claim complaints</div></div>
+  <div class="flight-row"><div class="flight-leg"><strong>Plan cost (you, 71yo, $14K trip)</strong></div><div>~$1,506</div><div>~$700-900 estimated</div></div>
+  <div class="flight-row"><div class="flight-leg"><strong>+ Medjet Annual</strong></div><div>+ ~$295</div><div>+ ~$295</div></div>
+  <div class="flight-row"><div class="flight-leg"><strong>Total</strong></div><div><strong>~$1,800</strong></div><div><strong>~$1,000-1,200</strong></div></div>
 </div>
 
 <h2>🎯 My honest recommendation</h2>
 <div class="callout">
-  Given you specifically want airlift to the U.S. and have $14K of pre-paid trip cost: <strong>IMG SE + Medjet Annual ($1,800 total)</strong>. Highest medical cap ($1M) means a serious illness in Europe doesn't drain savings; Medjet guarantees U.S. hospital of choice. If budget is the priority and you accept lower medical max, <strong>Trawick + Medjet (~$1,100)</strong> is the value pick. <strong>Travel Guard (~$1,300)</strong> is the middle option with brand stability. Allianz I'd skip — $50K medical is too thin for international travel at 71.
+  <p style="margin:0 0 8px;"><strong>I'd pick IMG SE + Medjet Annual</strong> for these reasons:</p>
+  <ol class="tight" style="margin:0 0 8px;">
+    <li><strong>$250K medical vs $50K medical is huge</strong> for international travel at 71. A serious hospitalization in the UK or Europe can hit $50K in a week — IMG SE has 5× the headroom.</li>
+    <li><strong>Primary coverage means IMG pays first</strong> — you're not waiting on Medicare's slow reimbursement process (which Medicare confirmed to you takes 30+ days for foreign bills).</li>
+    <li><strong>Pre-existing waiver window is 21 days</strong> (vs 15 for TG) — gives more flexibility.</li>
+    <li><strong>The senior-specific reviews are stronger</strong> — U.S. News ranks IMG's family #1 for seniors.</li>
+  </ol>
+  <p style="margin:0 0 8px;"><strong>Travel Guard's appeal is real:</strong> Brand recognition, simpler website, your friends use it successfully. But the medical max is the deciding factor. If your friends had to use the medical coverage abroad and had a hospitalization, $50K would not be enough.</p>
+  <p style="margin:0;"><strong>What both companies share:</strong> Medjet Annual is a separate $295 add-on (not Short-Term — your trip is 33 days, Short-Term caps at 30). Medjet evacuates you to your <em>U.S. hospital of choice</em>, regardless of medical necessity. Buy this regardless of which insurance plan you pick.</p>
+</div>
+
+<h2>🛒 How you'll buy it</h2>
+<div class="card">
+  <ol class="tight">
+    <li>Go to <strong>imglobal.com</strong> (or travelguard.com if you pick that)</li>
+    <li>Click "Travel Insurance" → "Get a Quote"</li>
+    <li>Trip dates: Jun 28, 2026 → Jul 30, 2026</li>
+    <li>Trip cost: $14,000 (estimated total — you can update later)</li>
+    <li>Destinations: South Africa, Zambia, United Kingdom</li>
+    <li>Age 71 · US resident · CA</li>
+    <li>Pick the plan (iTravelInsured SE for IMG; Preferred for TG)</li>
+    <li>Add Medjet Annual at checkout — or buy separately at medjetassist.com</li>
+    <li>Pay with Chase Sapphire Preferred</li>
+    <li>Print the policy + the 24/7 emergency phone numbers — keep one copy in carry-on, one in checked bag, one at home</li>
+  </ol>
+  <p style="margin:0;"><strong>If you want me on the phone with you while you do it,</strong> just text Alex and I'll walk through it step-by-step in real time.</p>
 </div>
 
 <h2>Your pick</h2>
 <form id="insForm">
   <div class="options" id="insOpts">
-    <div class="option radio" data-value="A — IMG SE + Medjet Annual (~$1,800)"><div class="checkbox"></div><div class="opt-text"><strong>A — IMG SE + Medjet Annual</strong> · ~$1,800<br><span style="color:var(--ink-soft); font-size:15px;">Highest medical cap, recommended.</span></div></div>
-    <div class="option radio" data-value="B — Travel Guard Preferred + Medjet (~$1,300)"><div class="checkbox"></div><div class="opt-text"><strong>B — Travel Guard Preferred + Medjet</strong> · ~$1,300<br><span style="color:var(--ink-soft); font-size:15px;">Brand stability, balanced.</span></div></div>
-    <div class="option radio" data-value="C — Allianz OneTrip Premier + Medjet (~$1,150)"><div class="checkbox"></div><div class="opt-text"><strong>C — Allianz OneTrip Premier + Medjet</strong> · ~$1,150<br><span style="color:var(--ink-soft); font-size:15px;">Familiar brand. Lower medical cap.</span></div></div>
-    <div class="option radio" data-value="D — Trawick Safe Travels Voyager + Medjet (~$1,100)"><div class="checkbox"></div><div class="opt-text"><strong>D — Trawick Safe Travels Voyager + Medjet</strong> · ~$1,100<br><span style="color:var(--ink-soft); font-size:15px;">Best value.</span></div></div>
-    <div class="option radio" data-value="HOLD — wait, I have questions"><div class="checkbox"></div><div class="opt-text"><strong>Hold — I have questions first</strong></div></div>
+    <div class="option radio" data-value="A — IMG SE + Medjet Annual (~$1,800)"><div class="checkbox"></div><div class="opt-text"><strong>A — IMG SE + Medjet Annual</strong> · ~$1,800<br><span style="color:var(--ink-soft); font-size:15px;">Recommended. $250K medical, primary coverage, U.S. News #1 for seniors.</span></div></div>
+    <div class="option radio" data-value="B — Travel Guard Preferred + Medjet (~$1,000-1,200)"><div class="checkbox"></div><div class="opt-text"><strong>B — Travel Guard Preferred + Medjet Annual</strong> · ~$1,000-1,200<br><span style="color:var(--ink-soft); font-size:15px;">Lower cost, brand familiar to friends. $50K medical cap.</span></div></div>
+    <div class="option radio" data-value="HOLD — call me first"><div class="checkbox"></div><div class="opt-text"><strong>I want Claude on the phone with me before I buy</strong></div></div>
   </div>
-
   <div class="field-block">
     <label class="field-label">Questions or notes? (optional)</label>
-    <textarea name="ins_notes" placeholder="Anything you want me to verify, push back on, or explain more clearly."></textarea>
+    <textarea name="ins_notes" placeholder="Anything you want me to verify or explain more clearly."></textarea>
   </div>
-
   <div class="btn-row">
     <button type="button" class="btn btn-primary btn-block" onclick="sendIns()">📧 Send my pick to Claude</button>
   </div>
 </form>
-
 <script>
-let insChoice = null;
-document.querySelectorAll('#insOpts .option').forEach(o => {
-  o.addEventListener('click', () => {
-    document.querySelectorAll('#insOpts .option').forEach(x => x.classList.remove('selected'));
-    o.classList.add('selected');
-    insChoice = o.dataset.value;
+let insChoice=null;
+document.querySelectorAll('#insOpts .option').forEach(o=>{
+  o.addEventListener('click',()=>{
+    document.querySelectorAll('#insOpts .option').forEach(x=>x.classList.remove('selected'));
+    o.classList.add('selected'); insChoice=o.dataset.value;
   });
 });
-function sendIns() {
-  const notes = document.querySelector('textarea[name="ins_notes"]').value || "(no notes)";
-  const body = `Hi Claude — my insurance pick:
+function sendIns(){
+  const notes=document.querySelector('textarea[name="ins_notes"]').value||"(no notes)";
+  const body=`Hi Claude — my insurance pick:
 
-Choice: ${insChoice || '(no choice yet)'}
+Choice: ${insChoice||'(no choice yet)'}
 
 Notes: ${notes}
 
-— Pat
-(sent from the dashboard insurance page)`;
-  const subject = encodeURIComponent("Pat — insurance choice");
-  window.location.href = `mailto:amarkham@alumni.gsb.stanford.edu?subject=${subject}&body=${encodeURIComponent(body)}`;
+— Pat`;
+  window.location.href=`mailto:amarkham@alumni.gsb.stanford.edu?subject=${encodeURIComponent("Pat — insurance choice")}&body=${encodeURIComponent(body)}`;
 }
 </script>
-
 </div>
 <footer>
-  <p>One link to remember: <a href="index.html"><strong>bit.ly/pat-trip-hub</strong></a> · Updated as we go.<br>
+  <p>One link to remember: <a href="index.html"><strong>bit.ly/pat-trip-hub</strong></a> · I update this as we go.<br>
   Built for Pat with care by Claude Concierge.</p>
 </footer>
-</body>
-</html>
+</body></html>
