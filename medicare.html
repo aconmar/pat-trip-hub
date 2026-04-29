@@ -1,425 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#2d5a4a">
-<title>Medicare answers — Pat's Trip Hub</title>
+<title>Medicare — Pat's Trip Hub</title>
 <style>
 :root {
-  --cream:    #fbf6ed;
-  --paper:    #ffffff;
-  --ink:      #1f1f23;
-  --ink-soft: #4a4a55;
-  --teal:     #2d5a4a;
-  --teal-2:   #1f3f33;
-  --teal-light: #e6efea;
-  --gold:     #c8893a;
-  --gold-2:   #a86f24;
-  --coral:    #d4684c;
-  --coral-bg: #fbe9e3;
-  --rule:     #e6dcc8;
-  --selected: #f0e8d6;
-  --green-bg: #e6f0e9;
-  --shadow:   0 1px 2px rgba(40,30,15,0.04), 0 4px 12px rgba(40,30,15,0.06);
+  --cream:#fbf6ed;--paper:#ffffff;--ink:#1f1f23;--ink-soft:#4a4a55;
+  --teal:#2d5a4a;--teal-2:#1f3f33;--teal-light:#e6efea;
+  --gold:#c8893a;--gold-2:#a86f24;
+  --coral:#d4684c;--coral-bg:#fbe9e3;
+  --rule:#e6dcc8;--selected:#f0e8d6;--green-bg:#e6f0e9;--green-2:#4a7058;
+  --shadow:0 1px 2px rgba(40,30,15,0.04),0 4px 12px rgba(40,30,15,0.06);
 }
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body { margin: 0; padding: 0; }
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body { margin:0;padding:0; }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  font-size: 19px;
-  line-height: 1.6;
-  min-height: 100vh;
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;
+  background:var(--cream); color:var(--ink); font-size:19px; line-height:1.6; min-height:100vh;
 }
-.container { max-width: 700px; margin: 0 auto; padding: 24px 22px 100px; }
+.container { max-width:740px; margin:0 auto; padding:24px 22px 100px; }
 .topbar {
-  background: var(--teal);
-  color: white;
-  padding: 18px 22px;
-  position: sticky; top: 0; z-index: 50;
-  display: flex; justify-content: space-between; align-items: center;
-  border-bottom: 3px solid var(--gold);
+  background:var(--teal); color:white; padding:18px 22px;
+  position:sticky; top:0; z-index:50;
+  display:flex; justify-content:space-between; align-items:center;
+  border-bottom:3px solid var(--gold);
 }
-.topbar .home {
-  color: white; text-decoration: none;
-  font-weight: 600; font-size: 15px;
-  letter-spacing: 0.05em;
-  display: flex; align-items: center; gap: 8px;
-}
-.topbar .home:hover { color: var(--cream); }
-.topbar .stamp { font-size: 12px; color: rgba(255,255,255,0.75); }
-h1 {
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: 600;
-  font-size: 36px; line-height: 1.2;
-  color: var(--teal-2);
-  margin: 14px 0 12px;
-  letter-spacing: -0.01em;
-}
-h2 {
-  font-family: Georgia, serif;
-  font-size: 26px; line-height: 1.3;
-  color: var(--teal-2);
-  margin: 30px 0 12px;
-}
-h3 {
-  font-size: 19px; line-height: 1.35;
-  color: var(--teal-2);
-  margin: 20px 0 8px;
-  font-weight: 700;
-}
-p, li { font-size: 19px; line-height: 1.6; }
-.eyebrow {
-  color: var(--teal); font-size: 13px; font-weight: 700;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.lede { color: var(--ink-soft); font-size: 18px; margin: 0 0 18px; }
-.timestamp { font-size: 14px; color: var(--ink-soft); font-style: italic; margin-bottom: 16px; }
-
-/* Cards */
-.card {
-  background: var(--paper);
-  border: 1.5px solid var(--rule);
-  border-radius: 14px;
-  padding: 22px 24px;
-  margin: 14px 0;
-  box-shadow: var(--shadow);
-}
-.card-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  transition: all 0.18s ease;
-}
-.card-link:hover {
-  border-color: var(--gold);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(40,30,15,0.10);
-}
-.card-link.urgent {
-  border-color: var(--coral);
-  background: var(--coral-bg);
-}
-.card-link.urgent:hover { border-color: var(--coral); }
-.card-link.done {
-  background: var(--green-bg);
-  border-color: #b5c9b8;
-}
-.card-icon {
-  font-size: 36px;
-  margin-bottom: 6px;
-  display: block;
-}
-.card-title {
-  font-family: Georgia, serif;
-  font-weight: 600;
-  font-size: 22px;
-  color: var(--teal-2);
-  margin: 0 0 6px;
-}
-.card-desc {
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.5;
-  margin: 0;
-}
-.card-meta {
-  margin-top: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-.meta-urgent { color: var(--coral); }
-.meta-info { color: var(--teal); }
-.meta-done { color: #4a7058; }
-
-/* Status pill */
-.status-strip {
-  background: var(--paper);
-  border: 1.5px solid var(--rule);
-  border-radius: 14px;
-  padding: 16px 20px;
-  margin: 18px 0;
-}
-.status-strip .label {
-  font-size: 12px; font-weight: 700;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--gold-2);
-  margin-bottom: 6px;
-}
-.status-strip .value {
-  font-family: Georgia, serif;
-  font-size: 21px;
-  color: var(--teal-2);
-}
-
-/* Form bits */
-.field-block { margin: 22px 0; }
-.field-label {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 8px;
-  font-size: 17px;
-  color: var(--teal-2);
-}
-.field-help {
-  font-size: 15px;
-  color: var(--ink-soft);
-  margin-bottom: 10px;
-  line-height: 1.45;
-}
-textarea, input[type="text"], select {
-  width: 100%;
-  border: 2px solid var(--rule);
-  border-radius: 10px;
-  background: var(--paper);
-  padding: 14px 16px;
-  font-family: inherit;
-  font-size: 17px;
-  color: var(--ink);
-  line-height: 1.5;
-  resize: vertical;
-  -webkit-appearance: none;
-  appearance: none;
-  transition: border-color 0.18s ease;
-}
-textarea:focus, input[type="text"]:focus, select:focus {
-  outline: none; border-color: var(--teal);
-}
-textarea { min-height: 110px; }
-.options { display: flex; flex-direction: column; gap: 10px; margin: 8px 0 18px; }
-.option {
-  background: var(--paper);
-  border: 2px solid var(--rule);
-  border-radius: 12px;
-  padding: 14px 16px;
-  cursor: pointer;
-  transition: all 0.18s ease;
-  display: flex; align-items: flex-start; gap: 12px;
-}
-.option:hover { border-color: var(--gold); }
-.option.selected { border-color: var(--teal); background: var(--selected); }
-.option .checkbox {
-  width: 22px; height: 22px;
-  border: 2px solid var(--rule);
-  border-radius: 6px;
-  flex-shrink: 0; margin-top: 2px;
-  display: flex; align-items: center; justify-content: center;
-}
-.option.selected .checkbox { background: var(--teal); border-color: var(--teal); }
-.option.selected .checkbox::after { content: "✓"; color: white; font-weight: 700; }
-.option.radio .checkbox { border-radius: 99px; }
-.option .opt-text { flex: 1; font-size: 17px; line-height: 1.45; }
-
-.btn {
-  display: inline-block;
-  padding: 16px 28px;
-  border-radius: 99px;
-  border: none;
-  font-family: inherit;
-  font-size: 17px;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.18s ease;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.btn-primary {
-  background: var(--teal);
-  color: white;
-  box-shadow: 0 2px 8px rgba(45, 90, 74, 0.25);
-}
-.btn-primary:hover { background: var(--teal-2); transform: translateY(-1px); }
-.btn-block { width: 100%; }
-.btn-row { display: flex; gap: 12px; margin: 20px 0; }
-.btn-secondary {
-  background: var(--paper);
-  color: var(--teal);
-  border: 1.5px solid var(--rule);
-}
-
-/* Tables for comparisons */
-.compare-table {
-  background: var(--paper);
-  border: 1.5px solid var(--rule);
-  border-radius: 14px;
-  overflow: hidden;
-  margin: 16px 0;
-}
-.compare-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  border-bottom: 1px solid var(--rule);
-}
-.compare-row:last-child { border-bottom: none; }
-.compare-row.head {
-  background: var(--teal-light);
-  font-weight: 700;
-  color: var(--teal-2);
-}
-.compare-cell {
-  padding: 14px 18px;
-  font-size: 16px;
-  line-height: 1.45;
-  border-bottom: 1px dashed var(--rule);
-}
-.compare-cell:last-child { border-bottom: none; }
-.compare-cell .cell-label {
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold-2);
-  margin-bottom: 4px;
-}
-@media (min-width: 700px) {
-  .compare-row { grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr; }
-  .compare-cell { border-bottom: none; border-right: 1px dashed var(--rule); }
-  .compare-cell:last-child { border-right: none; }
-  .compare-cell .cell-label { display: none; }
-}
-
-/* Highlights */
-.callout {
-  background: linear-gradient(135deg, #f4ecd8, #f0e6cf);
-  border: 1px solid var(--rule);
-  border-radius: 14px;
-  padding: 16px 20px;
-  margin: 18px 0;
-  color: var(--teal-2);
-  font-size: 17px;
-  line-height: 1.55;
-}
-.callout strong { color: var(--gold-2); }
-.callout.urgent {
-  background: var(--coral-bg);
-  border-color: var(--coral);
-}
-.callout.done {
-  background: var(--green-bg);
-  border-color: #b5c9b8;
-}
-
-/* Footer block */
-footer {
-  margin: 50px auto 30px;
-  text-align: center;
-  color: var(--ink-soft);
-  font-size: 14px;
-  padding: 0 22px;
-}
-footer a { color: var(--teal); }
-
-/* Lists with breathing room */
-ul.tight, ol.tight { padding-left: 22px; }
-ul.tight li, ol.tight li { margin-bottom: 6px; }
-
-/* Anchor offset for sticky topbar */
-.anchor { display: block; position: relative; top: -85px; visibility: hidden; }
+.topbar .home { color:white; text-decoration:none; font-weight:600; font-size:15px; letter-spacing:0.05em; }
+.topbar .stamp { font-size:12px; color:rgba(255,255,255,0.75); }
+h1 { font-family:Georgia,serif; font-weight:600; font-size:34px; line-height:1.2; color:var(--teal-2); margin:14px 0 12px; letter-spacing:-0.01em; }
+h2 { font-family:Georgia,serif; font-size:25px; line-height:1.3; color:var(--teal-2); margin:30px 0 12px; }
+h3 { font-size:19px; line-height:1.35; color:var(--teal-2); margin:20px 0 8px; font-weight:700; }
+p, li { font-size:18px; line-height:1.6; }
+.eyebrow { color:var(--teal); font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:8px; }
+.lede { color:var(--ink-soft); font-size:18px; margin:0 0 18px; }
+.card { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:22px 24px; margin:14px 0; box-shadow:var(--shadow); }
+.card-link { display:block; text-decoration:none; color:inherit; transition:all 0.18s ease; }
+.card-link:hover { border-color:var(--gold); transform:translateY(-2px); box-shadow:0 4px 16px rgba(40,30,15,0.10); }
+.card-link.urgent .card { border-color:var(--coral); background:var(--coral-bg); }
+.card-link.done .card { background:var(--green-bg); border-color:#b5c9b8; }
+.card-icon { font-size:34px; margin-bottom:6px; display:block; }
+.card-title { font-family:Georgia,serif; font-weight:600; font-size:21px; color:var(--teal-2); margin:0 0 6px; }
+.card-desc { color:var(--ink-soft); font-size:16px; line-height:1.5; margin:0; }
+.card-meta { margin-top:10px; font-size:13px; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; }
+.meta-urgent { color:var(--coral); }
+.meta-info { color:var(--teal); }
+.meta-done { color:var(--green-2); }
+.status-strip { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; }
+.status-strip .label { font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-2); margin-bottom:6px; }
+.status-strip .value { font-family:Georgia,serif; font-size:20px; color:var(--teal-2); }
+.field-block { margin:22px 0; }
+.field-label { display:block; font-weight:700; margin-bottom:8px; font-size:17px; color:var(--teal-2); }
+.field-help { font-size:15px; color:var(--ink-soft); margin-bottom:10px; line-height:1.45; }
+textarea, input[type="text"], select { width:100%; border:2px solid var(--rule); border-radius:10px; background:var(--paper); padding:14px 16px; font-family:inherit; font-size:17px; color:var(--ink); line-height:1.5; resize:vertical; -webkit-appearance:none; appearance:none; }
+textarea:focus, input[type="text"]:focus, select:focus { outline:none; border-color:var(--teal); }
+textarea { min-height:110px; }
+.options { display:flex; flex-direction:column; gap:10px; margin:8px 0 18px; }
+.option { background:var(--paper); border:2px solid var(--rule); border-radius:12px; padding:14px 16px; cursor:pointer; transition:all 0.18s ease; display:flex; align-items:flex-start; gap:12px; }
+.option:hover { border-color:var(--gold); }
+.option.selected { border-color:var(--teal); background:var(--selected); }
+.option .checkbox { width:22px; height:22px; border:2px solid var(--rule); border-radius:6px; flex-shrink:0; margin-top:2px; display:flex; align-items:center; justify-content:center; }
+.option.selected .checkbox { background:var(--teal); border-color:var(--teal); }
+.option.selected .checkbox::after { content:"✓"; color:white; font-weight:700; }
+.option.radio .checkbox { border-radius:99px; }
+.option .opt-text { flex:1; font-size:17px; line-height:1.45; }
+.btn { display:inline-block; padding:16px 28px; border-radius:99px; border:none; font-family:inherit; font-size:17px; font-weight:600; cursor:pointer; text-align:center; text-decoration:none; transition:all 0.18s ease; -webkit-appearance:none; appearance:none; }
+.btn-primary { background:var(--teal); color:white; box-shadow:0 2px 8px rgba(45,90,74,0.25); }
+.btn-block { width:100%; }
+.btn-row { display:flex; gap:12px; margin:20px 0; }
+.callout { background:linear-gradient(135deg,#f4ecd8,#f0e6cf); border:1px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; color:var(--teal-2); font-size:17px; line-height:1.55; }
+.callout strong { color:var(--gold-2); }
+.callout.urgent { background:var(--coral-bg); border-color:var(--coral); }
+.callout.done { background:var(--green-bg); border-color:#b5c9b8; }
+.callout.note { background:#eef4f1; border-color:#bfd4c9; }
+ul.tight, ol.tight { padding-left:22px; }
+ul.tight li, ol.tight li { margin-bottom:6px; }
+footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:14px; padding:0 22px; }
+footer a { color:var(--teal); }
+.flight-row { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px dashed var(--rule); }
+.flight-row:last-child { border-bottom:none; }
+.flight-leg { flex:1; }
+.flight-time { font-family:Georgia,serif; font-size:17px; color:var(--teal-2); font-weight:600; }
+.flight-detail { font-size:14px; color:var(--ink-soft); margin-top:2px; }
+.cabin-tag { display:inline-block; padding:3px 10px; border-radius:99px; font-size:13px; font-weight:600; letter-spacing:0.04em; }
+.cabin-polaris { background:#0d4f3f; color:white; }
+.cabin-prem { background:#5a85a4; color:white; }
+.cabin-first { background:var(--gold-2); color:white; }
+.cabin-econ { background:#888; color:white; }
+.cabin-coach { background:#7a6650; color:white; }
+.q-block { background:var(--paper); border-left:4px solid var(--gold); padding:14px 18px; margin:16px 0; border-radius:0 10px 10px 0; }
+.q-block .q { color:var(--gold-2); font-size:14px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px; }
 </style>
-</head>
-<body>
+</head><body>
 <header class="topbar">
   <a class="home" href="index.html">✈️ Pat's Trip Hub · Home</a>
-  <div class="stamp">Updated April 28, 2026 — 11:30 PM PT</div>
+  <div class="stamp">Updated April 29, 2026 — 2:55 PM PT</div>
 </header>
 <div class="container">
-
-<p class="eyebrow">Medicare call answers</p>
-<h1>Send me what Medicare told you</h1>
-<p class="lede">You called Medicare this morning. Type your answers below and tap <strong>"Send to Claude"</strong> at the bottom — your Outlook will open with everything filled in, just tap Send. No need to type into the call notes anymore.</p>
+<p class="eyebrow">Medicare answers · already received</p>
+<h1>Medicare answers form (backup)</h1>
+<p class="lede">I have your Medicare answers from your voice memo last night. <a href="archive.html#medicare">See the summary in the archive.</a> This page is here only if you want to add or correct anything.</p>
 
 <div class="callout done">
-  <strong>Already done? ✅</strong> If you already emailed me the Medicare answers tonight (which I think you did), you can skip this page. I'll confirm via text when I've integrated them. This form is here in case you want to add more or fix anything.
+  <strong>✅ Already integrated:</strong> Your call to Medicare drove the insurance recommendation on the <a href="insurance.html">insurance page</a>. The key facts (Medicare doesn't cover abroad; Anthem won't pay if Medicare doesn't; medical evacuation to U.S. is critical) are reflected in the IMG SE + Medjet Annual recommendation.
 </div>
 
 <form id="medicareForm">
   <div class="field-block">
-    <label class="field-label">1. Does Original Medicare cover medical care in South Africa, Zambia, or the UK?</label>
-    <p class="field-help">Most Medicare plans don't cover care abroad. We need this confirmed.</p>
-    <textarea name="q1" placeholder="What did the rep tell you?"></textarea>
+    <label class="field-label">Anything to add or correct?</label>
+    <textarea name="add" placeholder="Anything else from the Medicare call you want me to know" style="min-height:140px;"></textarea>
   </div>
-
-  <div class="field-block">
-    <label class="field-label">2. Are there any exceptions where Medicare WOULD pay for care abroad on this trip?</label>
-    <p class="field-help">e.g. emergency care close to a US border, certain ships, etc.</p>
-    <textarea name="q2" placeholder="Anything they mentioned…"></textarea>
-  </div>
-
-  <div class="field-block">
-    <label class="field-label">3. Does Medicare cover any portion of medical evacuation back to the U.S.?</label>
-    <p class="field-help">This is the airlift question — critical for choosing the supplemental plan.</p>
-    <textarea name="q3" placeholder="Yes / No / partial / details"></textarea>
-  </div>
-
-  <div class="field-block">
-    <label class="field-label">4. Can you submit foreign hospital bills to Medicare for any reimbursement?</label>
-    <p class="field-help">If yes, what's the process?</p>
-    <textarea name="q4" placeholder="Process &amp; any limits"></textarea>
-  </div>
-
-  <div class="field-block">
-    <label class="field-label">5. Did the rep mention any add-on or alternative Medicare option that DOES cover travel abroad?</label>
-    <p class="field-help">e.g. Medicare Advantage with international rider, Medigap Plan G/F travel benefit.</p>
-    <textarea name="q5" placeholder="Their suggestions, if any"></textarea>
-  </div>
-
-  <div class="field-block">
-    <label class="field-label">6. Anything else important they said?</label>
-    <p class="field-help">Free space — anything you want me to know about the call.</p>
-    <textarea name="q6" placeholder="Notes, surprises, things to follow up on…" style="min-height: 140px;"></textarea>
-  </div>
-
   <div class="btn-row">
-    <button type="button" class="btn btn-primary btn-block" onclick="sendMedicare()">📧 Send to Claude</button>
+    <button type="button" class="btn btn-primary btn-block" onclick="sendMedAdd()">📧 Send to Claude</button>
   </div>
-
-  <p style="text-align:center; color: var(--ink-soft); font-size: 14px;">Tapping the button opens Outlook with your answers filled in. You just tap Send.</p>
 </form>
-
 <script>
-function sendMedicare() {
-  const get = n => (document.querySelector(`textarea[name="${n}"]`).value || "(no answer)");
-  const body = `Hi Claude — here's what Medicare told me:
-
-1. Does Original Medicare cover medical care in South Africa, Zambia, or the UK?
-${get('q1')}
-
-2. Are there any exceptions where Medicare would pay for care abroad on this trip?
-${get('q2')}
-
-3. Does Medicare cover any portion of medical evacuation back to the U.S.?
-${get('q3')}
-
-4. Can I submit foreign hospital bills to Medicare for any reimbursement?
-${get('q4')}
-
-5. Did the rep mention any add-on or alternative Medicare option that DOES cover travel abroad?
-${get('q5')}
-
-6. Anything else important they said?
-${get('q6')}
-
-— Pat
-(sent from the trip dashboard Medicare form)`;
-
-  const subject = encodeURIComponent("Pat — Medicare call answers");
-  window.location.href = `mailto:amarkham@alumni.gsb.stanford.edu?subject=${subject}&body=${encodeURIComponent(body)}`;
+function sendMedAdd(){
+  const v=document.querySelector('textarea[name="add"]').value||"(blank)";
+  window.location.href=`mailto:amarkham@alumni.gsb.stanford.edu?subject=${encodeURIComponent("Pat — Medicare addition")}&body=${encodeURIComponent("Additional Medicare info:\n"+v+"\n\n— Pat")}`;
 }
 </script>
-
 </div>
 <footer>
-  <p>One link to remember: <a href="index.html"><strong>bit.ly/pat-trip-hub</strong></a> · Updated as we go.<br>
+  <p>One link to remember: <a href="index.html"><strong>bit.ly/pat-trip-hub</strong></a> · I update this as we go.<br>
   Built for Pat with care by Claude Concierge.</p>
 </footer>
-</body>
-</html>
+</body></html>
