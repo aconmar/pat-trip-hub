@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#2d5a4a">
+<title>For next Claude — Pat's Trip Hub</title>
+<style>
+:root {
+  --cream:    #fbf6ed;
+  --paper:    #ffffff;
+  --ink:      #1f1f23;
+  --ink-soft: #4a4a55;
+  --teal:     #2d5a4a;
+  --teal-2:   #1f3f33;
+  --teal-light: #e6efea;
+  --gold:     #c8893a;
+  --gold-2:   #a86f24;
+  --coral:    #d4684c;
+  --coral-bg: #fbe9e3;
+  --rule:     #e6dcc8;
+  --selected: #f0e8d6;
+  --green-bg: #e6f0e9;
+  --shadow:   0 1px 2px rgba(40,30,15,0.04), 0 4px 12px rgba(40,30,15,0.06);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 19px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+.container { max-width: 700px; margin: 0 auto; padding: 24px 22px 100px; }
+.topbar {
+  background: var(--teal);
+  color: white;
+  padding: 18px 22px;
+  position: sticky; top: 0; z-index: 50;
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 3px solid var(--gold);
+}
+.topbar .home {
+  color: white; text-decoration: none;
+  font-weight: 600; font-size: 15px;
+  letter-spacing: 0.05em;
+  display: flex; align-items: center; gap: 8px;
+}
+.topbar .home:hover { color: var(--cream); }
+.topbar .stamp { font-size: 12px; color: rgba(255,255,255,0.75); }
+h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  font-size: 36px; line-height: 1.2;
+  color: var(--teal-2);
+  margin: 14px 0 12px;
+  letter-spacing: -0.01em;
+}
+h2 {
+  font-family: Georgia, serif;
+  font-size: 26px; line-height: 1.3;
+  color: var(--teal-2);
+  margin: 30px 0 12px;
+}
+h3 {
+  font-size: 19px; line-height: 1.35;
+  color: var(--teal-2);
+  margin: 20px 0 8px;
+  font-weight: 700;
+}
+p, li { font-size: 19px; line-height: 1.6; }
+.eyebrow {
+  color: var(--teal); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.lede { color: var(--ink-soft); font-size: 18px; margin: 0 0 18px; }
+.timestamp { font-size: 14px; color: var(--ink-soft); font-style: italic; margin-bottom: 16px; }
+
+/* Cards */
+.card {
+  background: var(--paper);
+  border: 1.5px solid var(--rule);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin: 14px 0;
+  box-shadow: var(--shadow);
+}
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.18s ease;
+}
+.card-link:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(40,30,15,0.10);
+}
+.card-link.urgent {
+  border-color: var(--coral);
+  background: var(--coral-bg);
+}
+.card-link.urgent:hover { border-color: var(--coral); }
+.card-link.done {
+  background: var(--green-bg);
+  border-color: #b5c9b8;
+}
+.card-icon {
+  font-size: 36px;
+  margin-bottom: 6px;
+  display: block;
+}
+.card-title {
+  font-family: Georgia, serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--teal-2);
+  margin: 0 0 6px;
+}
+.card-desc {
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
+.card-meta {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.meta-urgent { color: var(--coral); }
+.meta-info { color: var(--teal); }
+.meta-done { color: #4a7058; }
+
+/* Status pill */
+.status-strip {
+  background: var(--paper);
+  border: 1.5px solid var(--rule);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin: 18px 0;
+}
+.status-strip .label {
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold-2);
+  margin-bottom: 6px;
+}
+.status-strip .value {
+  font-family: Georgia, serif;
+  font-size: 21px;
+  color: var(--teal-2);
+}
+
+/* Form bits */
+.field-block { margin: 22px 0; }
+.field-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 17px;
+  color: var(--teal-2);
+}
+.field-help {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+  line-height: 1.45;
+}
+textarea, input[type="text"], select {
+  width: 100%;
+  border: 2px solid var(--rule);
+  border-radius: 10px;
+  background: var(--paper);
+  padding: 14px 16px;
+  font-family: inherit;
+  font-size: 17px;
+  color: var(--ink);
+  line-height: 1.5;
+  resize: vertical;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.18s ease;
+}
+textarea:focus, input[type="text"]:focus, select:focus {
+  outline: none; border-color: var(--teal);
+}
+textarea { min-height: 110px; }
+.options { display: flex; flex-direction: column; gap: 10px; margin: 8px 0 18px; }
+.option {
+  background: var(--paper);
+  border: 2px solid var(--rule);
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.option:hover { border-color: var(--gold); }
+.option.selected { border-color: var(--teal); background: var(--selected); }
+.option .checkbox {
+  width: 22px; height: 22px;
+  border: 2px solid var(--rule);
+  border-radius: 6px;
+  flex-shrink: 0; margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+}
+.option.selected .checkbox { background: var(--teal); border-color: var(--teal); }
+.option.selected .checkbox::after { content: "✓"; color: white; font-weight: 700; }
+.option.radio .checkbox { border-radius: 99px; }
+.option .opt-text { flex: 1; font-size: 17px; line-height: 1.45; }
+
+.btn {
+  display: inline-block;
+  padding: 16px 28px;
+  border-radius: 99px;
+  border: none;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.btn-primary {
+  background: var(--teal);
+  color: white;
+  box-shadow: 0 2px 8px rgba(45, 90, 74, 0.25);
+}
+.btn-primary:hover { background: var(--teal-2); transform: translateY(-1px); }
+.btn-block { width: 100%; }
+.btn-row { display: flex; gap: 12px; margin: 20px 0; }
+.btn-secondary {
+  background: var(--paper);
+  color: var(--teal);
+  border: 1.5px solid var(--rule);
+}
+
+/* Tables for comparisons */
+.compare-table {
+  background: var(--paper);
+  border: 1.5px solid var(--rule);
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+.compare-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-bottom: 1px solid var(--rule);
+}
+.compare-row:last-child { border-bottom: none; }
+.compare-row.head {
+  background: var(--teal-light);
+  font-weight: 700;
+  color: var(--teal-2);
+}
+.compare-cell {
+  padding: 14px 18px;
+  font-size: 16px;
+  line-height: 1.45;
+  border-bottom: 1px dashed var(--rule);
+}
+.compare-cell:last-child { border-bottom: none; }
+.compare-cell .cell-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  margin-bottom: 4px;
+}
+@media (min-width: 700px) {
+  .compare-row { grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr; }
+  .compare-cell { border-bottom: none; border-right: 1px dashed var(--rule); }
+  .compare-cell:last-child { border-right: none; }
+  .compare-cell .cell-label { display: none; }
+}
+
+/* Highlights */
+.callout {
+  background: linear-gradient(135deg, #f4ecd8, #f0e6cf);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin: 18px 0;
+  color: var(--teal-2);
+  font-size: 17px;
+  line-height: 1.55;
+}
+.callout strong { color: var(--gold-2); }
+.callout.urgent {
+  background: var(--coral-bg);
+  border-color: var(--coral);
+}
+.callout.done {
+  background: var(--green-bg);
+  border-color: #b5c9b8;
+}
+
+/* Footer block */
+footer {
+  margin: 50px auto 30px;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 14px;
+  padding: 0 22px;
+}
+footer a { color: var(--teal); }
+
+/* Lists with breathing room */
+ul.tight, ol.tight { padding-left: 22px; }
+ul.tight li, ol.tight li { margin-bottom: 6px; }
+
+/* Anchor offset for sticky topbar */
+.anchor { display: block; position: relative; top: -85px; visibility: hidden; }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="home" href="index.html">✈️ Pat's Trip Hub · Home</a>
+  <div class="stamp">Updated April 28, 2026 — 11:30 PM PT</div>
+</header>
+<div class="container">
+
+<p class="eyebrow">Continuity / handoff page</p>
+<h1>For the next Claude session</h1>
+<p class="lede">If the current Claude session crashes, runs out of context, or hits any failure — the next Claude that takes over reads THIS page first, then the master folder. Pat: you don't need to read this; it's an internal-handoff page.</p>
+
+<h2>📍 Where everything lives</h2>
+<div class="card">
+  <ul class="tight">
+    <li><strong>Master folder:</strong> <code>/Users/acmarkham/Desktop/CLAUDE CONCIERGE ✈️/</code></li>
+    <li><strong>Read first, in order:</strong> HANDOFF.md → SOP_VERIFICATION.md → SOP_COMMUNICATION.md → 00_STATE.md → PROJECT_LOG.md (newest 5–7 entries)</li>
+    <li><strong>Pat's shared folder (don't add to it now — dashboard is canonical):</strong> <code>~/Library/Mobile Documents/com~apple~CloudDocs/Mom - Shared/Pat's Africa &amp; UK Trip - Claude Concierge/</code></li>
+    <li><strong>Live dashboard repo:</strong> <code>github.com/aconmar/pat-trip-feedback</code> (deployed at <code>aconmar.github.io/pat-trip-feedback/</code>)</li>
+    <li><strong>GitHub PAT:</strong> 1Password "Private" vault, item "GitHub PAT — Claude Concierge", retrieve via <code>op item get "GitHub PAT — Claude Concierge" --fields token --reveal</code> (field name is <code>token</code>, not <code>credential</code>)</li>
+  </ul>
+</div>
+
+<h2>📐 Operating principles (read every session)</h2>
+<div class="card">
+  <ol class="tight">
+    <li><strong>Pat is the CLIENT.</strong> Alex is process oversight. Never pre-decide for Pat. Never route Pat's choices through Alex.</li>
+    <li><strong>Lighter touch.</strong> Short iMessages. One question at a time. Voice memos welcome. Half-thoughts are gold.</li>
+    <li><strong>Verify primary sources.</strong> Every flight/hotel/insurance fact verified via vendor site or vendor email before stating. Training data alone is insufficient. See SOP_VERIFICATION.md.</li>
+    <li><strong>Make it fun.</strong> Million-mile celebration trip. Warm, conversational, occasionally playful.</li>
+    <li><strong>Dashboard-first.</strong> All deliverables go to this dashboard. iMessage is the cover note that points to the dashboard. Word docs are deprecated. Shared folder is no longer where Pat looks.</li>
+    <li><strong>Form-via-link pattern.</strong> Multi-question Pat input always goes via a tap-through HTML form with mailto submission, never as text she has to type into iMessage.</li>
+  </ol>
+</div>
+
+<h2>🧠 Trip facts (verified Apr 28)</h2>
+<div class="card">
+  <h3>Locked / ticketed</h3>
+  <ul class="tight">
+    <li>Mmilo safari Jul 1–9 (deposit paid, balance ZAR 44,606 due May 21)</li>
+    <li>Airlink 4Z 482 JNB → LVI Jul 1 (conf Y9ABNJ, seat 3F)</li>
+    <li>Zambia Airways ZN 307 LUN → JNB Jul 9 (conf YDHXGT, seat 12A)</li>
+  </ul>
+
+  <h3>UA flights to book (corrected)</h3>
+  <ul class="tight">
+    <li><strong>UA 188</strong> EWR → JNB Sun Jun 28 (787-9, Polaris)</li>
+    <li><strong>UA 187</strong> JNB → EWR Thu Jul 16 (787-9, Polaris)</li>
+    <li><strong>UA 14</strong> EWR → LHR Fri Jul 17 (767-300ER, 1-1-1 Polaris)</li>
+    <li><strong>UA 17</strong> LHR → EWR Thu Jul 30 (767-300ER, 1-1-1 Polaris) — million-mile crossing</li>
+    <li>SMF↔EWR connections (UA 1565 nonstop preferred)</li>
+    <li>All-Polaris ~$14.5–21.9K · hybrid Polaris-JNB+PremPlus-LHR ~$11.5–16.5K</li>
+  </ul>
+
+  <h3>Insurance (corrected Apr 28)</h3>
+  <ul class="tight">
+    <li>IMG iTravelInsured <strong>SE</strong> ($1,506) — NOT Choice (Choice has $10K cap, trip is $14K)</li>
+    <li>Medjet <strong>Annual</strong> ($270–315) — NOT Short-Term (Short-Term caps at 30 days; trip is 33)</li>
+    <li>Total ~$1,800 · Pre-existing waiver deadline Fri May 1, 2026</li>
+  </ul>
+
+  <h3>UK routing (REVERSED Apr 28 per Pat's form + Fiona update)</h3>
+  <ul class="tight">
+    <li><strong>Heathrow → Norwich first</strong> (3 full days to recover)</li>
+    <li>Then Norwich → Aberdeen via Loganair (afternoon flight) → Inverness</li>
+    <li>4–5 days in Inverness</li>
+    <li>BA INV → LHR (afternoon/early-evening) → Hilton Garden Inn LHR T2/T3 → UA 17</li>
+    <li>Open question: BA luggage through-check on same UA ticket vs separate ticket</li>
+  </ul>
+
+  <h3>Hypothetical France swap (waiting on Fiona)</h3>
+  <ul class="tight">
+    <li>UA 56/57 EWR↔CDG works for Polaris and lifetime miles (~7,260 mi vs LHR's ~6,920)</li>
+    <li>JNB↔Paris not on UA — Star Alliance partners (Lufthansa) don't earn lifetime miles</li>
+    <li>Need to keep UA EWR↔JNB legs for the million-mile target — they account for ~16K miles each direction</li>
+  </ul>
+</div>
+
+<h2>📥 What's pending</h2>
+<div class="card">
+  <ol class="tight">
+    <li>Pat's insurance pick (deadline Fri May 1)</li>
+    <li>Pat's flight plan sign-off (signoff, SMF→EWR option, Heathrow→Norwich option, Inverness→LHR option, luggage approach)</li>
+    <li>Fiona's France-vs-UK confirmation</li>
+    <li>Sabi Sabi Kruger quote</li>
+    <li>Mmilo balance payment May 21</li>
+    <li>Vaccinations check Jun 14 (calendar trigger)</li>
+  </ol>
+</div>
+
+<h2>🛠️ Tooling / system</h2>
+<div class="card">
+  <ul class="tight">
+    <li>Email send: <strong>Superhuman Mail MCP</strong> (Alex's Gmail). NOT Microsoft 365 — Alex has no MS365 mail.</li>
+    <li>Email read: <strong>Gmail MCP</strong> for Alex. Pat sends from <code>paconrad@ucdavis.edu</code> via Outlook on her devices, lands in Alex's Gmail.</li>
+    <li>iMessage: Read and Send iMessages MCP. Send to Pat at <code>+15302194079</code> only (NOT email-via-iMessage; that bounces). Address her as "Pat" never "Mom". Sign as "Claude Concierge".</li>
+    <li>File ops: Filesystem MCP (note master folder ✈️ emoji + shared folder typographic apostrophe).</li>
+    <li>GitHub: curl + REST API (no <code>gh</code> CLI installed). Token via 1Password CLI.</li>
+    <li>Bitly: MCP. All Pat-facing links shortened.</li>
+    <li>Cowork/Dispatch: Active. Use for primary-source verification audits before any deliverable hits Pat.</li>
+  </ul>
+</div>
+
+<h2>📞 People</h2>
+<div class="card">
+  <ul class="tight">
+    <li><strong>Pat:</strong> <code>paconrad@ucdavis.edu</code> · <code>+1 530 219 4079</code> · 71 · UC Davis vet · iPad/MacBook only · Outlook on iOS · prefers voice memos</li>
+    <li><strong>Alex:</strong> <code>amarkham@alumni.gsb.stanford.edu</code> · <code>+1 530 219 8094</code> · process oversight</li>
+    <li><strong>Banie Penzhorn:</strong> <code>banie.penzhorn@gmail.com</code> · safari leader, Pat's UCD colleague</li>
+    <li><strong>Fiona Reed:</strong> Inverness · Pat's friend · in process of confirming UK or France</li>
+    <li><strong>Mmilo (Patrick &amp; Norman):</strong> <code>info@mmilotours.com</code> · +27 12 654 5308 · safari operator · ref Y9ABNJ</li>
+  </ul>
+</div>
+
+<div class="callout urgent">
+  <strong>Failure-mode reminder:</strong> If you're a fresh Claude reading this, you have everything you need. Read this page, then HANDOFF.md, then 00_STATE.md, then the most recent 5–7 PROJECT_LOG.md entries. <strong>Do NOT contact Pat until those four are read and internalized.</strong> Do NOT ship any deliverable with unverified factual claims.
+</div>
+
+</div>
+<footer>
+  <p>One link to remember: <a href="index.html"><strong>bit.ly/pat-trip-hub</strong></a> · Updated as we go.<br>
+  Built for Pat with care by Claude Concierge.</p>
+</footer>
+</body>
+</html>
