@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#2d5a4a">
+<title>Flight plan — Pat's Trip Hub</title>
+<style>
+:root {
+  --cream:    #fbf6ed;
+  --paper:    #ffffff;
+  --ink:      #1f1f23;
+  --ink-soft: #4a4a55;
+  --teal:     #2d5a4a;
+  --teal-2:   #1f3f33;
+  --teal-light: #e6efea;
+  --gold:     #c8893a;
+  --gold-2:   #a86f24;
+  --coral:    #d4684c;
+  --coral-bg: #fbe9e3;
+  --rule:     #e6dcc8;
+  --selected: #f0e8d6;
+  --green-bg: #e6f0e9;
+  --shadow:   0 1px 2px rgba(40,30,15,0.04), 0 4px 12px rgba(40,30,15,0.06);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 19px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+.container { max-width: 700px; margin: 0 auto; padding: 24px 22px 100px; }
+.topbar {
+  background: var(--teal);
+  color: white;
+  padding: 18px 22px;
+  position: sticky; top: 0; z-index: 50;
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 3px solid var(--gold);
+}
+.topbar .home {
+  color: white; text-decoration: none;
+  font-weight: 600; font-size: 15px;
+  letter-spacing: 0.05em;
+  display: flex; align-items: center; gap: 8px;
+}
+.topbar .home:hover { color: var(--cream); }
+.topbar .stamp { font-size: 12px; color: rgba(255,255,255,0.75); }
+h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  font-size: 36px; line-height: 1.2;
+  color: var(--teal-2);
+  margin: 14px 0 12px;
+  letter-spacing: -0.01em;
+}
+h2 {
+  font-family: Georgia, serif;
+  font-size: 26px; line-height: 1.3;
+  color: var(--teal-2);
+  margin: 30px 0 12px;
+}
+h3 {
+  font-size: 19px; line-height: 1.35;
+  color: var(--teal-2);
+  margin: 20px 0 8px;
+  font-weight: 700;
+}
+p, li { font-size: 19px; line-height: 1.6; }
+.eyebrow {
+  color: var(--teal); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.lede { color: var(--ink-soft); font-size: 18px; margin: 0 0 18px; }
+.timestamp { font-size: 14px; color: var(--ink-soft); font-style: italic; margin-bottom: 16px; }
+
+/* Cards */
+.card {
+  background: var(--paper);
+  border: 1.5px solid var(--rule);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin: 14px 0;
+  box-shadow: var(--shadow);
+}
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.18s ease;
+}
+.card-link:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(40,30,15,0.10);
+}
+.card-link.urgent {
+  border-color: var(--coral);
+  background: var(--coral-bg);
+}
+.card-link.urgent:hover { border-color: var(--coral); }
+.card-link.done {
+  background: var(--green-bg);
+  border-color: #b5c9b8;
+}
+.card-icon {
+  font-size: 36px;
+  margin-bottom: 6px;
+  display: block;
+}
+.card-title {
+  font-family: Georgia, serif;
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--teal-2);
+  margin: 0 0 6px;
+}
+.card-desc {
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
+.card-meta {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.meta-urgent { color: var(--coral); }
+.meta-info { color: var(--teal); }
+.meta-done { color: #4a7058; }
+
+/* Status pill */
+.status-strip {
+  background: var(--paper);
+  border: 1.5px solid var(--rule);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin: 18px 0;
+}
+.status-strip .label {
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold-2);
+  margin-bottom: 6px;
+}
+.status-strip .value {
+  font-family: Georgia, serif;
+  font-size: 21px;
+  color: var(--teal-2);
+}
+
+/* Form bits */
+.field-block { margin: 22px 0; }
+.field-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 17px;
+  color: var(--teal-2);
+}
+.field-help {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+  line-height: 1.45;
+}
+textarea, input[type="text"], select {
+  width: 100%;
+  border: 2px solid var(--rule);
+  border-radius: 10px;
+  background: var(--paper);
+  padding: 14px 16px;
+  font-family: inherit;
+  font-size: 17px;
+  color: var(--ink);
+  line-height: 1.5;
+  resize: vertical;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.18s ease;
+}
+textarea:focus, input[type="text"]:focus, select:focus {
+  outline: none; border-color: var(--teal);
+}
+textarea { min-height: 110px; }
+.options { display: flex; flex-direction: column; gap: 10px; margin: 8px 0 18px; }
+.option {
+  background: var(--paper);
+  border: 2px solid var(--rule);
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.option:hover { border-color: var(--gold); }
+.option.selected { border-color: var(--teal); background: var(--selected); }
+.option .checkbox {
+  width: 22px; height: 22px;
+  border: 2px solid var(--rule);
+  border-radius: 6px;
+  flex-shrink: 0; margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+}
+.option.selected .checkbox { background: var(--teal); border-color: var(--teal); }
+.option.selected .checkbox::after { content: "✓"; color: white; font-weight: 700; }
+.option.radio .checkbox { border-radius: 99px; }
+.option .opt-text { flex: 1; font-size: 17px; line-height: 1.45; }
+
+.btn {
+  display: inline-block;
+  padding: 16px 28px;
+  border-radius: 99px;
+  border: none;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.18s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.btn-primary {
+  background: var(--teal);
+  color: white;
+  box-shadow: 0 2px 8px rgba(45, 90, 74, 0.25);
+}
+.btn-primary:hover { background: var(--teal-2); transform: translateY(-1px); }
+.btn-block { width: 100%; }
+.btn-row { display: flex; gap: 12px; margin: 20px 0; }
+.btn-secondary {
+  background: var(--paper);
+  color: var(--teal);
+  border: 1.5px solid var(--rule);
+}
+
+/* Tables for comparisons */
+.compare-table {
+  background: var(--paper);
+  border: 1.5px solid var(--rule);
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+.compare-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-bottom: 1px solid var(--rule);
+}
+.compare-row:last-child { border-bottom: none; }
+.compare-row.head {
+  background: var(--teal-light);
+  font-weight: 700;
+  color: var(--teal-2);
+}
+.compare-cell {
+  padding: 14px 18px;
+  font-size: 16px;
+  line-height: 1.45;
+  border-bottom: 1px dashed var(--rule);
+}
+.compare-cell:last-child { border-bottom: none; }
+.compare-cell .cell-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  margin-bottom: 4px;
+}
+@media (min-width: 700px) {
+  .compare-row { grid-template-columns: 1.2fr 1fr 1fr 1fr 1fr; }
+  .compare-cell { border-bottom: none; border-right: 1px dashed var(--rule); }
+  .compare-cell:last-child { border-right: none; }
+  .compare-cell .cell-label { display: none; }
+}
+
+/* Highlights */
+.callout {
+  background: linear-gradient(135deg, #f4ecd8, #f0e6cf);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin: 18px 0;
+  color: var(--teal-2);
+  font-size: 17px;
+  line-height: 1.55;
+}
+.callout strong { color: var(--gold-2); }
+.callout.urgent {
+  background: var(--coral-bg);
+  border-color: var(--coral);
+}
+.callout.done {
+  background: var(--green-bg);
+  border-color: #b5c9b8;
+}
+
+/* Footer block */
+footer {
+  margin: 50px auto 30px;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 14px;
+  padding: 0 22px;
+}
+footer a { color: var(--teal); }
+
+/* Lists with breathing room */
+ul.tight, ol.tight { padding-left: 22px; }
+ul.tight li, ol.tight li { margin-bottom: 6px; }
+
+/* Anchor offset for sticky topbar */
+.anchor { display: block; position: relative; top: -85px; visibility: hidden; }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="home" href="index.html">✈️ Pat's Trip Hub · Home</a>
+  <div class="stamp">Updated April 28, 2026 — 11:30 PM PT</div>
+</header>
+<div class="container">
+
+<p class="eyebrow">Updated travel plan</p>
+<h1>Your trip — start to finish</h1>
+<p class="lede">Now reflects what Fiona told you tonight: <strong>Norwich first, Inverness second.</strong> All flight details with times and stopovers below. Sign-off form at the bottom — once you green-light, I book everything.</p>
+
+<div class="callout">
+  <strong>What's NOT booked yet (waiting on your green-light):</strong> Sacramento ↔ Newark, the 4 UA legs, BA Heathrow → Inverness via UK rerouting, Loganair Norwich → Aberdeen, Hilton Heathrow T2.
+  <br><br>
+  <strong>Already ticketed (won't change):</strong> Airlink JNB → Livingstone (Jul 1, conf Y9ABNJ, seat 3F) · Zambia Airways Lusaka → JNB (Jul 9, conf YDHXGT, seat 12A) · Mmilo safari Jul 1–9.
+</div>
+
+<h2>📅 Day-by-day schedule</h2>
+
+<div class="card">
+  <h3>Sun Jun 28 · Sacramento → Newark → Johannesburg</h3>
+  <p><strong>Two SMF→EWR options.</strong> Both connect to UA 188 at Newark.</p>
+  <ul class="tight">
+    <li><strong>Option 1 (Recommended):</strong> UA 1565 SMF 8:55 AM → EWR 5:01 PM (nonstop, 5h 06m). 4-hour layover before UA 188.<br><em>Pros: nonstop, no missed-connection risk, plenty of cushion. Cons: long layover.</em></li>
+    <li><strong>Option 2:</strong> UA 2310 SMF 6:15 AM → DEN 9:48 AM, then UA 1820 DEN 11:35 AM → EWR 5:30 PM. 3.5-hour layover before UA 188.<br><em>Pros: less idle time at EWR. Cons: 2 flights, weather risk in Denver, earlier wake-up.</em></li>
+  </ul>
+  <p><strong>UA 188</strong> EWR 9:05 PM → JNB 6:30 PM (Mon Jun 29) · 14h 50m · Boeing 787-9 · <strong>Polaris business class, lie-flat</strong></p>
+</div>
+
+<div class="card">
+  <h3>Mon Jun 29 – Wed Jul 1 · Pretoria with Banie</h3>
+  <p>Arrive JNB 6:30 PM Mon evening. Banie meets you. 2 nights in Pretoria. <strong>Wed Jul 1:</strong> Airlink 4Z 482 JNB → Livingstone 10:50 AM → 12:35 PM. <em>Already ticketed, seat 3F.</em></p>
+</div>
+
+<div class="card">
+  <h3>Wed Jul 1 – Thu Jul 9 · Mmilo Safari (LOCKED)</h3>
+  <ul class="tight">
+    <li>Vic Falls Waterfront Lodge (Jul 1–3)</li>
+    <li>Track &amp; Trail River Camp, South Luangwa (Jul 3–6)</li>
+    <li>Pinnon Safari Lodge, Kafue (Jul 6–9)</li>
+    <li>All Proflight flights ticketed within Mmilo package · all park fees prepaid</li>
+    <li>Thu Jul 9: Zambia Airways ZN 307 LUN 4:20 PM → JNB 6:30 PM (already ticketed, seat 12A)</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>Jul 9 – Jul 16 · Kruger (planning in progress)</h3>
+  <p>4-night Kruger stay — Sabi Sabi quote outstanding. Will discuss as separate decision before locking.</p>
+</div>
+
+<div class="card urgent" style="background: var(--coral-bg); border-color: var(--coral);">
+  <h3>Thu Jul 16 · Johannesburg → Newark</h3>
+  <p><strong>UA 187</strong> JNB 7:30 PM → EWR 6:00 AM (Fri Jul 17) · 16h 30m · Boeing 787-9 · <strong>Polaris</strong></p>
+  <p>Newark Marriott airport hotel for the day, rest, then evening UA 14 to London.</p>
+</div>
+
+<div class="card">
+  <h3>Fri Jul 17 · Newark → London</h3>
+  <p><strong>UA 14</strong> EWR 8:05 PM → LHR 8:00 AM (Sat Jul 18) · 6h 55m · Boeing 767-300ER · <strong>Polaris (1-1-1, every seat aisle access)</strong></p>
+</div>
+
+<div class="card" style="background:#f0e8d6; border-color: var(--gold);">
+  <h3>Sat Jul 18 · London → NORWICH (NEW: Norwich first per Fiona)</h3>
+  <p><strong>Heathrow → Norwich.</strong> Two paths to consider:</p>
+  <ul class="tight">
+    <li><strong>Option A — National Express coach 727</strong> Heathrow → Norwich (~5 hours). Pros: avoids 2nd plane. Cons: long bus after long flight.</li>
+    <li><strong>Option B — Train</strong> via London Liverpool Street (Heathrow Express + Tube + train). ~3h 30m. More transfers.</li>
+    <li><strong>Option C — Loganair flight</strong> via Aberdeen — too circuitous.</li>
+  </ul>
+  <p><strong>I recommend Option A coach</strong> — direct, manageable for someone who's been in transit 24+ hours. I need your call on which you'd prefer; tap "Sign off / questions" below.</p>
+  <p>Then: <strong>3 full days in Norwich</strong> with the Markhams (Sat Jul 18 evening – Tue Jul 21).</p>
+</div>
+
+<div class="card" style="background:#f0e8d6; border-color: var(--gold);">
+  <h3>Tue Jul 21 (or Wed Jul 22) · Norwich → Aberdeen → Inverness</h3>
+  <p><strong>Loganair NWI → ABZ:</strong> two daily options.</p>
+  <ul class="tight">
+    <li><strong>13:50 → 15:10</strong> (early afternoon) — matches your "late morning / early afternoon" preference</li>
+    <li>10:25 → 11:45 (late morning)</li>
+  </ul>
+  <p>I'll lock the 13:50 unless you tell me otherwise. From Aberdeen, Fiona drives you to Inverness (≈3 hours).</p>
+  <p><strong>4–5 days in Inverness</strong> with Fiona, Iain, &amp; Gremlin.</p>
+</div>
+
+<div class="card" style="background:#f0e8d6; border-color: var(--gold);">
+  <h3>Sat Jul 25 or Sun Jul 26 · Inverness → London</h3>
+  <p><strong>British Airways INV → LHR (T5).</strong> BA flies 4× daily — afternoon/early-evening choices:</p>
+  <ul class="tight">
+    <li><strong>BA 1471</strong> INV 14:55 → LHR 16:30 (afternoon — recommended)</li>
+    <li>BA 1469 INV 19:30 → LHR 21:05 (early evening — if you want a longer last day with Fiona)</li>
+  </ul>
+  <p>Hotel: <strong>Hilton Garden Inn London Heathrow Terminal 2/3</strong> — exactly the right side of the airport for UA next morning. ~$220/night, walking distance to T2 departures.</p>
+</div>
+
+<div class="card">
+  <h3>🛄 LUGGAGE QUESTION YOU RAISED</h3>
+  <p><strong>"If we book the BA flight on the same ticket as UA, can my checked luggage transfer safely from BA to UA, or do I need to pick it up at LHR, take to hotel, and re-check next morning?"</strong></p>
+  <p><strong>Honest answer based on current BA + UA interline rules:</strong> If BA INV→LHR is on the SAME ticket as UA LHR→EWR (i.e., one PNR, ticketed by UA as a codeshare or sold as a through-ticket), your bag tags through to Sacramento and you don't see it until SMF — including across the overnight. UA T2, BA arrives T5; bag transfer happens airside.</p>
+  <p><strong>BUT:</strong> if booked separately (BA on a separate ticket from UA, which is more flexible if Inverness dates change), you collect bag at T5, take it to the hotel, and re-check it at T2 next morning. More work, but I can build that in.</p>
+  <p>I need to verify with UA whether they'll sell BA INV→LHR as a through-ticket on the same PNR — I'll check at booking time and tell you which we have. Either way is safe; I'll be explicit about which.</p>
+</div>
+
+<div class="card urgent" style="background: var(--coral-bg); border-color: var(--coral);">
+  <h3>🌟 Thu Jul 30 · The 1,000,000-mile flight</h3>
+  <p><strong>UA 17</strong> LHR 11:30 AM → EWR 2:35 PM · 7h 05m · 767-300ER · <strong>Polaris</strong></p>
+  <p>This is the flight where you cross 1,000,000 lifetime United miles. Lifetime Gold status unlocks. I'll have a small surprise waiting for you. ✨</p>
+  <p>Then: <strong>UA 1565 EWR → SMF</strong> · evening connection · Premier seating · home Thursday night.</p>
+</div>
+
+<h2>Your sign-off</h2>
+<form id="flightForm">
+  <div class="field-block">
+    <label class="field-label">Overall — green-light to book?</label>
+    <div class="options" id="signOpts">
+      <div class="option radio" data-value="GREEN — book it"><div class="checkbox"></div><div class="opt-text"><strong>Green-light · book everything as laid out</strong></div></div>
+      <div class="option radio" data-value="GREEN with notes"><div class="checkbox"></div><div class="opt-text"><strong>Mostly yes, but I have notes/changes</strong> (write below)</div></div>
+      <div class="option radio" data-value="HOLD — I have questions"><div class="checkbox"></div><div class="opt-text"><strong>Hold — I have questions first</strong></div></div>
+    </div>
+  </div>
+
+  <div class="field-block">
+    <label class="field-label">Heathrow → Norwich preference</label>
+    <div class="options" id="hrnwOpts">
+      <div class="option radio" data-value="A — Coach 727"><div class="checkbox"></div><div class="opt-text">A — National Express coach 727 (recommended)</div></div>
+      <div class="option radio" data-value="B — Train via Liverpool Street"><div class="checkbox"></div><div class="opt-text">B — Train via Liverpool Street (more transfers, faster)</div></div>
+      <div class="option radio" data-value="LET CLAUDE PICK"><div class="checkbox"></div><div class="opt-text">Let Claude pick whichever is easiest</div></div>
+    </div>
+  </div>
+
+  <div class="field-block">
+    <label class="field-label">SMF → EWR option</label>
+    <div class="options" id="smfOpts">
+      <div class="option radio" data-value="Option 1 — UA 1565 nonstop"><div class="checkbox"></div><div class="opt-text">Option 1 — UA 1565 nonstop (recommended)</div></div>
+      <div class="option radio" data-value="Option 2 — via Denver"><div class="checkbox"></div><div class="opt-text">Option 2 — via Denver (less EWR layover)</div></div>
+      <div class="option radio" data-value="LET CLAUDE PICK"><div class="checkbox"></div><div class="opt-text">Let Claude pick</div></div>
+    </div>
+  </div>
+
+  <div class="field-block">
+    <label class="field-label">Inverness → LHR preference</label>
+    <div class="options" id="invOpts">
+      <div class="option radio" data-value="BA 1471 14:55"><div class="checkbox"></div><div class="opt-text">BA 1471 · 14:55 dep · afternoon (recommended)</div></div>
+      <div class="option radio" data-value="BA 1469 19:30"><div class="checkbox"></div><div class="opt-text">BA 1469 · 19:30 dep · early evening (longer last day)</div></div>
+      <div class="option radio" data-value="LET CLAUDE PICK"><div class="checkbox"></div><div class="opt-text">Let Claude pick</div></div>
+    </div>
+  </div>
+
+  <div class="field-block">
+    <label class="field-label">Notes, questions, or changes</label>
+    <textarea name="flight_notes" placeholder="Anything — including the luggage question, the dates with Fiona, the Markhams, etc." style="min-height: 140px;"></textarea>
+  </div>
+
+  <div class="btn-row">
+    <button type="button" class="btn btn-primary btn-block" onclick="sendFlights()">📧 Send my answers to Claude</button>
+  </div>
+</form>
+
+<script>
+const flightState = { signoff: null, hrnw: null, smf: null, inv: null };
+function bind(id, key) {
+  document.querySelectorAll(`#${id} .option`).forEach(o => {
+    o.addEventListener('click', () => {
+      document.querySelectorAll(`#${id} .option`).forEach(x => x.classList.remove('selected'));
+      o.classList.add('selected');
+      flightState[key] = o.dataset.value;
+    });
+  });
+}
+bind('signOpts', 'signoff');
+bind('hrnwOpts', 'hrnw');
+bind('smfOpts', 'smf');
+bind('invOpts', 'inv');
+
+function sendFlights() {
+  const notes = document.querySelector('textarea[name="flight_notes"]').value || "(no notes)";
+  const body = `Hi Claude — flight plan answers:
+
+Sign-off: ${flightState.signoff || '(none)'}
+SMF → EWR: ${flightState.smf || '(none)'}
+Heathrow → Norwich: ${flightState.hrnw || '(none)'}
+Inverness → LHR: ${flightState.inv || '(none)'}
+
+Notes:
+${notes}
+
+— Pat
+(sent from the dashboard flights page)`;
+  const subject = encodeURIComponent("Pat — flight plan sign-off");
+  window.location.href = `mailto:amarkham@alumni.gsb.stanford.edu?subject=${subject}&body=${encodeURIComponent(body)}`;
+}
+</script>
+
+</div>
+<footer>
+  <p>One link to remember: <a href="index.html"><strong>bit.ly/pat-trip-hub</strong></a> · Updated as we go.<br>
+  Built for Pat with care by Claude Concierge.</p>
+</footer>
+</body>
+</html>
