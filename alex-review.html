@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1f3f33">
+<meta name="robots" content="noindex,nofollow">
+<title>Concierge Review — Alex feedback (Apr 29 evening)</title>
+<style>
+:root {
+  --cream:#fbf6ed;--paper:#ffffff;--ink:#1f1f23;--ink-soft:#4a4a55;
+  --teal:#2d5a4a;--teal-2:#1f3f33;--teal-light:#e6efea;
+  --gold:#c8893a;--gold-2:#a86f24;
+  --coral:#d4684c;--coral-bg:#fbe9e3;
+  --rule:#e6dcc8;--selected:#f0e8d6;--green-bg:#e6f0e9;--green-2:#4a7058;
+  --shadow:0 1px 2px rgba(40,30,15,0.04),0 4px 12px rgba(40,30,15,0.06);
+  --blue-bg:#e8eef5;--blue-2:#2d4a6e;
+}
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body { margin:0;padding:0; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;
+  background:var(--cream); color:var(--ink); font-size:17px; line-height:1.55; min-height:100vh;
+}
+.container { max-width:780px; margin:0 auto; padding:24px 22px 100px; }
+.topbar {
+  background:var(--teal-2); color:white; padding:18px 22px;
+  position:sticky; top:0; z-index:50;
+  display:flex; justify-content:space-between; align-items:center;
+  border-bottom:3px solid var(--gold);
+}
+.topbar .home { color:white; text-decoration:none; font-weight:600; font-size:15px; letter-spacing:0.05em; }
+.topbar .stamp { font-size:12px; color:rgba(255,255,255,0.75); }
+h1 { font-family:Georgia,serif; font-weight:600; font-size:30px; line-height:1.2; color:var(--teal-2); margin:14px 0 12px; letter-spacing:-0.01em; }
+h2 { font-family:Georgia,serif; font-size:24px; line-height:1.3; color:var(--teal-2); margin:36px 0 8px; padding-bottom:8px; border-bottom:2px solid var(--gold); }
+h3 { font-size:18px; line-height:1.35; color:var(--teal-2); margin:22px 0 8px; font-weight:700; }
+p, li { font-size:16px; line-height:1.55; }
+.eyebrow { color:var(--teal); font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:8px; }
+.lede { color:var(--ink-soft); font-size:17px; margin:0 0 18px; }
+.material-card { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:18px 22px; margin:14px 0; box-shadow:var(--shadow); }
+.material-card h3 { margin-top:0; }
+.material-card .preview-link { display:inline-block; margin:8px 8px 8px 0; padding:8px 16px; background:var(--teal); color:white; border-radius:99px; text-decoration:none; font-weight:600; font-size:14px; }
+.material-card .preview-link:hover { background:var(--teal-2); }
+.material-card .anchor-link { display:inline-block; margin:8px 0; padding:8px 16px; background:var(--gold); color:white; border-radius:99px; text-decoration:none; font-weight:600; font-size:14px; }
+.material-card details { margin-top:10px; padding:10px 14px; background:var(--cream); border-radius:8px; }
+.material-card summary { cursor:pointer; font-weight:600; color:var(--teal); }
+.material-card details ul { margin:8px 0; }
+.material-card details li { font-size:14px; line-height:1.45; }
+.callout { background:linear-gradient(135deg,#f4ecd8,#f0e6cf); border:1px solid var(--rule); border-radius:14px; padding:14px 18px; margin:14px 0; color:var(--teal-2); font-size:16px; line-height:1.5; }
+.callout strong { color:var(--gold-2); }
+.callout.urgent { background:var(--coral-bg); border-color:var(--coral); }
+.callout.note { background:#eef4f1; border-color:#bfd4c9; }
+.callout.gold { background:#fdf5e3; border:2px solid var(--gold); }
+
+.q-block { background:var(--paper); border:1.5px solid var(--rule); border-radius:12px; padding:16px 20px; margin:14px 0; box-shadow:var(--shadow); }
+.q-block .q-num { display:inline-block; background:var(--teal); color:white; width:28px; height:28px; line-height:28px; text-align:center; border-radius:50%; font-weight:700; font-size:14px; margin-right:10px; vertical-align:top; }
+.q-block .q-text { display:inline-block; font-weight:700; color:var(--teal-2); font-size:17px; line-height:1.4; max-width:calc(100% - 44px); vertical-align:top; }
+.q-block .q-context { color:var(--ink-soft); font-size:14px; line-height:1.45; margin:6px 0 12px 38px; }
+.q-block .q-options { margin:8px 0 0 38px; }
+.q-block .q-option { display:block; padding:10px 14px; margin:6px 0; background:var(--cream); border:1.5px solid var(--rule); border-radius:8px; cursor:pointer; transition:all 0.15s ease; font-size:15px; }
+.q-block .q-option:hover { border-color:var(--gold); background:#f5ecd6; }
+.q-block .q-option input[type="radio"], .q-block .q-option input[type="checkbox"] { margin-right:10px; transform:scale(1.2); vertical-align:middle; }
+.q-block .q-option-label { vertical-align:middle; }
+.q-block .q-textarea { display:block; width:100%; margin:10px 0 0 38px; max-width:calc(100% - 38px); padding:10px 12px; border:1.5px solid var(--rule); border-radius:8px; font-family:inherit; font-size:15px; line-height:1.45; resize:vertical; min-height:60px; background:var(--paper); }
+.q-block .q-textarea:focus { outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(200,137,58,0.15); }
+.q-block .q-textarea-label { display:block; margin:10px 0 4px 38px; font-size:13px; color:var(--ink-soft); font-style:italic; }
+
+.submit-button {
+  display:block; width:100%; padding:18px 24px; margin:30px 0 16px;
+  background:var(--gold); color:white; border:none; border-radius:99px;
+  font-size:18px; font-weight:700; letter-spacing:0.04em; cursor:pointer;
+  box-shadow:0 4px 16px rgba(168,111,36,0.25);
+  transition:all 0.18s ease;
+}
+.submit-button:hover { background:var(--gold-2); transform:translateY(-1px); box-shadow:0 6px 20px rgba(168,111,36,0.35); }
+.submit-button:active { transform:translateY(1px); }
+
+footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:14px; padding:0 22px; }
+.tracker-mini { background:var(--paper); border:1.5px solid var(--rule); border-radius:10px; padding:0; margin:8px 0 0; overflow:hidden; }
+.tracker-mini-row { display:grid; grid-template-columns:30px 1fr; gap:8px; padding:8px 12px; border-bottom:1px solid var(--rule); align-items:start; font-size:13px; }
+.tracker-mini-row:last-child { border-bottom:none; }
+.tracker-mini-row .icon { font-size:16px; line-height:1; }
+.tracker-mini-row.done { background:var(--green-bg); }
+.tracker-mini-row.urgent { background:var(--coral-bg); }
+.tracker-mini-row.removed { background:#f5f0e8; opacity:0.85; }
+.tracker-mini-row.removed .name { text-decoration:line-through; color:var(--ink-soft); }
+.tracker-mini-row .name { font-weight:600; color:var(--teal-2); }
+
+.cabin-mini { width:100%; border-collapse:collapse; margin:8px 0; background:var(--paper); border-radius:8px; overflow:hidden; font-size:13px; }
+.cabin-mini th, .cabin-mini td { padding:6px 8px; text-align:left; border-bottom:1px solid var(--rule); }
+.cabin-mini th { background:var(--teal-light); color:var(--teal-2); font-size:12px; letter-spacing:0.04em; text-transform:uppercase; font-weight:700; }
+.cabin-mini tr:last-child td { border-bottom:none; }
+
+@media (max-width:480px) {
+  h1 { font-size:24px; }
+  h2 { font-size:20px; }
+  .container { padding:18px 16px 80px; }
+  .q-block { padding:14px 16px; }
+  .q-block .q-context, .q-block .q-options, .q-block .q-textarea, .q-block .q-textarea-label { margin-left:0; }
+  .q-block .q-textarea { max-width:100%; }
+}
+</style>
+</head><body>
+<header class="topbar">
+  <a class="home" href="index.html">✈️ Pat's Trip Hub</a>
+  <div class="stamp">Concierge Review · Apr 29, 8:50 PM PT</div>
+</header>
+
+<div class="container">
+
+<p class="eyebrow">Internal · for Alex only</p>
+<h1>Concierge review &amp; feedback — Apr 29 evening</h1>
+<p class="lede">Everything I've shipped to Pat today, with 18 questions and write-ins below. Tap radios where they apply, free-text where you have specifics. Bottom button opens email with all your answers prefilled — no third-party signup.</p>
+
+<div class="callout urgent">
+  <strong>Live status while you're reviewing:</strong> Pat at home; insurance purchase walkthrough live; she may be mid-IMG SE flow right now. UA flight booking is the next gate after she's done. If anything in this review changes a recommendation, iMessage me and I'll surface it before the next action.
+</div>
+
+<h2>1. Materials live for Pat right now</h2>
+<p style="color:var(--ink-soft); font-size:15px; margin-top:-4px;">Each card opens the live page in a new tab. Inline summaries are below.</p>
+
+<div class="material-card">
+  <h3>🏠 Home / Trip Hub — what Pat lands on</h3>
+  <p>Welcome banner ("Hi Pat ❤️"), urgent insurance walkthrough card driving to <code>#tonight</code>, "What changed today (audit recap)" with all 10 corrections, full cabin table from her 5:51 PM message, both her questions answered (price diff, 1M crossing point), project tracker.</p>
+  <a class="preview-link" href="index.html" target="_blank">→ Open Trip Hub home</a>
+  <a class="preview-link" href="https://bit.ly/4t57nqv" target="_blank">→ Open via bit.ly (Pat's link)</a>
+  <details>
+    <summary>Quick inline preview</summary>
+    <p style="font-size:13px; color:var(--ink-soft); margin:8px 0 4px;"><strong>Opening lede (verbatim):</strong></p>
+    <p style="font-size:13px; padding:8px 12px; background:white; border-left:3px solid var(--gold); margin:0 0 10px;">"Welcome home. Here's where we are right now: <strong>your insurance walkthrough is ready below</strong> for tonight's 8 PM purchase. Your full cabin breakdown is integrated. Both your questions answered. Audit recap of what changed today is right below this."</p>
+    <p style="font-size:13px; color:var(--ink-soft); margin:8px 0 4px;"><strong>Cabin table (locked from Pat's 5:51 PM message):</strong></p>
+    <table class="cabin-mini">
+      <tr><th>Leg</th><th>Cabin</th></tr>
+      <tr><td>SMF → EWR (Sun Jun 28)</td><td>Economy Plus</td></tr>
+      <tr><td>EWR → JNB · UA 188 (Sun Jun 28 night)</td><td><strong>Polaris</strong> (the splurge)</td></tr>
+      <tr><td>JNB → EWR · UA 187 (Thu Jul 16)</td><td>Premium Plus</td></tr>
+      <tr><td>EWR → LHR · UA 14 (Fri Jul 17)</td><td>Premium Plus</td></tr>
+      <tr><td>LHR → SFO (Thu Jul 30) ✨ 1M crossing</td><td>Premium Plus</td></tr>
+      <tr><td>SFO → SMF (Thu Jul 30)</td><td>Economy Plus</td></tr>
+    </table>
+    <p style="font-size:13px; color:var(--ink-soft); margin:12px 0 4px;"><strong>Audit recap items (10 corrections):</strong></p>
+    <ul>
+      <li>UA 1565 is NOT SMF→EWR — it's ORD→CLE. Outbound rerouted via Denver.</li>
+      <li>IMG SE medical is $250K, not $1M.</li>
+      <li>Pre-existing waiver deadline is Wed May 7, not May 1.</li>
+      <li>IMG SE preserves waiver with partial trip-cost insured (unique to SE).</li>
+      <li>UA 14 EWR→LHR is now 777-200ER from May 1, not 767-300ER.</li>
+      <li>UA 187 JNB→EWR arrives 07:20 EDT, not 06:00.</li>
+      <li>Loganair NWI→ABZ is Embraer ERJ-145, not ATR turboprop.</li>
+      <li>Heathrow Pod doesn't go T5↔T2 — Heathrow Express does.</li>
+      <li>SMF↔EWR nonstop is thin in summer 2026; Denver hub better.</li>
+      <li>Million-mile crossing preserved on UA 900/939/949 LHR→SFO.</li>
+    </ul>
+  </details>
+</div>
+
+<div class="material-card">
+  <h3>🛡️ Insurance page — tonight's purchase walkthrough</h3>
+  <p>Self-purchase walkthrough Pat will use right now: "Have these in front of you" checklist (passport, AARP #, card), IMG SE step-by-step (online URL + phone, exact form answers), Medjet Annual step-by-step with AARP discount, "want me on the line?" callout. Followed by the timing reasoning (3 reasons why tonight) and the IMG vs Travel Guard comparison.</p>
+  <a class="preview-link" href="insurance.html" target="_blank">→ Open insurance page</a>
+  <a class="anchor-link" href="insurance.html#tonight" target="_blank">→ Jump to #tonight section (the live walkthrough)</a>
+  <details>
+    <summary>Key facts she'll see</summary>
+    <ul>
+      <li><strong>Trip cost to enter today:</strong> $2,800</li>
+      <li><strong>Initial deposit date:</strong> April 17, 2026 (locks waiver)</li>
+      <li><strong>Plan:</strong> iTravelInsured Travel SE</li>
+      <li><strong>Pre-existing waiver:</strong> ✅ accept</li>
+      <li><strong>CFAR add-on:</strong> recommended skip (your call)</li>
+      <li><strong>Phone fallback:</strong> 1-866-243-7524 (IMG), 1-800-527-7478 (Medjet)</li>
+      <li><strong>AARP discount on Medjet:</strong> $315 → ~$252</li>
+    </ul>
+  </details>
+</div>
+
+<div class="material-card">
+  <h3>🛫 Flights page — full plan</h3>
+  <p>Every leg with Pat's locked cabin selection. Audit corrections inline (UA 14 = 777-200ER, UA 187 = 22:00→07:20, UA 1565 removed, Heathrow Express not Pod, Loganair = ERJ-145). LHR→SFO direct return as primary (UA 900/939/949) with the million-mile crossing flagged.</p>
+  <a class="preview-link" href="flights.html" target="_blank">→ Open flights page</a>
+  <details>
+    <summary>What's listed</summary>
+    <ul>
+      <li>✅ Already ticketed: Airlink JNB→LVI Jul 1, Zambia Airways LUN→JNB Jul 9</li>
+      <li>⏳ UA outbound: SMF→EWR (Econ+), UA 188 EWR→JNB (Polaris)</li>
+      <li>⏳ UA mid: UA 187 JNB→EWR (Prem+), Newark Marriott in-terminal, UA 14 EWR→LHR (Prem+ on 777-200ER)</li>
+      <li>⏳ UA return: UA 900/939/949 LHR→SFO (Prem+ ✨ 1M crossing), SFO→SMF (Econ+)</li>
+      <li>⏳ Hilton Garden Inn LHR T2/T3 Wed Jul 29</li>
+      <li>⏳ National Express coach 727 LHR→Norwich Sat Jul 18</li>
+      <li>⏳ Loganair ERJ-145 NWI→ABZ Wed Jul 22</li>
+      <li>⏳ BA INV→LHR T5 Tue/Wed Jul 28-29</li>
+    </ul>
+  </details>
+</div>
+
+<div class="material-card">
+  <h3>📖 Archive page — receipts &amp; decisions</h3>
+  <p>Tickets, payment receipts, dated decisions log. Hasn't been refreshed yet today; mostly historical record.</p>
+  <a class="preview-link" href="archive.html" target="_blank">→ Open archive</a>
+</div>
+
+<div class="material-card">
+  <h3>📋 Project tracker (snapshot)</h3>
+  <div class="tracker-mini">
+    <div class="tracker-mini-row done"><div class="icon">✅</div><div class="name">Mmilo safari deposit · Airlink · Zambia Air ticketed</div></div>
+    <div class="tracker-mini-row done"><div class="icon">✅</div><div class="name">Insurance research + Pat's pick (Plan A)</div></div>
+    <div class="tracker-mini-row done"><div class="icon">✅</div><div class="name">Independent primary-source flight + plan audit (10 corrections)</div></div>
+    <div class="tracker-mini-row done"><div class="icon">✅</div><div class="name">Pat's full cabin breakdown integrated</div></div>
+    <div class="tracker-mini-row done"><div class="icon">✅</div><div class="name">LHR→SFO direct return integrated</div></div>
+    <div class="tracker-mini-row urgent"><div class="icon">🔄</div><div class="name">Insurance — Pat purchasing IMG SE + Medjet tonight at 8 PM</div></div>
+    <div class="tracker-mini-row"><div class="icon">⏳</div><div class="name">UA outbound flights (SMF→EWR→JNB) — Alex books after insurance</div></div>
+    <div class="tracker-mini-row"><div class="icon">⏳</div><div class="name">UA mid-trip flights (JNB→EWR→LHR + Newark Marriott)</div></div>
+    <div class="tracker-mini-row"><div class="icon">⏳</div><div class="name">UA return (LHR→SFO→SMF) ✨ 1M crossing</div></div>
+    <div class="tracker-mini-row"><div class="icon">⏳</div><div class="name">Mmilo balance R44,606 due Thu May 21</div></div>
+    <div class="tracker-mini-row"><div class="icon">⏳</div><div class="name">UK ground (coach + Loganair + BA) — book ~3 weeks ahead</div></div>
+    <div class="tracker-mini-row"><div class="icon">⏳</div><div class="name">Vaccinations / yellow fever check Sun Jun 14</div></div>
+    <div class="tracker-mini-row removed"><div class="icon">❌</div><div class="name">UA 1565 SMF→EWR (was wrong, removed)</div></div>
+    <div class="tracker-mini-row removed"><div class="icon">❌</div><div class="name">Sabi Sabi / Kruger lodging (Banie handling)</div></div>
+    <div class="tracker-mini-row removed"><div class="icon">❌</div><div class="name">France stop (Pat cancelled)</div></div>
+  </div>
+</div>
+
+<div class="callout note">
+  <strong>What ELSE I've done today that's not on the dashboard:</strong> Independent primary-source audit document (~30 min, 100+ verbatim citations) at <code>50_REFERENCE/2026-04-29_audits/01_pre_travel_audit_apr29.md</code>. Eight short iMessages to Pat (3 of mine were retrospectively too long; today's 8 PM ping was tight). Two iMessages to you. PROJECT_LOG.md updated. HANDOFF.md updated.
+</div>
+
+<form id="feedback-form" onsubmit="submitFeedback(event)">
+
+<h2>2. Content accuracy (multiple choice)</h2>
+
+<div class="q-block">
+  <div><span class="q-num">1</span><span class="q-text">The audit recap on the home page (10 corrections) — accurate?</span></div>
+  <div class="q-context">Each correction is sourced (FlightAware, IMG cert, AeroRoutes, Loganair fleet page, Heathrow.com). Did you spot any that are still wrong?</div>
+  <div class="q-options">
+    <label class="q-option"><input type="radio" name="q1_audit" value="all_correct"> <span class="q-option-label">All 10 are correct as stated</span></label>
+    <label class="q-option"><input type="radio" name="q1_audit" value="mostly_correct"> <span class="q-option-label">Mostly correct, but some wording or framing concerns</span></label>
+    <label class="q-option"><input type="radio" name="q1_audit" value="errors"> <span class="q-option-label">Spotted factual errors — flag below</span></label>
+    <label class="q-option"><input type="radio" name="q1_audit" value="missing"> <span class="q-option-label">Missing a correction that should be in the list</span></label>
+  </div>
+  <label class="q-textarea-label">If concerns or errors — which item(s) and what's wrong?</label>
+  <textarea class="q-textarea" name="q1_audit_notes"></textarea>
+</div>
+
+<div class="q-block">
+  <div><span class="q-num">2</span><span class="q-text">Cabin plan table — correctly captured what Pat said in her 5:51 PM message?</span></div>
+  <div class="q-context">Econ+ on SMF→EWR / Polaris on UA 188 EWR→JNB / Premium Plus on JNB→EWR + EWR→LHR + LHR→SFO / Econ+ on SFO→SMF.</div>
+  <div class="q-options">
+    <label class="q-option"><input type="radio" name="q2_cabin" value="correct"> <span class="q-option-label">Correctly captured</span></label>
+    <label class="q-option"><input type="radio" name="q2_cabin" value="wrong"> <span class="q-option-label">Misread one or more cabin choices</span></label>
+    <label class="q-option"><input type="radio" name="q2_cabin" value="overrideok"> <span class="q-option-label">You want to override one of her choices (note below)</span></label>
+  </div>
+  <label class="q-textarea-label">If anything off — which leg + correct cabin?</label>
+  <textarea class="q-textarea" name="q2_cabin_notes"></textarea>
+</div>
+
+<div class="q-block">
+  <div><span class="q-num">3</span><span class="q-text">Tonight insurance walkthrough — has everything Pat needs to self-purchase?</span></div>
+  <div class="q-context">Checklist (name, DOB, address, passport, card ending 4788, AARP #), exact IMG form answers, both online URL + phone fallback, Medjet step-by-step, "want me on the line" offer.</div>
+  <div class="q-options">
+    <label class="q-option"><input type="radio" name="q3_walkthrough" value="complete"> <span class="q-option-label">Complete — Pat won't get stuck</span></label>
+    <label class="q-option"><input type="radio" name="q3_walkthrough" value="missing_minor"> <span class="q-option-label">Mostly complete, minor gap (note below)</span></label>
+    <label class="q-option"><input type="radio" name="q3_walkthrough" value="missing_critical"> <span class="q-option-label">Missing something critical for an older user</span></label>
+  </div>
+  <label class="q-textarea-label">If gaps — what's missing?</label>
+  <textarea class="q-textarea" name="q3_walkthrough_notes"></textarea>
+</div>
+
+<div class="q-block">
+  <div><span class="q-num">4</span><span class="q-text">Pat's two specific questions — answered correctly on the home page?</span></div>
+  <div class="q-context">(a) Price diff Polaris vs Premium Plus on JNB→EWR: I said ~$2,500-$3,500 savings. (b) When she crosses 1M: about 85-90 min into the LHR→SFO flight, somewhere over Scotland. (c) Gold auto-applies 1-3 days after segment posts.</div>
+  <div class="q-options">
+    <label class="q-option"><input type="radio" name="q4_qa" value="correct"> <span class="q-option-label">All three answers correct</span></label>
+    <label class="q-option"><input type="radio" name="q4_qa" value="numbers_off"> <span class="q-option-label">Numbers seem off — flag below</span></label>
+    <label class="q-option"><input type="radio" name="q4_qa" value="missing_caveat"> <span class="q-option-label">Missing a caveat that should be there</span></label>
+  </div>
+  <label class="q-textarea-label">If concerns — which one?</label>
+  <textarea class="q-textarea" name="q4_qa_notes"></textarea>
+</div>
+
+<div class="q-block">
+  <div><span class="q-num">5</span><span class="q-text">What's MISSING from the dashboard that should be there before flights are booked?</span></div>
+  <div class="q-context">Vaccinations? E-visa requirements (UK ETA, Zambia, SA)? Currency cards? Packing notes? Power adapters? Roaming setup? Trip insurance card to print?</div>
+  <div class="q-options">
+    <label class="q-option"><input type="checkbox" name="q5_missing" value="visas"> <span class="q-option-label">UK ETA / Zambia eVisa / South Africa entry rules page</span></label>
+    <label class="q-option"><input type="checkbox" name="q5_missing" value="vaccines"> <span class="q-option-label">Vaccinations / yellow fever / malaria specifics</span></label>
+    <label class="q-option"><input type="checkbox" name="q5_missing" value="currency"> <span class="q-option-label">Currency / cards / cash plan (ZAR, USD, GBP, ZMW)</span></label>
+    <label class="q-option"><input type="checkbox" name="q5_missing" value="roaming"> <span class="q-option-label">T-Mobile roaming setup / Wi-Fi calling notes</span></label>
+    <label class="q-option"><input type="checkbox" name="q5_missing" value="packing"> <span class="q-option-label">Packing / weight limits / safari laundry</span></label>
+    <label class="q-option"><input type="checkbox" name="q5_missing" value="medical"> <span class="q-option-label">Medical kit / prescriptions / Rx letter</span></label>
+    <label class="q-option"><input type="checkbox" name="q5_missing" value="emergency"> <span class="q-option-label">Emergency contact card / consulate phone numbers</span></label>
+    <label class="q-option"><input type="checkbox" name="q5_missing" value="other"> <span class="q-option-label">Something else (write below)</span></label>
+  </div>
+  <label class="q-textarea-label">Other items missing &amp; priority order?</label>
+  <textarea class="q-textarea" name="q5_missing_notes"></textarea>
+</div>
+
+<h2>3. Layout &amp; tone (multiple choice)</h2>
+
+<div class="q-block">
+  <div><span class="q-num">6</span><span class="q-text">Home page hierarchy — order of sections from top down?</span></div>
+  <div class="q-context">Currently: (1) Welcome lede, (2) Tonight insurance walkthrough card, (3) "What changed today" audit recap, (4) Status update with cabin table + answers to Pat's Qs + actionable next steps, (5) Bottom insurance recap card, (6) Project tracker, (7) Reference cards.</div>
+  <div class="q-options">
+    <label class="q-option"><input type="radio" name="q6_hierarchy" value="right"> <span class="q-option-label">Right order</span></label>
+    <label class="q-option"><input type="radio" name="q6_hierarchy" value="reorder"> <span class="q-option-label">Reorder — note below</span></label>
+    <label class="q-option"><input type="radio" name="q6_hierarchy" value="too_long"> <span class="q-option-label">Too much on home page — split to other pages</span></label>
+    <label class="q-option"><input type="radio" name="q6_hierarchy" value="too_short"> <span class="q-option-label">Pat needs more on home, less digging</span></label>
+  </div>
+  <label class="q-textarea-label">If reorder — preferred order?</label>
+  <textarea class="q-textarea" name="q6_hierarchy_notes"></textarea>
+</div>
+
+<div class="q-block">
+  <div><span class="q-num">7</span><span class="q-text">Tone with Pat — too clinical, too casual, or right?</span></div>
+  <div class="q-context">Examples: "Hi Pat ❤️" / "Welcome home" / "the splurge" / "you'll be somewhere over Scotland" / "your gut-check on UA 1565".</div>
+  <div class="q-options">
+    <label class="q-option"><input type="radio" name="q7_tone" value="right"> <span class="q-option-label">Right tone — warm and direct</span></label>
+    <label class="q-option"><input type="radio" name="q7_tone" value="too_warm"> <span class="q-option-label">Too warm / familiar — pull back</span></label>
+    <label class="q-option"><input type="radio" name="q7_tone" value="too_clinical"> <span class="q-option-label">Too clinical — soften</span></label>
+    <label class="q-option"><input type="radio" name="q7_tone" value="inconsistent"> <span class="q-option-label">Inconsistent across sections</span></label>
+  </div>
+  <textarea class="q-textarea" name="q7_tone_notes" placeholder="Tone notes if any..."></textarea>
+</div>
+
+<div class="q-block">
+  <div><span class="q-num">8</span><span class="q-text">Information density — right amount?</span></div>
+  <div class="q-context">Pat reads on iPad/MacBook only, never iPhone. She has skimmed the dashboard at least 4 times today.</div>
+  <div class="q-options">
+    <label class="q-option"><input type="radio" name="q8_density" value="right"> <span class="q-option-label">Right — Pat can find what she needs without overwhelm</span></label>
+    <label class="q-option"><input type="radio" name="q8_density" value="too_dense"> <span class="q-option-label">Too dense — Pat will skim past important things</span></label>
+    <label class="q-option"><input type="radio" name="q8_density" value="too_sparse"> <span class="q-option-label">Too sparse — needs more decision-supporting context</span></label>
+  </div>
+  <textarea class="q-textarea" name="q8_density_notes" placeholder="Specific examples?"></textarea>
+</div>
+
+<h2>4. Process &amp; workflow</h2>
+
+<div class="q-block">
+  <div><span class="q-num">9</span><span class="q-text">"Dashboard-as-source" rule — working?</span></div>
+  <div class="q-context">Your correction earlier today: long-form content goes in the dashboard, iMessage is signpost only. Today I sent 1 long iMessage at 5:53 PM (violation), then 3 short ones (compliant).</div>
+  <div class="q-options">
+    <label class="q-option"><input type="radio" name="q9_dashboard" value="locked"> <span class="q-option-label">Lock it — keep doing this every time</span></label>
+    <label class="q-option"><input type="radio" name="q9_dashboard" value="exceptions"> <span class="q-option-label">Mostly yes, with explicit exceptions (note below)</span></label>
+    <label class="q-option"><input type="radio" name="q9_dashboard" value="adjust"> <span class="q-option-label">Adjust the rule (note below)</span></label>
+  </div>
+  <label class="q-textarea-label">When (if ever) is a long iMessage to Pat acceptable? Define the rule.</label>
+  <textarea class="q-textarea" name="q9_dashboard_notes"></textarea>
+</div>
+
+<div class="q-block">
+  <div><span class="q-num">10</span><span class="q-text">"Audit-on-Pat-workflow-change" rule — keep, modify, kill?</span></div>
+  <div class="q-context">My new internal rule after the 8:31 PM eleventh-hour fix: whenever Pat states a workflow change ("I'll do that myself"), audit every page touching that workflow and bring them in sync immediately, not when prompted.</div>
+  <div class="q-options">
+    <label class="q-option"><input type="radio" name="q10_audit_rule" value="keep"> <span class="q-option-label">Keep — make it standard practice</span></label>
+    <label class="q-option"><input type="radio" name="q10_audit_rule" value="expand"> <span class="q-option-label">Expand — apply to ALL stated changes (yours, hers, vendor)</span></label>
+    <label class="q-option"><input type="radio" name="q10_audit_rule" value="modify"> <span class="q-option-label">Modify — note below</span></label>
+    <label class="q-option"><input type="radio" name="q10_audit_rule" value="overkill"> <span class="q-option-label">Overkill — find a lighter approach</span></label>
+  </div>
+  <textarea class="q-textarea" name="q10_audit_rule_notes" placeholder="Rule details if modify..."></textarea>
+</div>
+
+<div class="q-block">
+  <div><span class="q-num">11</span><span class="q-text">Daily check-in cadence with you — what's right?</span></div>
+  <div class="q-context">Currently: scheduled morning sweep + ad-hoc when Pat sends material + escalations to you when blocked. Today you had to prompt me twice.</div>
+  <div class="q-options">
+    <label class="q-option"><input type="radio" name="q11_cadence" value="morning_evening"> <span class="q-option-label">Add scheduled evening sweep (recap of day + tomorrow plan)</span></label>
+    <label class="q-option"><input type="radio" name="q11_cadence" value="hourly_active"> <span class="q-option-label">Hourly active-window check during high-stakes days</span></label>
+    <label class="q-option"><input type="radio" name="q11_cadence" value="event_based"> <span class="q-option-label">Event-based only (Pat sends or status changes)</span></label>
+    <label class="q-option"><input type="radio" name="q11_cadence" value="other"> <span class="q-option-label">Other (note below)</span></label>
+  </div>
+  <textarea class="q-textarea" name="q11_cadence_notes" placeholder="Cadence detail..."></textarea>
+</div>
+
+<div class="q-block">
+  <div><span class="q-num">12</span><span class="q-text">When I make an error and self-correct, how should I surface it?</span></div>
+  <div class="q-context">Today I had: $1M→$250K, May 1→May 7, UA 1565 wrong direction, UA 14 aircraft wrong, etc. Pattern was "audit, prepend to LOG, update dashboard inline tags, no separate disclosure to Pat." Right call?</div>
+  <div class="q-options">
+    <label class="q-option"><input type="radio" name="q12_errors" value="silent_inline"> <span class="q-option-label">Keep silent inline (audit tags on pages) — don't draw attention</span></label>
+    <label class="q-option"><input type="radio" name="q12_errors" value="recap_to_pat"> <span class="q-option-label">Always recap corrections to Pat directly so she sees them</span></label>
+    <label class="q-option"><input type="radio" name="q12_errors" value="recap_to_alex"> <span class="q-option-label">Recap corrections to YOU only, not Pat</span></label>
+    <label class="q-option"><input type="radio" name="q12_errors" value="severity"> <span class="q-option-label">Depends on severity — define threshold below</span></label>
+  </div>
+  <textarea class="q-textarea" name="q12_errors_notes" placeholder="Severity threshold or other detail..."></textarea>
+</div>
+
+<h2>5. Tonight's decisions</h2>
+
+<div class="q-block">
+  <div><span class="q-num">13</span><span class="q-text">Pre-approve UA flight booking after Pat's insurance confirms?</span></div>
+  <div class="q-context">If Pat finishes IMG SE + Medjet by ~9:15 PM, do I have your green-light to immediately help you book UA flights with her locked cabin plan, or do you want to review pricing first?</div>
+  <div class="q-options">
+    <label class="q-option"><input type="radio" name="q13_ua" value="green_light"> <span class="q-option-label">Green-light — book on her cabin plan up to your discretion on price</span></label>
+    <label class="q-option"><input type="radio" name="q13_ua" value="confirm_first"> <span class="q-option-label">Pull pricing, send me totals, await confirmation</span></label>
+    <label class="q-option"><input type="radio" name="q13_ua" value="tomorrow"> <span class="q-option-label">Wait until tomorrow — Pat's tired, no need to rush UA tonight</span></label>
+  </div>
+  <textarea class="q-textarea" name="q13_ua_notes" placeholder="Price ceiling or other constraint?"></textarea>
+</div>
+
+<div class="q-block">
+  <div><span class="q-num">14</span><span class="q-text">SFO vs DEN return — auto-default SFO unless Pat says DEN?</span></div>
+  <div class="q-context">Currently dashboard shows LHR→SFO as primary. Pat said "either works." SFO has more lift (4 daily) and Denver-as-customs is fine but SMF connection less obvious.</div>
+  <div class="q-options">
+    <label class="q-option"><input type="radio" name="q14_route" value="sfo_default"> <span class="q-option-label">Default to SFO — book it unless Pat objects</span></label>
+    <label class="q-option"><input type="radio" name="q14_route" value="den_default"> <span class="q-option-label">Default to DEN actually — better for her</span></label>
+    <label class="q-option"><input type="radio" name="q14_route" value="ask_pat"> <span class="q-option-label">Force the choice — explicit ask before booking</span></label>
+  </div>
+  <textarea class="q-textarea" name="q14_route_notes"></textarea>
+</div>
+
+<div class="q-block">
+  <div><span class="q-num">15</span><span class="q-text">Should I dial in on the IMG call via your phone if Pat texts?</span></div>
+  <div class="q-context">I offered her this in the iMessage. If she takes me up on it tonight, do you want to be on the call too, or just bridge me in and step away?</div>
+  <div class="q-options">
+    <label class="q-option"><input type="radio" name="q15_dial" value="bridge_only"> <span class="q-option-label">Bridge me in, step away — I handle</span></label>
+    <label class="q-option"><input type="radio" name="q15_dial" value="all_three"> <span class="q-option-label">All three on the call (you + me + Pat + IMG)</span></label>
+    <label class="q-option"><input type="radio" name="q15_dial" value="dont_dial"> <span class="q-option-label">Don't dial me in — Pat self-serves or you handle</span></label>
+  </div>
+  <textarea class="q-textarea" name="q15_dial_notes"></textarea>
+</div>
+
+<div class="q-block">
+  <div><span class="q-num">16</span><span class="q-text">Newark Marriott — book on which card &amp; when?</span></div>
+  <div class="q-context">~$250-350/night for Thu Jul 16 → late checkout Jul 17. In-terminal at EWR. UA flights need to be booked first to know exact arrival.</div>
+  <div class="q-options">
+    <label class="q-option"><input type="radio" name="q16_marriott" value="alex_card_after_ua"> <span class="q-option-label">Your card — book after UA tickets confirmed</span></label>
+    <label class="q-option"><input type="radio" name="q16_marriott" value="pat_card"> <span class="q-option-label">Pat's card (Visa 4788) — book after UA</span></label>
+    <label class="q-option"><input type="radio" name="q16_marriott" value="pat_handles"> <span class="q-option-label">Pat handles directly — provide her booking instructions</span></label>
+  </div>
+  <textarea class="q-textarea" name="q16_marriott_notes"></textarea>
+</div>
+
+<h2>6. Open-ended</h2>
+
+<div class="q-block">
+  <div><span class="q-num">17</span><span class="q-text">What patterns from today should I lock in vs drop?</span></div>
+  <div class="q-context">Lock candidates: dashboard-as-source / audit-on-workflow-change / tight signpost iMessages / 4-section + tracker for status updates / inline audit tags on dashboard. Drop candidates: long iMessages / multi-section walls of text / reactive vs proactive updates.</div>
+  <textarea class="q-textarea" name="q17_patterns" placeholder="Lock vs drop patterns, in your words..."></textarea>
+</div>
+
+<div class="q-block">
+  <div><span class="q-num">18</span><span class="q-text">Anything else? Concerns, gripes, ideas, things I'm not seeing?</span></div>
+  <div class="q-context">Bug reports, layout requests, content concerns, future-Pat items, behaviour I keep getting wrong — anything.</div>
+  <textarea class="q-textarea" name="q18_other" placeholder="Free-form..." style="min-height:120px;"></textarea>
+</div>
+
+<button type="submit" class="submit-button">📧 Submit feedback (opens email)</button>
+
+</form>
+
+<p style="font-size:13px; color:var(--ink-soft); text-align:center; margin-top:0;">All your answers will be packaged into one email to amarkham@alumni.gsb.stanford.edu (yourself). No third-party server touches your responses.</p>
+
+<footer>
+  <p>Concierge review · Apr 29, 2026 · 8:50 PM PT<br>
+  Built by Claude Concierge · sister page to <a href="index.html">Pat's Trip Hub</a></p>
+</footer>
+
+</div>
+
+<script>
+function submitFeedback(e) {
+  e.preventDefault();
+  const form = document.getElementById('feedback-form');
+  const data = new FormData(form);
+
+  let body = 'CONCIERGE REVIEW FEEDBACK — Apr 29 evening\n';
+  body += '═══════════════════════════════════════════\n\n';
+
+  const labels = {
+    q1_audit: '1. Audit recap accuracy',
+    q1_audit_notes: '   → Notes',
+    q2_cabin: '2. Cabin plan capture',
+    q2_cabin_notes: '   → Notes',
+    q3_walkthrough: '3. Tonight insurance walkthrough completeness',
+    q3_walkthrough_notes: '   → Notes',
+    q4_qa: "4. Pat's two questions answered correctly",
+    q4_qa_notes: '   → Notes',
+    q5_missing: '5. What\'s missing from dashboard (multi)',
+    q5_missing_notes: '   → Other items + priority',
+    q6_hierarchy: '6. Home page hierarchy',
+    q6_hierarchy_notes: '   → Reorder pref',
+    q7_tone: '7. Tone with Pat',
+    q7_tone_notes: '   → Tone notes',
+    q8_density: '8. Information density',
+    q8_density_notes: '   → Density notes',
+    q9_dashboard: '9. Dashboard-as-source rule',
+    q9_dashboard_notes: '   → Long-iMessage rule',
+    q10_audit_rule: '10. Audit-on-workflow-change rule',
+    q10_audit_rule_notes: '   → Modify details',
+    q11_cadence: '11. Daily check-in cadence',
+    q11_cadence_notes: '   → Cadence detail',
+    q12_errors: '12. Error self-correction surfacing',
+    q12_errors_notes: '   → Severity threshold',
+    q13_ua: '13. Pre-approve UA booking tonight',
+    q13_ua_notes: '   → Price ceiling',
+    q14_route: '14. SFO vs DEN return default',
+    q14_route_notes: '   → Notes',
+    q15_dial: '15. Dial-in on IMG call',
+    q15_dial_notes: '   → Notes',
+    q16_marriott: '16. Newark Marriott booking',
+    q16_marriott_notes: '   → Notes',
+    q17_patterns: '17. Patterns to lock vs drop',
+    q18_other: '18. Anything else'
+  };
+
+  // Group multi-select for q5
+  const q5Items = data.getAll('q5_missing');
+
+  for (const key of Object.keys(labels)) {
+    if (key === 'q5_missing') {
+      body += `${labels[key]}: ${q5Items.length ? q5Items.join(', ') : '(none selected)'}\n`;
+    } else {
+      const val = data.get(key);
+      if (val !== null && val !== '') {
+        body += `${labels[key]}: ${val}\n`;
+      } else {
+        body += `${labels[key]}: (no answer)\n`;
+      }
+    }
+  }
+
+  body += '\n═══════════════════════════════════════════\n';
+  body += 'Submitted via the concierge review form\n';
+  body += 'aconmar.github.io/pat-trip-hub/alex-review.html\n';
+
+  const subject = 'Concierge review — Apr 29 PM (Alex feedback)';
+  const mailtoUrl = `mailto:amarkham@alumni.gsb.stanford.edu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  // Some browsers cap mailto: at ~2000 chars. Provide fallback.
+  if (mailtoUrl.length > 1900) {
+    // Show body in alert + offer copy
+    if (confirm('Your feedback is too long for a single mailto: link.\n\nClick OK to copy the feedback to your clipboard — then paste into a new email to yourself.\nClick Cancel to try anyway.')) {
+      navigator.clipboard.writeText(`To: amarkham@alumni.gsb.stanford.edu\nSubject: ${subject}\n\n${body}`).then(() => {
+        alert('Copied. Paste into a fresh email.');
+      }).catch(() => {
+        // Fallback: open a textarea
+        const w = window.open('', '_blank');
+        w.document.write('<pre style="font:14px/1.4 monospace; padding:20px;">'+body.replace(/</g,'&lt;')+'</pre>');
+      });
+      return;
+    }
+  }
+
+  window.location.href = mailtoUrl;
+}
+</script>
+
+</body></html>
