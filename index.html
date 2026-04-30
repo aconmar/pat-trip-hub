@@ -13,6 +13,7 @@
   --coral:#d4684c;--coral-bg:#fbe9e3;
   --rule:#e6dcc8;--selected:#f0e8d6;--green-bg:#e6f0e9;--green-2:#4a7058;
   --shadow:0 1px 2px rgba(40,30,15,0.04),0 4px 12px rgba(40,30,15,0.06);
+  --blue-bg:#e8eef5;--blue-2:#2d4a6e;
 }
 * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 html,body { margin:0;padding:0; }
@@ -40,6 +41,7 @@ p, li { font-size:18px; line-height:1.6; }
 .card-link:hover { border-color:var(--gold); transform:translateY(-2px); box-shadow:0 4px 16px rgba(40,30,15,0.10); }
 .card-link.urgent .card { border-color:var(--coral); background:var(--coral-bg); }
 .card-link.done .card { background:var(--green-bg); border-color:#b5c9b8; }
+.card-link.info .card { background:var(--blue-bg); border-color:#bccadb; }
 .card-icon { font-size:34px; margin-bottom:6px; display:block; }
 .card-title { font-family:Georgia,serif; font-weight:600; font-size:21px; color:var(--teal-2); margin:0 0 6px; }
 .card-desc { color:var(--ink-soft); font-size:16px; line-height:1.5; margin:0; }
@@ -50,104 +52,278 @@ p, li { font-size:18px; line-height:1.6; }
 .status-strip { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; }
 .status-strip .label { font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-2); margin-bottom:6px; }
 .status-strip .value { font-family:Georgia,serif; font-size:20px; color:var(--teal-2); }
-.field-block { margin:22px 0; }
-.field-label { display:block; font-weight:700; margin-bottom:8px; font-size:17px; color:var(--teal-2); }
-.field-help { font-size:15px; color:var(--ink-soft); margin-bottom:10px; line-height:1.45; }
-textarea, input[type="text"], select { width:100%; border:2px solid var(--rule); border-radius:10px; background:var(--paper); padding:14px 16px; font-family:inherit; font-size:17px; color:var(--ink); line-height:1.5; resize:vertical; -webkit-appearance:none; appearance:none; }
-textarea:focus, input[type="text"]:focus, select:focus { outline:none; border-color:var(--teal); }
-textarea { min-height:110px; }
-.options { display:flex; flex-direction:column; gap:10px; margin:8px 0 18px; }
-.option { background:var(--paper); border:2px solid var(--rule); border-radius:12px; padding:14px 16px; cursor:pointer; transition:all 0.18s ease; display:flex; align-items:flex-start; gap:12px; }
-.option:hover { border-color:var(--gold); }
-.option.selected { border-color:var(--teal); background:var(--selected); }
-.option .checkbox { width:22px; height:22px; border:2px solid var(--rule); border-radius:6px; flex-shrink:0; margin-top:2px; display:flex; align-items:center; justify-content:center; }
-.option.selected .checkbox { background:var(--teal); border-color:var(--teal); }
-.option.selected .checkbox::after { content:"✓"; color:white; font-weight:700; }
-.option.radio .checkbox { border-radius:99px; }
-.option .opt-text { flex:1; font-size:17px; line-height:1.45; }
-.btn { display:inline-block; padding:16px 28px; border-radius:99px; border:none; font-family:inherit; font-size:17px; font-weight:600; cursor:pointer; text-align:center; text-decoration:none; transition:all 0.18s ease; -webkit-appearance:none; appearance:none; }
-.btn-primary { background:var(--teal); color:white; box-shadow:0 2px 8px rgba(45,90,74,0.25); }
-.btn-block { width:100%; }
-.btn-row { display:flex; gap:12px; margin:20px 0; }
 .callout { background:linear-gradient(135deg,#f4ecd8,#f0e6cf); border:1px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; color:var(--teal-2); font-size:17px; line-height:1.55; }
 .callout strong { color:var(--gold-2); }
 .callout.urgent { background:var(--coral-bg); border-color:var(--coral); }
 .callout.done { background:var(--green-bg); border-color:#b5c9b8; }
 .callout.note { background:#eef4f1; border-color:#bfd4c9; }
+.callout.blue { background:var(--blue-bg); border-color:#bccadb; color:var(--blue-2); }
 ul.tight, ol.tight { padding-left:22px; }
 ul.tight li, ol.tight li { margin-bottom:6px; }
 footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:14px; padding:0 22px; }
 footer a { color:var(--teal); }
-.flight-row { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px dashed var(--rule); }
-.flight-row:last-child { border-bottom:none; }
-.flight-leg { flex:1; }
-.flight-time { font-family:Georgia,serif; font-size:17px; color:var(--teal-2); font-weight:600; }
-.flight-detail { font-size:14px; color:var(--ink-soft); margin-top:2px; }
-.cabin-tag { display:inline-block; padding:3px 10px; border-radius:99px; font-size:13px; font-weight:600; letter-spacing:0.04em; }
-.cabin-polaris { background:#0d4f3f; color:white; }
-.cabin-prem { background:#5a85a4; color:white; }
-.cabin-first { background:var(--gold-2); color:white; }
-.cabin-econ { background:#888; color:white; }
-.cabin-coach { background:#7a6650; color:white; }
-.q-block { background:var(--paper); border-left:4px solid var(--gold); padding:14px 18px; margin:16px 0; border-radius:0 10px 10px 0; }
-.q-block .q { color:var(--gold-2); font-size:14px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px; }
+.update-block { background:var(--paper); border:2px solid var(--gold); border-radius:14px; padding:0; margin:18px 0 28px; box-shadow:0 2px 12px rgba(168,111,36,0.10); overflow:hidden; }
+.update-header { background:var(--gold); color:white; padding:14px 22px; font-family:Georgia,serif; font-weight:700; font-size:17px; letter-spacing:0.04em; }
+.update-section { padding:18px 22px; border-bottom:1px solid var(--rule); }
+.update-section:last-child { border-bottom:none; }
+.update-section h4 { margin:0 0 10px; font-size:13px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-2); font-weight:700; }
+.update-section p { margin:0 0 8px; font-size:17px; line-height:1.55; }
+.update-section ul { margin:6px 0; padding-left:22px; }
+.update-section li { font-size:17px; line-height:1.5; margin-bottom:4px; }
+.tracker { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:0; margin:18px 0; overflow:hidden; }
+.tracker-header { background:var(--teal); color:white; padding:12px 18px; font-family:Georgia,serif; font-weight:600; font-size:16px; letter-spacing:0.04em; }
+.tracker-row { display:grid; grid-template-columns:36px 1fr; gap:12px; padding:12px 18px; border-bottom:1px solid var(--rule); align-items:start; font-size:15px; }
+.tracker-row:last-child { border-bottom:none; }
+.tracker-row .icon { font-size:22px; line-height:1; padding-top:1px; }
+.tracker-row .body { line-height:1.45; }
+.tracker-row .name { font-weight:700; color:var(--teal-2); display:block; margin-bottom:2px; }
+.tracker-row .when { font-size:13px; color:var(--ink-soft); }
+.tracker-row .when a { color:var(--teal); text-decoration:underline; }
+.tracker-row.done { background:var(--green-bg); }
+.tracker-row.urgent { background:var(--coral-bg); }
+.tracker-row.removed { background:#f5f0e8; opacity:0.85; }
+.tracker-row.removed .name { text-decoration:line-through; color:var(--ink-soft); }
+@media (max-width:480px) {
+  .tracker-row { grid-template-columns:30px 1fr; gap:10px; padding:10px 14px; font-size:14px; }
+}
 </style>
 </head><body>
 <header class="topbar">
   <a class="home" href="index.html">✈️ Pat's Trip Hub · Home</a>
-  <div class="stamp">Updated April 29, 2026 — 2:55 PM PT</div>
+  <div class="stamp">Apr 29, 2026 — late afternoon PT</div>
 </header>
 <div class="container">
-<p class="eyebrow">Pat's Trip Hub · Apr 29 update</p>
+<p class="eyebrow">Pat's Trip Hub · Apr 29 status update</p>
 <h1>Hi Pat ❤️</h1>
-<p class="lede"><strong>Update Apr 29 (afternoon):</strong> I missed your messages last night. I have now integrated everything you sent — Medicare answers, the 7 trip-detail questions, France cancellation, your insurance question. Three urgent items below need your input today; the rest is for review whenever you're ready.</p>
+<p class="lede">A real status update — what's done since this morning, where things stand, and what comes next.</p>
 
-<div class="callout done">
-  <strong>✅ What I have from you (all integrated below):</strong> Feedback form (Apr 28 7:16 PM) · Medicare voice memo + transcript (Apr 29 ~9:50 PM PT — see <a href="archive.html#medicare">archive</a>) · 7-question trip update (Apr 29 5:44 AM) · France cancellation confirmation (Apr 29 4:11 AM) · Banie handling Kruger (no need for Sabi Sabi research).
+<div class="update-block">
+  <div class="update-header">📋 Today's Status Update — Apr 29</div>
+
+  <div class="update-section">
+    <h4>1. Quick Status Recap</h4>
+    <p>Today I completed two big pieces of work:</p>
+    <ul>
+      <li><strong>Insurance research finished</strong> — and you've picked <strong>Plan A: IMG SE + Medjet Annual</strong> (~$1,800 total). Confirmed via the form at 2:57 PM. Thank you.</li>
+      <li><strong>Independent flight audit complete</strong> — I went back to the airlines, hotels, and insurer's own websites and re-verified every fact in the trip plan from primary sources. Caught and fixed several errors. Details in the project tracker below.</li>
+    </ul>
+    <p>I also received your two follow-up messages this afternoon — the ChatGPT delay-cascade analysis (3:31 PM) and your strong recommendation to <strong>reroute the return flight LHR → SFO in Premium Economy instead of through Newark</strong> (4:00 PM). I've taken your reroute message seriously and verified it against the airlines. <strong>The new return routing is now my recommendation too — see below.</strong></p>
+  </div>
+
+  <div class="update-section">
+    <h4>2. Context for This Update</h4>
+    <p>Two things changed the picture today:</p>
+    <ul>
+      <li><strong>The audit caught real errors.</strong> The most important: the original "UA 1565 SMF → EWR nonstop" routing I'd been showing you doesn't exist — that flight number is currently Chicago → Cleveland, per FlightAware. Sacramento-to-Newark nonstops are very thin in summer 2026. Your routing through SFO solves that better than a Denver connection would. Other corrections: insurance medical max is $250K (not $1M I'd said), pre-existing waiver deadline is <strong>Wed May 7</strong> (not May 1), UA 14 to London is now a 777-200ER (not 767), Norwich → Aberdeen is a small Embraer regional jet (Loganair ERJ-145), and the Heathrow inter-terminal "Pod" doesn't actually go T5 ↔ T2 — Heathrow Express does.</li>
+      <li><strong>Your reroute is sound and well-reasoned.</strong> ChatGPT's analysis lines up with what I verified independently: avoiding Newark on the return is meaningfully lower-stress, customs-in-SFO + same-airline SFO→SMF connection is simpler than EWR→DEN→SMF, and Premium Economy on a 11-hour daytime flight is plenty for one segment. United does fly LHR → SFO nonstop (UA 900 / UA 939 / UA 949 — multiple daily, 787-9 or 777). And it still counts toward your million miles.</li>
+    </ul>
+  </div>
+
+  <div class="update-section">
+    <h4>3. Pending Items</h4>
+    <ul>
+      <li><strong>Awaiting your sign-off on the rerouted return flight</strong> (LHR → SFO Premium Economy → SFO → SMF). Full detail on <a href="flights.html"><strong>the flights page</strong></a>.</li>
+      <li><strong>Awaiting confirmation on insurance booking timing.</strong> You asked Alex if you should buy IMG today at the placeholder $2,800 trip-cost or wait until UA flights are booked. My answer: <strong>buy today.</strong> IMG SE specifically allows you to start at the cost-paid-to-date and amend upward as you book more — and that locks in your pre-existing condition waiver before the May 7 deadline. Detail on <a href="insurance.html"><strong>the insurance page</strong></a>.</li>
+      <li>Mmilo safari balance R44,606 due <strong>Thu May 21</strong> (paid via the same Pay Fast link as the deposit; reminder set).</li>
+      <li>Vaccinations / yellow-fever / malaria check before Sun Jun 14 (per CDC current guidance — I'll bring you a clean checklist next week).</li>
+    </ul>
+  </div>
+
+  <div class="update-section">
+    <h4>4. Actionable Next Steps</h4>
+    <ol>
+      <li><strong>Read the rerouted return flight plan</strong> on <a href="flights.html">the flights page</a> and tell me yes/no via iMessage. I think you'll like it — it's exactly what you asked for.</li>
+      <li><strong>Tell me yes/no on buying IMG SE + Medjet today</strong> at $2,800 placeholder trip cost. Either I walk you through it now, or Alex does it tonight. (We've already covered 100% of the questions you raised.)</li>
+      <li>Nothing else needs your attention this week. Mmilo balance reminder will fire automatically before May 21.</li>
+    </ol>
+  </div>
 </div>
 
-<div class="status-strip">
-  <div class="label">Where things stand</div>
-  <div class="value"><strong>2 things need you today.</strong> 1 thing is just for your review.</div>
+<h2>📍 Where every piece of the trip stands right now</h2>
+<p style="color:var(--ink-soft); font-size:16px; margin-top:-6px;">Updated continuously. ✅ done · 🔄 in progress · ⏳ waiting on a decision · ❌ removed from plan.</p>
+
+<div class="tracker">
+  <div class="tracker-header">Project Tracker — Apr 29 PM</div>
+
+  <div class="tracker-row done">
+    <div class="icon">✅</div>
+    <div class="body"><span class="name">Mmilo safari deposit paid</span>
+      <span class="when">R44,606 paid Apr 17 · Visa ****4788 · Booking ref Y9ABNJ · <a href="archive.html#mmilo">receipt</a></span></div>
+  </div>
+
+  <div class="tracker-row done">
+    <div class="icon">✅</div>
+    <div class="body"><span class="name">Airlink JNB → Livingstone (Wed Jul 1) ticketed</span>
+      <span class="when">Flight 4Z 482 · Seat 3F · USD $131 · Ticket 749-2405807029 · <a href="archive.html#airlink">e-ticket</a></span></div>
+  </div>
+
+  <div class="tracker-row done">
+    <div class="icon">✅</div>
+    <div class="body"><span class="name">Zambia Airways Lusaka → Johannesburg (Thu Jul 9) ticketed</span>
+      <span class="when">Flight ZN 307 · Seat 12A · USD $277 · Ticket 1382101228322 · <a href="archive.html#zn">e-ticket</a></span></div>
+  </div>
+
+  <div class="tracker-row done">
+    <div class="icon">✅</div>
+    <div class="body"><span class="name">Insurance research complete</span>
+      <span class="when">IMG SE vs Travel Guard · senior-targeted reviews · Medjet Annual eligibility confirmed · Apr 29 · <a href="insurance.html">research summary</a></span></div>
+  </div>
+
+  <div class="tracker-row done">
+    <div class="icon">✅</div>
+    <div class="body"><span class="name">Pat picks Insurance Plan A (IMG SE + Medjet)</span>
+      <span class="when">Confirmed via dashboard form · Apr 29 2:57 PM PT · "Excellent job doing the research"</span></div>
+  </div>
+
+  <div class="tracker-row done">
+    <div class="icon">✅</div>
+    <div class="body"><span class="name">Independent primary-source flight + plan audit</span>
+      <span class="when">Re-verified every fact against United, BA, Loganair, Heathrow, IMG, Medjet · 10 corrections applied · Apr 29 ~5:30 PM PT</span></div>
+  </div>
+
+  <div class="tracker-row done">
+    <div class="icon">✅</div>
+    <div class="body"><span class="name">Pat's return-flight reroute (LHR → SFO Premium Economy) verified</span>
+      <span class="when">UA 900 / 939 / 949 daily · 787-9 or 777 · ~11 hr · Pat's recommendation Apr 29 4:00 PM, verified Apr 29 6:00 PM · <a href="flights.html#return">detail</a></span></div>
+  </div>
+
+  <div class="tracker-row urgent">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">Pat sign-off on rerouted return flight</span>
+      <span class="when">Need yes/no via iMessage · once green-lit, Alex books all 4 UA flights together</span></div>
+  </div>
+
+  <div class="tracker-row urgent">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">Insurance purchase — book today vs wait?</span>
+      <span class="when">My recommendation: buy today at $2,800 placeholder · waiver deadline Wed May 7 · <a href="insurance.html">why</a></span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">UA outbound — EWR → JNB (Sun Jun 28)</span>
+      <span class="when">UA 188 dep 21:45 · Boeing 787-9 · Polaris recommended · awaiting Pat sign-off</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">UA mid-trip — JNB → EWR → LHR (Thu Jul 16 → Fri Jul 17)</span>
+      <span class="when">UA 187 + UA 14 · Polaris on long-hauls · Newark Marriott in-terminal hotel between · awaiting sign-off</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">UA return — LHR → SFO (Thu Jul 30) · Premium Economy</span>
+      <span class="when">Per Pat's reroute · UA 900 / 939 / 949 · still counts toward million miles · awaiting sign-off</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">Mmilo safari balance R44,606</span>
+      <span class="when">Due Thu May 21 · same Pay Fast link · calendar reminder set</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">Newark Marriott (Thu Jul 16 night, late checkout Jul 17)</span>
+      <span class="when">In-terminal · 24-hr free shuttle from T-B · ~$250-350 · book after UA flights ticketed</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">London T2-T3 hotel (Wed Jul 29 night)</span>
+      <span class="when">Hilton Garden Inn Heathrow T2/T3 · 5-min covered walkway to T2 for UA next morning · ~£200</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">National Express coach 727 LHR → Norwich (Sat Jul 18)</span>
+      <span class="when">£35-44 · 7-9 daily · 4h 25m fastest · book ~3 weeks ahead</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">Loganair Norwich → Aberdeen (Wed Jul 22)</span>
+      <span class="when">Embraer ERJ-145 · 08:35 or 16:15 dep · ~£100-200 · book ~3 weeks ahead</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">BA Inverness → Heathrow T5 (Tue or Wed Jul 28-29)</span>
+      <span class="when">Afternoon/early evening · A319/A320 · Club Europe upgrade option · book ~3 weeks ahead</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">Vaccinations / yellow fever / malaria check</span>
+      <span class="when">Target Sun Jun 14 · I'll bring you a clean CDC-current checklist next week</span></div>
+  </div>
+
+  <div class="tracker-row removed">
+    <div class="icon">❌</div>
+    <div class="body"><span class="name">Original UA 1565 SMF → EWR routing</span>
+      <span class="when">Removed Apr 29 · audit found UA 1565 is currently ORD→CLE per FlightAware, not SMF→EWR</span></div>
+  </div>
+
+  <div class="tracker-row removed">
+    <div class="icon">❌</div>
+    <div class="body"><span class="name">Sabi Sabi / Kruger lodging research</span>
+      <span class="when">Removed Apr 26 · Banie handling Kruger directly</span></div>
+  </div>
+
+  <div class="tracker-row removed">
+    <div class="icon">❌</div>
+    <div class="body"><span class="name">France stop</span>
+      <span class="when">Removed Apr 29 · Pat cancelled · Norwich + Inverness only in UK</span></div>
+  </div>
 </div>
 
-<h2>🚨 Decisions needed today</h2>
+<h2>🚨 The two things I need from you</h2>
 
-<a class="card-link urgent" href="insurance.html">
+<a class="card-link urgent" href="flights.html#return">
   <div class="card">
-    <span class="card-icon">🛡️</span>
-    <div class="card-title">1. Pick the travel insurance plan</div>
-    <p class="card-desc"><strong>Now includes the IMG SE vs Travel Guard senior-review research you asked for.</strong> Plus answers to your 4 questions: do you need flights booked first (no), who books (you do), which card to use, and ratings comparison. Form to submit your pick at the bottom.</p>
-    <div class="card-meta meta-urgent">⏱ Pre-existing waiver deadline Fri May 1</div>
+    <span class="card-icon">✈️</span>
+    <div class="card-title">1. Sign off on the rerouted return flight</div>
+    <p class="card-desc">Your recommendation — LHR → SFO Premium Economy, then SFO → SMF, avoiding Newark — is now my recommendation too. I verified the routing and aircraft. Page has the full plan, dates/times, why it still counts for your million miles, and what to expect.</p>
+    <div class="card-meta meta-urgent">⏱ Reply yes/no via iMessage</div>
   </div>
 </a>
 
-<a class="card-link urgent" href="flights.html">
+<a class="card-link urgent" href="insurance.html#timing">
   <div class="card">
-    <span class="card-icon">✈️</span>
-    <div class="card-title">2. Sign off on the full flight plan</div>
-    <p class="card-desc">All 7 of your questions from last night answered: SMF→EWR options with Denver stopover detail · UA cabin clearly labeled (Polaris, Premium Plus, First) for every leg · Newark Marriott early check-in confirmed · LHR→Norwich BUS schedule (you were right — I had train wrong) · Norwich→Aberdeen · Inverness→LHR afternoon BA · EWR→SMF return comparison (Denver vs SFO connection).</p>
-    <div class="card-meta meta-urgent">⏱ Once green-lit, Alex books today</div>
+    <span class="card-icon">🛡️</span>
+    <div class="card-title">2. Tell me yes/no on buying IMG today</div>
+    <p class="card-desc">You asked: should you book IMG SE now at the placeholder $2,800 cost, or wait for UA flights? My answer: <strong>buy today.</strong> Locks in pre-existing condition waiver before <strong>Wed May 7</strong>; IMG specifically allows amending the trip cost upward as you pay for more. Page explains why.</p>
+    <div class="card-meta meta-urgent">⏱ Pre-existing waiver deadline Wed May 7</div>
   </div>
 </a>
 
 <h2>📚 Reference</h2>
 
+<a class="card-link" href="flights.html">
+  <div class="card">
+    <span class="card-icon">🛫</span>
+    <div class="card-title">Full flights page</div>
+    <p class="card-desc">All UA flights, all UK ground transport, hotels, with the audit corrections applied. UA 14 aircraft corrected, UA 187 timing corrected, Loganair aircraft corrected, Heathrow Pod removed, return flight rerouted per your recommendation.</p>
+    <div class="card-meta meta-info">Updated Apr 29 PM</div>
+  </div>
+</a>
+
+<a class="card-link" href="insurance.html">
+  <div class="card">
+    <span class="card-icon">🛡️</span>
+    <div class="card-title">Full insurance page</div>
+    <p class="card-desc">IMG SE vs Travel Guard senior-traveler comparison. Audit-corrected facts: $250K medical max (not $1M I'd said), 20-day waiver window (deadline May 7), trip-cost-amendment workflow, Medjet eligibility under-75. All claims sourced.</p>
+    <div class="card-meta meta-info">Updated Apr 29 PM</div>
+  </div>
+</a>
+
 <a class="card-link" href="archive.html">
   <div class="card">
     <span class="card-icon">📖</span>
     <div class="card-title">Decision &amp; document log</div>
-    <p class="card-desc">Includes Medicare call summary you sent last night. Every step, dated, in one timeline.</p>
+    <p class="card-desc">Tickets, receipts, dated decisions, Medicare answers, every step in one timeline.</p>
     <div class="card-meta meta-info">Always available</div>
-  </div>
-</a>
-
-<a class="card-link" href="medicare.html">
-  <div class="card">
-    <span class="card-icon">📋</span>
-    <div class="card-title">Add to / correct your Medicare answers (optional)</div>
-    <p class="card-desc">I have your voice-memo answers in detail. This page is just a backup form if you want to add or fix anything.</p>
-    <div class="card-meta meta-done">Already received via voice memo — optional</div>
   </div>
 </a>
 
@@ -155,16 +331,10 @@ footer a { color:var(--teal); }
   <div class="card">
     <span class="card-icon">✅</span>
     <div class="card-title">Your feedback form (already submitted)</div>
-    <p class="card-desc">Submitted Apr 28 7:16 PM. The whole dashboard format is the response. Thank you.</p>
+    <p class="card-desc">Submitted Apr 28 7:16 PM. The whole dashboard format is the response.</p>
     <div class="card-meta meta-done">Done</div>
   </div>
 </a>
-
-<h2>⚠️ Removed from the plan</h2>
-<div class="card">
-  <p style="margin:0 0 10px;"><strong>France swap:</strong> Per your text Apr 29 4:11 AM — definitely cancelled. UK plan stands: Norwich first, Inverness second.</p>
-  <p style="margin:0;"><strong>Sabi Sabi / Kruger lodging:</strong> Banie is handling. I won't research further. (Was on the previous dashboard — removed.)</p>
-</div>
 
 <h2>📞 Quick contact card</h2>
 <div class="card">
@@ -174,7 +344,7 @@ footer a { color:var(--teal); }
 </div>
 </div>
 <footer>
-  <p>One link to remember: <a href="index.html"><strong>bit.ly/pat-trip-hub</strong></a> · I update this as we go.<br>
+  <p>One link to remember: <a href="index.html"><strong>bit.ly/4t57nqv</strong></a> · I update this as we go.<br>
   Built for Pat with care by Claude Concierge.</p>
 </footer>
 </body></html>
