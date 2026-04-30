@@ -48,41 +48,37 @@ ul.tight, ol.tight { padding-left:22px; }
 ul.tight li, ol.tight li { margin-bottom:6px; }
 footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:14px; padding:0 22px; }
 footer a { color:var(--teal); }
-.flight-row { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px dashed var(--rule); }
-.flight-row:last-child { border-bottom:none; }
-.flight-leg { flex:1; }
-.flight-time { font-family:Georgia,serif; font-size:17px; color:var(--teal-2); font-weight:600; }
-.flight-detail { font-size:14px; color:var(--ink-soft); margin-top:2px; }
 .cabin-tag { display:inline-block; padding:3px 10px; border-radius:99px; font-size:13px; font-weight:600; letter-spacing:0.04em; }
 .cabin-polaris { background:#0d4f3f; color:white; }
 .cabin-prem { background:#5a85a4; color:white; }
+.cabin-econplus { background:#7a8b6c; color:white; }
 .cabin-first { background:var(--gold-2); color:white; }
 .cabin-econ { background:#888; color:white; }
-.cabin-coach { background:#7a6650; color:white; }
 .flight-block { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:0; margin:14px 0; overflow:hidden; box-shadow:var(--shadow); }
 .flight-block.recommend { border:2px solid var(--gold); }
 .flight-block.confirmed { background:var(--green-bg); border-color:#b5c9b8; }
+.flight-block.starred { border:2px solid var(--gold-2); }
 .flight-head { background:var(--teal); color:white; padding:12px 18px; font-family:Georgia,serif; font-weight:600; font-size:16px; }
 .flight-block.recommend .flight-head { background:var(--gold); }
 .flight-block.confirmed .flight-head { background:var(--green-2); }
+.flight-block.starred .flight-head { background:var(--gold-2); }
 .flight-body { padding:14px 20px; }
 .flight-body p { margin:6px 0; font-size:16px; }
 .flight-body .src { font-size:13px; color:var(--ink-soft); margin-top:8px; padding-top:8px; border-top:1px dashed var(--rule); }
 .flight-body .src a { color:var(--teal); }
-.audit-tag { display:inline-block; background:var(--gold); color:white; padding:2px 9px; border-radius:99px; font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-left:8px; vertical-align:middle; }
 </style>
 </head><body>
 <header class="topbar">
   <a class="home" href="index.html">← Back to home</a>
-  <div class="stamp">Apr 29, 2026 — late afternoon PT</div>
+  <div class="stamp">Apr 29, 2026 — evening PT</div>
 </header>
 <div class="container">
 <p class="eyebrow">Flight plan</p>
 <h1>The full flight plan</h1>
-<p class="lede">Updated this evening with: (1) the audit corrections from primary-source research and (2) your LHR → SFO Premium Economy reroute, which is now my recommendation too.</p>
+<p class="lede">Every leg with your confirmed cabin selection from your 5:51 PM message. Audit corrections from primary-source research are applied. Ready for Alex to validate &amp; book tonight.</p>
 
 <div class="callout gold">
-  <strong>What changed today:</strong> 5 corrections from the audit, and the return flight is now LHR → SFO (not LHR → EWR → SMF). Aircraft and timing now verified against United, BA, Loganair, and Heathrow's own systems. Old details with errors are crossed through; new verified details are in their place.
+  <strong>Your cabin plan in one line:</strong> Economy Plus on the two domestic legs · <strong>Polaris on the EWR → JNB outbound only</strong> (the one big splurge for the night flight) · Premium Plus on the other three long-hauls · Economy Plus on SFO → SMF home. Approximate total UA cost depending on fares: $11,500-$14,500 — well below the all-Polaris number we'd flagged earlier.
 </div>
 
 <h2 id="confirmed">✅ Already booked &amp; ticketed</h2>
@@ -102,28 +98,27 @@ footer a { color:var(--teal); }
   <div class="flight-body">
     <p><strong>Depart LUN</strong> 16:20 → <strong>Arrive JNB</strong> 18:30 · 2h 10m</p>
     <p>Boeing 737-700 · Seat <strong>12A</strong> · Booking ref <strong>YDHXGT</strong> · Ticket 1382101228322 · USD $277</p>
-    <p>2 pieces checked baggage · meal included.</p>
   </div>
 </div>
 
 <h2 id="ua-outbound">🛫 UA outbound — Sacramento → Johannesburg</h2>
 
 <div class="flight-block">
-  <div class="flight-head">Sun Jun 28 · UA SMF → EWR (connection)</div>
+  <div class="flight-head">Sun Jun 28 · UA · SMF → EWR (afternoon connection)</div>
   <div class="flight-body">
-    <p><strong>Recommended:</strong> mid-afternoon SMF departure to give you a comfortable buffer before UA 188 Newark→JNB at 21:45. Alex will pick the exact connection when he books, prioritizing same-terminal arrival/departure at EWR (Terminal C).</p>
-    <p><span class="cabin-tag cabin-first">First / Domestic First</span> on the SMF→EWR leg — short flight, but a comfortable seat.</p>
-    <div class="src">⚠️ Audit correction Apr 29: my earlier "UA 1565 nonstop SMF→EWR" was wrong. UA 1565 is currently Chicago→Cleveland per FlightAware. Sacramento→Newark nonstop is very thin in summer 2026. Alex will pick the best connection (likely via Denver or San Francisco) when booking.</div>
+    <p><span class="cabin-tag cabin-econplus">Economy Plus (your choice)</span> — extra legroom on a domestic day flight, you said no advantage to First on domestic and we agree.</p>
+    <p>Alex will pick the exact connection (likely via Denver — UA's western hub, multiple daily SMF-DEN-EWR options) when he books. The goal: arrive EWR in Terminal C with a comfortable buffer before UA 188 at 21:45.</p>
+    <div class="src">⚠️ Audit Apr 29: my earlier "UA 1565 nonstop SMF→EWR" was wrong. UA 1565 is currently Chicago→Cleveland per FlightAware. Sacramento→Newark nonstop service is very thin in summer 2026, so a Denver connection is the cleaner path.</div>
   </div>
 </div>
 
-<div class="flight-block">
+<div class="flight-block recommend">
   <div class="flight-head">Sun Jun 28 → Mon Jun 29 · UA 188 · Newark → Johannesburg</div>
   <div class="flight-body">
     <p><strong>Depart EWR Terminal C</strong> 21:45 EDT (Sun) → <strong>Arrive JNB Terminal A</strong> 18:30 SAST (Mon)</p>
     <p>Aircraft: <strong>Boeing 787-9</strong> · ~14h 45m airborne · all-aisle-access lie-flat</p>
-    <p><span class="cabin-tag cabin-polaris">Polaris business</span> — your priority of "front of plane, window, lie-flat" is fully met. Polaris on the 787-9 is 1-2-1 layout; window seats are true window with lie-flat.</p>
-    <p>Arrives JNB evening — comfortable timing to clear immigration, collect bags, and meet Banie's transfer the next morning for Pretoria.</p>
+    <p><span class="cabin-tag cabin-polaris">Polaris (your splurge — agreed)</span> — Polaris on the 787-9 is 1-2-1 layout. Your priority of "front of plane, window, lie-flat" is fully met. This is the right place for the splurge: night flight, sleep across, arrive in shape.</p>
+    <p>Arrives JNB evening — comfortable timing to clear immigration and meet Banie's transfer the next day for Pretoria.</p>
     <div class="src">Sources: United.com timetable; FlightAware live tracker; AeroRoutes 787-9 fleet assignments.</div>
   </div>
 </div>
@@ -135,16 +130,17 @@ footer a { color:var(--teal); }
   <div class="flight-body">
     <p><strong>Depart JNB Terminal A</strong> 22:00 SAST (Thu) → <strong>Arrive EWR Terminal B</strong> 07:20 EDT (Fri)</p>
     <p>Aircraft: <strong>Boeing 787-9</strong> · ~16h 20m airborne</p>
-    <p><span class="cabin-tag cabin-polaris">Polaris business</span> — overnight, sleep across, wake up in Newark.</p>
-    <div class="src">⚠️ Audit correction: I'd been showing you 19:30→06:00. United's published Jul 16 schedule is 22:00→07:20 EDT. Source: United.com schedule lookup, verified Apr 29.</div>
+    <p><span class="cabin-tag cabin-prem">Premium Plus (your choice)</span> — saves you ~$2,500-$3,500 vs Polaris on this leg, with the Newark Marriott in-terminal as your buffer for sleep on the other end.</p>
+    <p><strong>Price diff Polaris vs Premium Plus on this leg:</strong> approx Polaris $5,500-$7,500 one-way vs Premium Plus $2,500-$4,500. Alex will pull the exact number when he opens the booking.</p>
+    <div class="src">⚠️ Audit correction: I'd been showing 19:30→06:00. United's published Jul 16 schedule is 22:00→07:20 EDT. Source: United.com schedule lookup, verified Apr 29.</div>
   </div>
 </div>
 
 <div class="flight-block">
   <div class="flight-head">Fri Jul 17 day · Newark Marriott (in-terminal hotel)</div>
   <div class="flight-body">
-    <p>The Newark Marriott is <strong>in Terminal B</strong> — same terminal you arrive at on UA 187. Free 24-hour shuttle inside the terminal. From plane to hotel room in ~25 minutes.</p>
-    <p><strong>What I'm booking:</strong> the room for the night of <strong>Thu Jul 16</strong> with late-checkout on Jul 17. (Better than booking a "day room" — same price, same room, you control checkout.)</p>
+    <p>The Newark Marriott is <strong>in Terminal B</strong> — same terminal you arrive at on UA 187. Free 24-hour shuttle inside the terminal. From plane to hotel room in ~25 minutes. You can sleep all morning if you need to.</p>
+    <p><strong>What I'm booking:</strong> the room for the night of <strong>Thu Jul 16</strong> with late-checkout on Jul 17. Same price as a "day room," but you control checkout time.</p>
     <p>Phone: 973-623-0006 · ~$250-350/night.</p>
     <div class="src">Source: Marriott.com property page; verified amenities and shuttle Apr 29.</div>
   </div>
@@ -154,54 +150,43 @@ footer a { color:var(--teal); }
   <div class="flight-head">Fri Jul 17 evening · UA 14 · Newark → London Heathrow</div>
   <div class="flight-body">
     <p><strong>Depart EWR Terminal C</strong> 21:00 EDT (Fri) → <strong>Arrive LHR Terminal 2</strong> 08:25 BST (Sat)</p>
-    <p>Aircraft: <strong>Boeing 777-200ER</strong> (changed to 777 starting May 1, 2026) · ~6h 25m airborne</p>
-    <p><span class="cabin-tag cabin-polaris">Polaris business</span> — overnight again, lie-flat, arrive London ready for Norwich.</p>
-    <div class="src">⚠️ Audit correction: I'd told you 767-300ER. AeroRoutes confirmed UA 14 is upgrading to 777-200ER on May 1, 2026, which means your Jul 17 flight is on the 777. The 777 Polaris cabin is also 1-2-1 lie-flat.</div>
+    <p>Aircraft: <strong>Boeing 777-200ER</strong> (changed from 767 starting May 1, 2026) · ~6h 25m airborne</p>
+    <p><span class="cabin-tag cabin-prem">Premium Plus (your choice)</span> — you'll be rested from the Newark hotel day, and Premium Plus on a 6.5-hour night flight is comfortable enough.</p>
+    <div class="src">⚠️ Audit correction: I'd told you 767-300ER. AeroRoutes confirmed UA 14 upgrades to 777-200ER on May 1, 2026 — your Jul 17 flight is on the 777. Better cabin product than the 767 would have been.</div>
   </div>
 </div>
 
-<h2 id="return">🌟 UA return — London → Sacramento (rerouted per your recommendation)</h2>
+<h2 id="return">✨ UA return — London → Sacramento (your million-mile crossing)</h2>
 
-<div class="callout urgent" style="margin-top:0;">
-  <strong>This is the change you asked for.</strong> Your ChatGPT analysis at 4:00 PM today made a strong case for avoiding Newark on the return — Premium Economy direct from London to the West Coast, then a same-airline domestic hop home. I verified everything. <strong>I agree with you and ChatGPT</strong> — this is the better return plan. Three reasons below.
+<div class="callout gold" style="margin-top:0;">
+  <strong>This is the leg where you cross 1,000,000 lifetime miles</strong> — about 85-90 minutes after takeoff from Heathrow, somewhere over Scotland or the North Atlantic. Premier Gold for life lands in your account 1-3 days after the segment posts. Alex will pre-notify United so the LHR ground crew and SFO arrival crew know it's the milestone.
 </div>
 
-<div class="flight-block recommend">
+<div class="flight-block starred">
   <div class="flight-head">Thu Jul 30 · UA 900 (or 939, 949) · London → San Francisco</div>
   <div class="flight-body">
-    <p><strong>Depart LHR Terminal 2</strong> mid-morning → <strong>Arrive SFO Terminal I (International)</strong> ~early afternoon, same day · ~11 hr airborne</p>
-    <p>United runs <strong>up to four daily LHR → SFO nonstops</strong> in summer 2026. Aircraft is either Boeing 787-9 or 777. Alex will pick the schedule that gives you the most comfortable connection to SMF.</p>
-    <p><span class="cabin-tag cabin-prem">Premium Plus (Premium Economy)</span> — bigger seat, more recline than economy, footrest, dedicated cabin, priority boarding, two checked bags. Daytime flight, you'll be tired but not destroyed.</p>
+    <p><strong>Depart LHR Terminal 2</strong> mid-morning → <strong>Arrive SFO Terminal I</strong> ~early afternoon (same day) · ~11 hr airborne</p>
+    <p>United runs <strong>up to four daily LHR → SFO nonstops</strong> in summer 2026 on Boeing 787-9 or 777. Alex will pick the schedule that gives you the most comfortable connection to SMF.</p>
+    <p><span class="cabin-tag cabin-prem">Premium Plus (your choice)</span> — daytime, you'll be rested from the LHR hotel, Premium Plus is right-sized: bigger seat, real recline, footrest, dedicated cabin, priority boarding, two checked bags.</p>
     <div class="src">Sources: United.com schedule (LHR-SFO daily service confirmed); AeroRoutes 787-9 fleet plan; FlightStats live timetable.</div>
   </div>
 </div>
 
-<div class="flight-block recommend">
-  <div class="flight-head">Thu Jul 30 · UA SFO → Sacramento (connection)</div>
+<div class="flight-block">
+  <div class="flight-head">Thu Jul 30 evening · UA · SFO → Sacramento</div>
   <div class="flight-body">
     <p>Same-airline connection · ~1 hr block time · ~$50-100 incremental fare beyond the international ticket.</p>
-    <p><strong>Why SFO connection beats Newark:</strong> US Customs &amp; Immigration is in San Francisco (your point of entry). After clearing customs, the SFO → SMF flight is <em>domestic</em> — much simpler. You stay on one airline, one ticket, with bag-through-check and IROPS protection.</p>
+    <p><span class="cabin-tag cabin-econplus">Economy Plus (your choice)</span> — consistent with the Premium Plus international ticket. Short hop, you'll be home and showered by dinnertime.</p>
+    <p><strong>Why SFO connection beats Newark:</strong> US Customs &amp; Immigration in San Francisco is your point of entry. After clearing customs, the SFO → SMF flight is <em>domestic</em> — bag-through-check, IROPS protection, one airline, one ticket.</p>
   </div>
-</div>
-
-<h3>Why this is better than the original Newark return</h3>
-<ol class="tight">
-  <li><strong>Newark is the most-delayed major US airport.</strong> ChatGPT was right to flag this. Avoiding EWR for both customs and a connection meaningfully reduces stress and risk on the home stretch of a 33-day trip.</li>
-  <li><strong>Customs in SFO is faster &amp; calmer than EWR</strong> in summer, especially mid-afternoon arrival.</li>
-  <li><strong>Premium Economy is right-sized for one daytime LHR-SFO segment.</strong> You won't need to sleep across — it's a daytime flight on the way home. Polaris would be a $4,000-$6,000 upcharge for a flight where you'll mostly be reading and watching films.</li>
-</ol>
-
-<h3>About your million miles</h3>
-<div class="callout note">
-  This still works. <strong>Any UA-operated paid flight</strong> counts toward your lifetime million-miler total — Polaris, Premium Plus, or Economy, doesn't matter. Your crossing-the-million flight will now be <strong>UA 900 LHR → SFO on Thu Jul 30</strong> instead of UA 17 LHR → EWR. Same celebration, different ocean view. Alex will pre-notify United so the welcome aboard is coordinated.
 </div>
 
 <h2 id="hotel-lhr">🛏️ London Heathrow hotel — Wed Jul 29 night</h2>
 <div class="flight-block">
   <div class="flight-head">Wed Jul 29 · Hilton Garden Inn London Heathrow Terminals 2 &amp; 3</div>
   <div class="flight-body">
-    <p>5-minute covered walkway directly to Terminal 2 — where UA 900 (your return) departs the next morning. Calm, clean, predictable. ~£200/night.</p>
-    <p><strong>Why this hotel and not the Pod transfer:</strong> the Heathrow Pod doesn't connect T5 to T2 — it only runs T5 → business car park. To get from BA's T5 (where you arrive from Inverness) to UA's T2 (where you depart for SFO), the move is <strong>Heathrow Express train</strong>, free, every 15 min, ~5-7 min ride. With an overnight buffer at the T2 hotel, that's a relaxed morning, not a sprint.</p>
+    <p>5-minute covered walkway directly to Terminal 2 — where UA 900 (your million-mile crossing) departs the next morning. Calm, clean, predictable. ~£200/night.</p>
+    <p><strong>Why this hotel and not the Pod:</strong> the Heathrow Pod doesn't connect T5 to T2 — it only runs T5 → business car park. To get from BA's T5 to UA's T2, the move is <strong>Heathrow Express train</strong>, free, every 15 min, ~5-7 min ride. With an overnight buffer at the T2 hotel, that's a relaxed morning, not a sprint.</p>
     <div class="src">⚠️ Audit correction: I'd had you taking the Heathrow Pod between terminals. The Pod doesn't go T5 ↔ T2. Heathrow Express is the right transfer. Source: Heathrow.com inter-terminal transfers.</div>
   </div>
 </div>
@@ -212,7 +197,7 @@ footer a { color:var(--teal); }
   <div class="flight-head">Sat Jul 18 · National Express coach 727 · Heathrow → Norwich</div>
   <div class="flight-body">
     <p>Direct coach from Heathrow Central Bus Station (covered walkway from T2/T3 arrivals). 7-9 daily, fastest 4h 25m. £35-44 standard. Allows 1 large + 1 medium + 1 hand bag.</p>
-    <p>Recommended departure: late morning, after a relaxed UA 14 arrival (08:25) and a small breakfast.</p>
+    <p>Recommended departure: late morning, after UA 14's 08:25 arrival and a relaxed breakfast.</p>
     <div class="src">Source: nationalexpress.com route 727 timetable, verified Apr 29.</div>
   </div>
 </div>
@@ -221,7 +206,7 @@ footer a { color:var(--teal); }
   <div class="flight-head">Wed Jul 22 · Loganair · Norwich → Aberdeen</div>
   <div class="flight-body">
     <p>Two daily: <strong>08:35 → 09:55</strong> (early) or <strong>16:15 → 17:35</strong> (afternoon). ~£100-200.</p>
-    <p>Aircraft: <strong>Embraer ERJ-145</strong> — small regional jet, 50 seats, 2-1 layout (the single seats on the right are window <em>and</em> aisle in one — comfortable for one passenger).</p>
+    <p>Aircraft: <strong>Embraer ERJ-145</strong> — small regional jet, 50 seats, 2-1 layout (single seats on the right are window <em>and</em> aisle in one — comfortable for one passenger).</p>
     <div class="src">⚠️ Audit correction: I'd called this a Loganair ATR 72. Verified via Loganair fleet page — Norwich-Aberdeen is operated by Embraer ERJ-145.</div>
   </div>
 </div>
@@ -229,16 +214,13 @@ footer a { color:var(--teal); }
 <div class="flight-block">
   <div class="flight-head">Tue Jul 28 or Wed Jul 29 · British Airways · Inverness → London Heathrow T5</div>
   <div class="flight-body">
-    <p>BA runs 5-7 daily, ~06:55 to ~21:00. Block time 1h 45m. Aircraft is A319, A320, or A321 (BA shorthaul).</p>
-    <p><strong>Recommended:</strong> afternoon or early-evening departure on Wed Jul 29 — gives you a relaxed Inverness day with Fiona &amp; Gremlin, then dinner near LHR T2/T3 and a good night's rest before UA 900 the next morning.</p>
-    <p><span class="cabin-tag cabin-econ">Economy</span> standard · <span class="cabin-tag cabin-polaris" style="background:#1f3f33;">Club Europe</span> upgrade option — 1.5x economy fare, slightly bigger seat, lounge access at INV. Worth considering if available within budget.</p>
-    <div class="src">Note on bag through-check: BA and UA are <em>not</em> in the same alliance and won't be on one ticket. You'll <strong>collect your bags at LHR T5</strong>, take Heathrow Express to T2, and re-check with UA the next morning. The hotel night absorbs that step.</div>
+    <p>BA runs 5-7 daily, ~06:55 to ~21:00. Block time 1h 45m. Aircraft is A319, A320, or A321.</p>
+    <p><strong>Recommended:</strong> afternoon or early-evening departure on Wed Jul 29 — relaxed Inverness day with Fiona &amp; Gremlin, then dinner near LHR T2/T3 and a good night's rest before UA 900 the next morning.</p>
+    <p>Bag note: BA and UA aren't on one ticket, so you'll <strong>collect bags at LHR T5</strong>, take Heathrow Express to T2, and re-check with UA the next morning. The hotel night absorbs that step.</p>
   </div>
 </div>
 
-<h2>📞 Talk to me</h2>
-<p>iMessage me anytime via Alex (530-219-8094) or in this thread directly. The dashboard updates with every change.</p>
-<p style="margin-top:18px;">
+<p style="margin-top:30px;">
   <a href="index.html" style="display:inline-block; padding:14px 24px; background:var(--teal); color:white; border-radius:99px; text-decoration:none; font-weight:600;">← Back to home</a>
 </p>
 </div>
