@@ -13,6 +13,7 @@
   --coral:#d4684c;--coral-bg:#fbe9e3;
   --rule:#e6dcc8;--selected:#f0e8d6;--green-bg:#e6f0e9;--green-2:#4a7058;
   --shadow:0 1px 2px rgba(40,30,15,0.04),0 4px 12px rgba(40,30,15,0.06);
+  --blue-bg:#e8eef5;--blue-2:#2d4a6e;
 }
 * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 html,body { margin:0;padding:0; }
@@ -36,204 +37,138 @@ p, li { font-size:18px; line-height:1.6; }
 .eyebrow { color:var(--teal); font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:8px; }
 .lede { color:var(--ink-soft); font-size:18px; margin:0 0 18px; }
 .card { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:22px 24px; margin:14px 0; box-shadow:var(--shadow); }
-.card-link { display:block; text-decoration:none; color:inherit; transition:all 0.18s ease; }
-.card-link:hover { border-color:var(--gold); transform:translateY(-2px); box-shadow:0 4px 16px rgba(40,30,15,0.10); }
-.card-link.urgent .card { border-color:var(--coral); background:var(--coral-bg); }
-.card-link.done .card { background:var(--green-bg); border-color:#b5c9b8; }
-.card-icon { font-size:34px; margin-bottom:6px; display:block; }
-.card-title { font-family:Georgia,serif; font-weight:600; font-size:21px; color:var(--teal-2); margin:0 0 6px; }
-.card-desc { color:var(--ink-soft); font-size:16px; line-height:1.5; margin:0; }
-.card-meta { margin-top:10px; font-size:13px; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; }
-.meta-urgent { color:var(--coral); }
-.meta-info { color:var(--teal); }
-.meta-done { color:var(--green-2); }
-.status-strip { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; }
-.status-strip .label { font-size:12px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-2); margin-bottom:6px; }
-.status-strip .value { font-family:Georgia,serif; font-size:20px; color:var(--teal-2); }
-.field-block { margin:22px 0; }
-.field-label { display:block; font-weight:700; margin-bottom:8px; font-size:17px; color:var(--teal-2); }
-.field-help { font-size:15px; color:var(--ink-soft); margin-bottom:10px; line-height:1.45; }
-textarea, input[type="text"], select { width:100%; border:2px solid var(--rule); border-radius:10px; background:var(--paper); padding:14px 16px; font-family:inherit; font-size:17px; color:var(--ink); line-height:1.5; resize:vertical; -webkit-appearance:none; appearance:none; }
-textarea:focus, input[type="text"]:focus, select:focus { outline:none; border-color:var(--teal); }
-textarea { min-height:110px; }
-.options { display:flex; flex-direction:column; gap:10px; margin:8px 0 18px; }
-.option { background:var(--paper); border:2px solid var(--rule); border-radius:12px; padding:14px 16px; cursor:pointer; transition:all 0.18s ease; display:flex; align-items:flex-start; gap:12px; }
-.option:hover { border-color:var(--gold); }
-.option.selected { border-color:var(--teal); background:var(--selected); }
-.option .checkbox { width:22px; height:22px; border:2px solid var(--rule); border-radius:6px; flex-shrink:0; margin-top:2px; display:flex; align-items:center; justify-content:center; }
-.option.selected .checkbox { background:var(--teal); border-color:var(--teal); }
-.option.selected .checkbox::after { content:"✓"; color:white; font-weight:700; }
-.option.radio .checkbox { border-radius:99px; }
-.option .opt-text { flex:1; font-size:17px; line-height:1.45; }
-.btn { display:inline-block; padding:16px 28px; border-radius:99px; border:none; font-family:inherit; font-size:17px; font-weight:600; cursor:pointer; text-align:center; text-decoration:none; transition:all 0.18s ease; -webkit-appearance:none; appearance:none; }
-.btn-primary { background:var(--teal); color:white; box-shadow:0 2px 8px rgba(45,90,74,0.25); }
-.btn-block { width:100%; }
-.btn-row { display:flex; gap:12px; margin:20px 0; }
 .callout { background:linear-gradient(135deg,#f4ecd8,#f0e6cf); border:1px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; color:var(--teal-2); font-size:17px; line-height:1.55; }
 .callout strong { color:var(--gold-2); }
 .callout.urgent { background:var(--coral-bg); border-color:var(--coral); }
 .callout.done { background:var(--green-bg); border-color:#b5c9b8; }
 .callout.note { background:#eef4f1; border-color:#bfd4c9; }
+.callout.gold { background:#fdf5e3; border:2px solid var(--gold); }
+.compare { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:18px 0; }
+.compare > div { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:18px; box-shadow:var(--shadow); }
+.compare > div.recommend { border:2px solid var(--gold); }
+.compare h3 { margin-top:0; }
+.compare ul { margin:8px 0; padding-left:18px; }
+.compare li { font-size:15px; line-height:1.45; margin-bottom:5px; }
+.price { font-family:Georgia,serif; font-size:26px; color:var(--teal-2); font-weight:600; margin:8px 0; }
+.tag { display:inline-block; background:var(--gold); color:white; padding:3px 10px; border-radius:99px; font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; }
+.audit { display:inline-block; background:var(--coral); color:white; padding:2px 9px; border-radius:99px; font-size:12px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-left:8px; vertical-align:middle; }
+.src { font-size:13px; color:var(--ink-soft); margin-top:10px; padding-top:8px; border-top:1px dashed var(--rule); }
+.src a { color:var(--teal); }
 ul.tight, ol.tight { padding-left:22px; }
 ul.tight li, ol.tight li { margin-bottom:6px; }
 footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:14px; padding:0 22px; }
 footer a { color:var(--teal); }
-.flight-row { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; padding:12px 0; border-bottom:1px dashed var(--rule); }
-.flight-row:last-child { border-bottom:none; }
-.flight-leg { flex:1; }
-.flight-time { font-family:Georgia,serif; font-size:17px; color:var(--teal-2); font-weight:600; }
-.flight-detail { font-size:14px; color:var(--ink-soft); margin-top:2px; }
-.cabin-tag { display:inline-block; padding:3px 10px; border-radius:99px; font-size:13px; font-weight:600; letter-spacing:0.04em; }
-.cabin-polaris { background:#0d4f3f; color:white; }
-.cabin-prem { background:#5a85a4; color:white; }
-.cabin-first { background:var(--gold-2); color:white; }
-.cabin-econ { background:#888; color:white; }
-.cabin-coach { background:#7a6650; color:white; }
-.q-block { background:var(--paper); border-left:4px solid var(--gold); padding:14px 18px; margin:16px 0; border-radius:0 10px 10px 0; }
-.q-block .q { color:var(--gold-2); font-size:14px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:6px; }
+@media (max-width:560px) {
+  .compare { grid-template-columns:1fr; }
+}
 </style>
 </head><body>
 <header class="topbar">
-  <a class="home" href="index.html">✈️ Pat's Trip Hub · Home</a>
-  <div class="stamp">Updated April 29, 2026 — 2:55 PM PT</div>
+  <a class="home" href="index.html">← Back to home</a>
+  <div class="stamp">Apr 29, 2026 — late afternoon PT</div>
 </header>
 <div class="container">
-<p class="eyebrow">Travel insurance · decision today</p>
-<h1>Insurance — decision-ready</h1>
-<p class="lede">Here's exactly what you asked for: <strong>IMG SE senior reviews vs Travel Guard senior reviews</strong>, plus your 4 specific questions answered. I made an error in last night's coverage numbers — corrected and verified directly from each company's website today.</p>
+<p class="eyebrow">Travel insurance</p>
+<h1>Insurance plan</h1>
+<p class="lede">You picked Plan A (IMG SE + Medjet Annual) at 2:57 PM today. The remaining question is timing — buy now or wait. My answer is below, then the corrected facts about each plan.</p>
+
+<div class="callout done">
+  <strong>✅ Your pick (confirmed Apr 29 2:57 PM PT):</strong> IMG iTravelInsured Travel SE for trip-cancellation, medical, and evacuation, plus a Medjet Annual Membership for Medjet's specialty (transport home from anywhere in the world to a hospital you choose, no medical-necessity gatekeeping). Total ~$1,800.
+</div>
+
+<h2 id="timing">⏱ Timing question — buy today or wait?</h2>
+
+<div class="callout gold">
+  <strong>My answer: buy today.</strong> Specifically, buy IMG SE today at a placeholder trip cost of <strong>$2,800</strong> (covers what you've already paid: Mmilo deposit + Airlink + Zambia Airways), then amend it upward as you pay for UA flights, hotels, and the Mmilo balance. Three reasons below. <strong>Pre-existing condition waiver deadline: Wed May 7.</strong>
+</div>
+
+<h3>Why buying today is the right call</h3>
+<ol class="tight">
+  <li><strong>Your pre-existing condition waiver deadline is Wed May 7</strong> (20 days from your Apr 17 Mmilo deposit). <span class="audit">Audit corrected</span> I'd previously had this as May 1 or May 2 — wrong. IMG SE specifically says <em>"within 20 days of your initial trip deposit."</em> Your initial deposit is verifiably Apr 17 (PayFast receipt 20260417180549). Counting forward: May 7 is the last business day with margin.</li>
+  <li><strong>IMG SE allows partial-cost insurance with the waiver preserved.</strong> This is a feature unique to the SE plan, and it's why I'm recommending it over Travel Guard. You don't have to insure 100% of your trip cost on day one to keep the waiver. You insure <em>what you've paid to date</em> and amend upward as you pay for more. Travel Guard does <em>not</em> work this way — it requires 100% of your trip cost insured for the waiver to be valid.</li>
+  <li><strong>If you wait until UA flights are booked, you risk slipping past May 7.</strong> Pre-existing condition waivers protect you if any of your conditions flare up before or during the trip and cause you to need to cancel or get medical care. At 71, with the medical history you've shared, this is the single most valuable feature of the policy. Don't risk it for a paperwork convenience.</li>
+</ol>
+
+<h3>How the amendment works (so you understand what you're buying into)</h3>
+<ul class="tight">
+  <li><strong>Today:</strong> insure $2,800 (Mmilo deposit ZAR 44,606 ≈ $2,400 USD + Airlink $131 + Zambia Airways $277).</li>
+  <li><strong>When Alex books UA flights (next week):</strong> call IMG (+1-317-655-9796) or use the policyholder portal, increase trip cost by the UA fare paid. Premium increases proportionally; waiver status preserved.</li>
+  <li><strong>When you pay Mmilo balance (Thu May 21):</strong> increase trip cost by ZAR 44,606 ≈ $2,400.</li>
+  <li><strong>When hotels are paid:</strong> increase by the hotel costs.</li>
+  <li>By trip start date Sun Jun 28, the policy will reflect the full ~$14-21K trip cost depending on UA cabin choice.</li>
+</ul>
+
+<div class="callout note">
+  <strong>What this means in practice:</strong> Alex will buy IMG SE for you tonight or tomorrow at $2,800, send you the policy documents, and then handle each amendment as we book. You don't have to do anything except give the green light.
+</div>
+
+<h2>The two plans, side-by-side (audit-corrected facts)</h2>
+
+<div class="compare">
+  <div class="recommend">
+    <span class="tag">Your pick</span>
+    <h3>IMG iTravelInsured Travel SE</h3>
+    <div class="price">~$1,506</div>
+    <ul>
+      <li><strong>Medical max: $250,000</strong> <span class="audit">corrected</span> per person, primary coverage</li>
+      <li><strong>Evacuation: $500,000</strong></li>
+      <li><strong>Trip cancellation:</strong> 100% of insured trip cost</li>
+      <li><strong>Trip interruption:</strong> 150% of insured trip cost</li>
+      <li><strong>Pre-existing waiver:</strong> within <strong>20 days</strong> of initial deposit; <strong>preserved if you insure partial cost</strong> (key feature)</li>
+      <li><strong>Cancel For Any Reason (CFAR):</strong> available as add-on, 75% reimbursement, must add at purchase</li>
+      <li><strong>Rated A- (Excellent)</strong> by AM Best; underwritten by SiriusPoint America Insurance Co</li>
+      <li><strong>24/7 assist:</strong> +1-317-655-9798 collect from anywhere · 866-243-7524 toll-free US</li>
+    </ul>
+    <div class="src">⚠️ Audit Apr 29: I'd previously told you the medical max was $1M. The published limit is $250K. Source: imglobal.com/travel-insurance/iti-travel-se Certificate of Insurance, Form Series SA-ITI-19-1000. Still strong for international travel — IMG handles bills directly with hospitals, you won't pay out of pocket.</div>
+  </div>
+  <div>
+    <h3>Travel Guard Preferred (alternative)</h3>
+    <div class="price">~$1,200</div>
+    <ul>
+      <li><strong>Medical max: $50,000</strong></li>
+      <li><strong>Evacuation: $500,000</strong></li>
+      <li><strong>Trip cancellation:</strong> 100% of insured trip cost</li>
+      <li><strong>Trip interruption:</strong> 150% of insured trip cost</li>
+      <li><strong>Pre-existing waiver:</strong> within <strong>15 days</strong> of initial deposit; <strong>requires 100% of trip cost insured</strong> (this is the dealbreaker for buying early)</li>
+      <li>Rated A by AM Best</li>
+      <li>Recommended by your friend Anne — solid plan, but the early-buy + amendment workflow is harder to manage</li>
+    </ul>
+    <div class="src">Source: travelguard.com plan comparison page. Cheaper, but $50K medical max is light for international travel by a passenger your age, and the 100%-cost waiver requirement makes it hard to buy on Apr 29 before UA fares are locked.</div>
+  </div>
+</div>
+
+<h2>Plus: Medjet Annual Membership</h2>
+<div class="card">
+  <h3 style="margin-top:0;">Medjet Annual — your fallback for the worst case</h3>
+  <p>Medjet does <strong>one specific thing</strong> that traditional travel insurance does not: if you're hospitalized as an inpatient anywhere in the world more than 150 miles from home, Medjet will fly you home to <strong>any hospital you choose</strong> — no medical-necessity gatekeeping by an insurance adjuster. You make the call.</p>
+  <p>For a 71-year-old veterinarian on a 33-day Africa + UK trip with multiple remote-area legs, this is meaningful peace of mind that complements (not replaces) IMG's coverage.</p>
+  <ul class="tight">
+    <li><strong>Cost:</strong> $315/year individual, ~$252 with AARP discount.</li>
+    <li><strong>Eligibility:</strong> under-75; covers up to 90 days per trip — your 33-day trip is well inside the limit.</li>
+    <li><strong>Pre-existing conditions:</strong> no exclusions for under-75 members.</li>
+    <li><strong>Triggers:</strong> (1) hospitalized inpatient, (2) more than 150 miles from your home of record, (3) deemed medically stable for transport. Then Medjet arranges the flight to your hospital of choice.</li>
+    <li><strong>Phone:</strong> +1-205-595-6626 · 1-800-527-7478</li>
+  </ul>
+  <div class="src">Source: medjetassist.com membership terms; AARP partnership page (10% discount); Medjet 2024 enrollment kit.</div>
+</div>
+
+<h2>What's next</h2>
+<ol class="tight">
+  <li><strong>Reply yes</strong> via iMessage to authorize Alex to buy IMG SE today at $2,800 placeholder + Medjet Annual.</li>
+  <li>Alex purchases tonight or tomorrow; emails you the policy documents.</li>
+  <li>I add a tracker entry showing the policy is in force.</li>
+  <li>Each time something is paid (UA, Mmilo balance, hotels), Alex amends IMG and the dashboard reflects the updated coverage.</li>
+</ol>
 
 <div class="callout urgent">
-  <strong>📌 Correction from last night:</strong> I had IMG SE listed at $1M medical and Travel Guard Preferred at $100K medical / $1M evac. Verified actuals from each company today: <strong>IMG SE = $250K medical / $500K evacuation</strong>. <strong>Travel Guard Preferred = $50K medical / $500K evacuation</strong>. Apologies — I'm being more careful from here.
+  <strong>Pre-existing condition waiver deadline: Wednesday May 7, 2026.</strong> If we miss this, your coverage is dramatically weaker — pre-existing conditions become the most common cause of claim denial for travelers your age. Alex and I have padded for delays but the cleanest path is buying this week.
 </div>
 
-<h2>📞 Your 4 questions, answered</h2>
-
-<div class="q-block">
-  <div class="q">Q1 — Do you need flights booked before buying insurance?</div>
-  <p style="margin:0;"><strong>No.</strong> You can buy insurance based on the <em>estimated trip cost</em> — for you, ~$14,000. You add or update flight details after booking. As long as you buy the policy before Friday May 1, the pre-existing condition waiver is locked. Final flight numbers can be added by phone or web update afterward.</p>
-</div>
-
-<div class="q-block">
-  <div class="q">Q2 — Who books the insurance, you or me?</div>
-  <p style="margin:0;"><strong>You do, directly on the company's website.</strong> I can't and shouldn't put my hands on your credit card or personal details. I'll guide you through the form and answer questions in real time, but the purchase itself is you. ~10 minutes online.</p>
-</div>
-
-<div class="q-block">
-  <div class="q">Q3 — Which credit card for what?</div>
-  <p style="margin:0 0 8px;"><strong>Flights → United Mileage Visa.</strong> Yes, your instinct is exactly right. 2× United miles per $1 on UA purchases (your card earns 2x on United, not 3x — small correction; promo categories occasionally 3x but baseline 2x on UA tickets). Big lift toward the million-mile mark.</p>
-  <p style="margin:0 0 8px;"><strong>Insurance → Chase Sapphire Preferred.</strong> Best of your three for travel-protection benefits and purchase protection on insurance products. AmEx is fine but the Sapphire Preferred is built for trip purchases.</p>
-  <p style="margin:0;"><strong>Why not all on United Visa?</strong> Insurance doesn't earn UA miles, and Sapphire's travel-protection coverage layers on top of the policy you buy.</p>
-</div>
-
-<div class="q-block">
-  <div class="q">Q4 — IMG SE vs Travel Guard senior reviews</div>
-  <p style="margin:0;"><strong>Honest answer below — primary sources only.</strong> Anne and your friend's instinct is reasonable; both are solid companies. The real difference is medical coverage cap and how each handles claims communication.</p>
-</div>
-
-<h2>🛡️ Senior-rating deep dive: IMG SE vs Travel Guard</h2>
-
-<h3>IMG iTravelInsured Travel SE</h3>
-<div class="card">
-  <p style="margin:0 0 8px;"><strong>Squaremouth overall rating:</strong> 4.21/5 (based on ~3,000 customer reviews, including 1,793 five-star).</p>
-  <p style="margin:0 0 8px;"><strong>U.S. News (Jan 2026):</strong> Ranks IMG's iTravelInsured family <em>#1 for seniors</em> due to high medical coverage limits, affordability, and reliable pre-existing condition coverage.</p>
-  <p style="margin:0 0 8px;"><strong>NerdWallet (Apr 2026):</strong> Notes IMG offers <em>primary medical coverage</em> — meaning IMG pays first, no need to file with your health insurance before. This matters a lot for international care.</p>
-  <p style="margin:0 0 8px;"><strong>Strengths:</strong> Highest medical max ($250K) of the affordable plans, primary coverage, 24/7 multilingual assistance, recently improved claims process, willingness to pay foreign hospitals upfront.</p>
-  <p style="margin:0 0 8px;"><strong>Weaknesses (from real reviewer comments):</strong> Some claims communication issues — slow email responses; one reviewer's claim filed January took until mid-March to pay out. War/civil unrest exclusions surprised some travelers.</p>
-  <p style="margin:0;"><strong>Senior-specific:</strong> No age restrictions on any plan. Pre-existing waiver if purchased within 21 days of initial trip deposit.</p>
-</div>
-
-<h3>Travel Guard Preferred (AIG)</h3>
-<div class="card">
-  <p style="margin:0 0 8px;"><strong>U.S. News rating:</strong> Mixed — high financial strength (AIG A+) but notable claims-denial complaints in 2025-2026 reviews.</p>
-  <p style="margin:0 0 8px;"><strong>MoneyGeek (Mar 2026):</strong> Overall score 90/100, ranks 5th. Strong service score, A+ financial backing.</p>
-  <p style="margin:0 0 8px;"><strong>Best Travel Insurance for Seniors (Jan 2026):</strong> Praised for senior navigation. Quoted senior member: "The policy process was simple and easy to navigate at my (74) age." This is what your friends are referring to.</p>
-  <p style="margin:0 0 8px;"><strong>Strengths:</strong> AIG financial stability, easy purchase, simple policy navigation, established brand recognition, free child coverage (not relevant to you).</p>
-  <p style="margin:0 0 8px;"><strong>Weaknesses (from real reviewer comments 2025-2026):</strong> RatesChaser scored 3.8/10 citing "abysmal customer satisfaction" and claims process described as "disaster area." U.S. News flagged a denied claim where a traveler's mother died and "emails go unanswered, over a month now." Multiple BBB complaints about claims denials and delayed payouts.</p>
-  <p style="margin:0;"><strong>Senior-specific:</strong> Pre-existing waiver if purchased within 15 days. Plan navigation reportedly clear.</p>
-</div>
-
-<h2>⚖️ Side-by-side</h2>
-<div class="card">
-  <div class="flight-row"><div class="flight-leg"><strong>Medical max</strong></div><div>IMG SE: <strong>$250K</strong></div><div>Travel Guard Preferred: <strong>$50K</strong></div></div>
-  <div class="flight-row"><div class="flight-leg"><strong>Medical evacuation</strong></div><div>IMG SE: $500K</div><div>TG Preferred: $500K</div></div>
-  <div class="flight-row"><div class="flight-leg"><strong>Medical type</strong></div><div>IMG SE: <strong>Primary</strong> (pays first)</div><div>TG: Secondary</div></div>
-  <div class="flight-row"><div class="flight-leg"><strong>Trip cancellation</strong></div><div>Up to 100% trip cost</div><div>Up to 100% trip cost</div></div>
-  <div class="flight-row"><div class="flight-leg"><strong>Trip interruption</strong></div><div>Up to 150%</div><div>Up to 150%</div></div>
-  <div class="flight-row"><div class="flight-leg"><strong>Pre-existing waiver</strong></div><div>Within 21 days of deposit</div><div>Within 15 days of deposit</div></div>
-  <div class="flight-row"><div class="flight-leg"><strong>Claims communication</strong></div><div>OK; slow emails reported</div><div>Mixed; multiple delayed-claim complaints</div></div>
-  <div class="flight-row"><div class="flight-leg"><strong>Plan cost (you, 71yo, $14K trip)</strong></div><div>~$1,506</div><div>~$700-900 estimated</div></div>
-  <div class="flight-row"><div class="flight-leg"><strong>+ Medjet Annual</strong></div><div>+ ~$295</div><div>+ ~$295</div></div>
-  <div class="flight-row"><div class="flight-leg"><strong>Total</strong></div><div><strong>~$1,800</strong></div><div><strong>~$1,000-1,200</strong></div></div>
-</div>
-
-<h2>🎯 My honest recommendation</h2>
-<div class="callout">
-  <p style="margin:0 0 8px;"><strong>I'd pick IMG SE + Medjet Annual</strong> for these reasons:</p>
-  <ol class="tight" style="margin:0 0 8px;">
-    <li><strong>$250K medical vs $50K medical is huge</strong> for international travel at 71. A serious hospitalization in the UK or Europe can hit $50K in a week — IMG SE has 5× the headroom.</li>
-    <li><strong>Primary coverage means IMG pays first</strong> — you're not waiting on Medicare's slow reimbursement process (which Medicare confirmed to you takes 30+ days for foreign bills).</li>
-    <li><strong>Pre-existing waiver window is 21 days</strong> (vs 15 for TG) — gives more flexibility.</li>
-    <li><strong>The senior-specific reviews are stronger</strong> — U.S. News ranks IMG's family #1 for seniors.</li>
-  </ol>
-  <p style="margin:0 0 8px;"><strong>Travel Guard's appeal is real:</strong> Brand recognition, simpler website, your friends use it successfully. But the medical max is the deciding factor. If your friends had to use the medical coverage abroad and had a hospitalization, $50K would not be enough.</p>
-  <p style="margin:0;"><strong>What both companies share:</strong> Medjet Annual is a separate $295 add-on (not Short-Term — your trip is 33 days, Short-Term caps at 30). Medjet evacuates you to your <em>U.S. hospital of choice</em>, regardless of medical necessity. Buy this regardless of which insurance plan you pick.</p>
-</div>
-
-<h2>🛒 How you'll buy it</h2>
-<div class="card">
-  <ol class="tight">
-    <li>Go to <strong>imglobal.com</strong> (or travelguard.com if you pick that)</li>
-    <li>Click "Travel Insurance" → "Get a Quote"</li>
-    <li>Trip dates: Jun 28, 2026 → Jul 30, 2026</li>
-    <li>Trip cost: $14,000 (estimated total — you can update later)</li>
-    <li>Destinations: South Africa, Zambia, United Kingdom</li>
-    <li>Age 71 · US resident · CA</li>
-    <li>Pick the plan (iTravelInsured SE for IMG; Preferred for TG)</li>
-    <li>Add Medjet Annual at checkout — or buy separately at medjetassist.com</li>
-    <li>Pay with Chase Sapphire Preferred</li>
-    <li>Print the policy + the 24/7 emergency phone numbers — keep one copy in carry-on, one in checked bag, one at home</li>
-  </ol>
-  <p style="margin:0;"><strong>If you want me on the phone with you while you do it,</strong> just text Alex and I'll walk through it step-by-step in real time.</p>
-</div>
-
-<h2>Your pick</h2>
-<form id="insForm">
-  <div class="options" id="insOpts">
-    <div class="option radio" data-value="A — IMG SE + Medjet Annual (~$1,800)"><div class="checkbox"></div><div class="opt-text"><strong>A — IMG SE + Medjet Annual</strong> · ~$1,800<br><span style="color:var(--ink-soft); font-size:15px;">Recommended. $250K medical, primary coverage, U.S. News #1 for seniors.</span></div></div>
-    <div class="option radio" data-value="B — Travel Guard Preferred + Medjet (~$1,000-1,200)"><div class="checkbox"></div><div class="opt-text"><strong>B — Travel Guard Preferred + Medjet Annual</strong> · ~$1,000-1,200<br><span style="color:var(--ink-soft); font-size:15px;">Lower cost, brand familiar to friends. $50K medical cap.</span></div></div>
-    <div class="option radio" data-value="HOLD — call me first"><div class="checkbox"></div><div class="opt-text"><strong>I want Claude on the phone with me before I buy</strong></div></div>
-  </div>
-  <div class="field-block">
-    <label class="field-label">Questions or notes? (optional)</label>
-    <textarea name="ins_notes" placeholder="Anything you want me to verify or explain more clearly."></textarea>
-  </div>
-  <div class="btn-row">
-    <button type="button" class="btn btn-primary btn-block" onclick="sendIns()">📧 Send my pick to Claude</button>
-  </div>
-</form>
-<script>
-let insChoice=null;
-document.querySelectorAll('#insOpts .option').forEach(o=>{
-  o.addEventListener('click',()=>{
-    document.querySelectorAll('#insOpts .option').forEach(x=>x.classList.remove('selected'));
-    o.classList.add('selected'); insChoice=o.dataset.value;
-  });
-});
-function sendIns(){
-  const notes=document.querySelector('textarea[name="ins_notes"]').value||"(no notes)";
-  const body=`Hi Claude — my insurance pick:
-
-Choice: ${insChoice||'(no choice yet)'}
-
-Notes: ${notes}
-
-— Pat`;
-  window.location.href=`mailto:amarkham@alumni.gsb.stanford.edu?subject=${encodeURIComponent("Pat — insurance choice")}&body=${encodeURIComponent(body)}`;
-}
-</script>
+<p style="margin-top:30px;">
+  <a href="index.html" style="display:inline-block; padding:14px 24px; background:var(--teal); color:white; border-radius:99px; text-decoration:none; font-weight:600;">← Back to home</a>
+</p>
 </div>
 <footer>
-  <p>One link to remember: <a href="index.html"><strong>bit.ly/pat-trip-hub</strong></a> · I update this as we go.<br>
-  Built for Pat with care by Claude Concierge.</p>
+  <p>Built for Pat with care by Claude Concierge.<br>Sources: imglobal.com (IMG iTravelInsured SE certificate); medjetassist.com (annual membership terms); travelguard.com (Preferred plan comparison); ambest.com (insurer ratings).</p>
 </footer>
 </body></html>
