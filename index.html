@@ -14,6 +14,7 @@
   --rule:#e6dcc8;--selected:#f0e8d6;--green-bg:#e6f0e9;--green-2:#4a7058;
   --shadow:0 1px 2px rgba(40,30,15,0.04),0 4px 12px rgba(40,30,15,0.06);
   --blue-bg:#e8eef5;--blue-2:#2d4a6e;
+  --sage:#7a8b6c;--sage-bg:#eef2e8;
 }
 * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 html,body { margin:0;padding:0; }
@@ -51,12 +52,20 @@ p, li { font-size:18px; line-height:1.6; }
 .meta-info { color:var(--teal); }
 .meta-done { color:var(--green-2); }
 .meta-gold { color:var(--gold-2); }
-.celebration-banner { background:linear-gradient(135deg,#fdf5e3 0%,#f5e9c8 100%); border:2px solid var(--gold); border-radius:18px; padding:28px 28px; margin:18px 0 28px; box-shadow:0 6px 22px rgba(200,137,58,0.18); position:relative; overflow:hidden; }
+.celebration-banner { background:linear-gradient(135deg,#fdf5e3 0%,#f5e9c8 100%); border:2px solid var(--gold); border-radius:18px; padding:28px 28px; margin:18px 0 22px; box-shadow:0 6px 22px rgba(200,137,58,0.18); position:relative; overflow:hidden; }
 .celebration-banner::before { content:'✨'; position:absolute; top:14px; right:18px; font-size:26px; opacity:0.5; }
 .celebration-banner .label { font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-2); font-weight:700; margin-bottom:10px; }
 .celebration-banner h2 { color:var(--teal-2); font-size:28px; margin:0 0 12px; line-height:1.2; }
 .celebration-banner p { font-size:17px; line-height:1.55; margin:8px 0; color:var(--ink); }
 .celebration-banner .conf { font-family:'SF Mono',Menlo,monospace; font-size:24px; font-weight:700; color:var(--gold-2); display:inline-block; padding:4px 12px; background:white; border-radius:8px; margin:8px 0; letter-spacing:0.05em; }
+.kruger-banner { background:linear-gradient(135deg,#eef2e8 0%,#dde7d4 100%); border:2px solid var(--sage); border-radius:18px; padding:24px 26px; margin:18px 0 28px; box-shadow:0 4px 18px rgba(122,139,108,0.15); position:relative; overflow:hidden; }
+.kruger-banner::before { content:'🦒'; position:absolute; top:14px; right:18px; font-size:30px; opacity:0.6; }
+.kruger-banner .label { font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--sage); font-weight:700; margin-bottom:10px; }
+.kruger-banner h2 { color:var(--teal-2); font-size:24px; margin:0 0 10px; line-height:1.25; }
+.kruger-banner p { font-size:16px; line-height:1.55; margin:8px 0; color:var(--ink); }
+.kruger-banner ul { margin:10px 0 8px; padding-left:22px; font-size:16px; line-height:1.5; }
+.kruger-banner ul li { margin-bottom:4px; }
+.kruger-banner .pricetag { display:inline-block; padding:3px 12px; background:white; border:1.5px solid var(--sage); border-radius:99px; font-weight:700; color:var(--green-2); margin:4px 0; font-size:15px; letter-spacing:0.05em; }
 .callout { background:linear-gradient(135deg,#f4ecd8,#f0e6cf); border:1px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; color:var(--teal-2); font-size:17px; line-height:1.55; }
 .callout strong { color:var(--gold-2); }
 .callout.note { background:#eef4f1; border-color:#bfd4c9; }
@@ -91,12 +100,12 @@ footer a { color:var(--teal); }
 </head><body>
 <header class="topbar">
   <a class="home" href="index.html">✈️ Pat's Trip Hub · Home</a>
-  <div class="stamp">May 1, 2026 — 12:30 AM PT</div>
+  <div class="stamp">May 1, 2026 — 5:30 AM PT</div>
 </header>
 <div class="container">
 <p class="eyebrow">Pat's Trip Hub · Morning brief, Friday May 1</p>
 <h1>Good morning, Pat ❤️</h1>
-<p class="lede">Big news first: <strong>your flights are booked</strong>, and the million-mile crossing is mathematically secured. Today's checklist is short — three things — and the dashboard reflects it all.</p>
+<p class="lede">Two big pieces fell into place overnight: <strong>your flights are booked</strong> (million-mile crossing locked), and <strong>your Kruger lodging is confirmed at no cost</strong> — Banie is hosting you. Today's checklist is short — three things — and the dashboard reflects it all.</p>
 
 <!-- BOOKING CONFIRMATION BANNER -->
 <div class="celebration-banner">
@@ -105,6 +114,22 @@ footer a { color:var(--teal); }
   <p><strong>Confirmation:</strong> <span class="conf">I4N1RT</span></p>
   <p><strong>Total:</strong> $19,268.06 on your Visa ending 6226 · <strong>Status:</strong> Fully refundable until ~10:30 PM tonight</p>
   <p style="margin-top:12px;"><strong>I reviewed the booking carefully and recommend keeping it as-is. No mistakes.</strong> The full breakdown — including math confirming you cross 1,000,000 lifetime miles mid-flight on UA 900 between Ireland and Iceland on July 30 — is on the flights page.</p>
+</div>
+
+<!-- KRUGER CONFIRMATION BANNER -->
+<div class="kruger-banner">
+  <div class="label">🦒 Kruger lodging confirmed by Banie this morning</div>
+  <h2>Hans Hoheisen Research Station — Banie is hosting you</h2>
+  <p><span class="pricetag">$0 — you're his guest</span></p>
+  <p>This morning Alex sent Banie a short confirmation email (you were CC'd). Banie replied with great news: he booked two units at <strong>Hans Hoheisen Research Station</strong>, adjoining Orpen camp in Kruger. He noted Kruger camps are nearly fully booked because of South African winter school holidays — Hans Hoheisen is a smart, hard-to-find spot.</p>
+  <ul>
+    <li><strong>Wed Jul 9</strong> — Banie picks you up at JNB after your Lusaka flight, drives you to Pretoria</li>
+    <li><strong>Thu Jul 10</strong> — Pretoria (laundry, sightseeing, rest day)</li>
+    <li><strong>Fri Jul 11</strong> — Drive Pretoria → Hans Hoheisen</li>
+    <li><strong>Fri Jul 11 – Tue Jul 15</strong> — Kruger / Hans Hoheisen, 4 nights</li>
+    <li><strong>Tue Jul 15 → Wed Jul 16</strong> — Banie's plan TBD; Alex sent a follow-up to confirm where you sleep Tue and how you get to JNB Wed for your 10 PM UA 187 departure</li>
+  </ul>
+  <p style="margin-top:10px;"><strong>Net effect:</strong> the largest remaining cost-unknown of the trip ($2,500–$8,000 of accommodation) just resolved at zero, plus 4 days of in-country transport in Banie's Toyota Fortuner. Once the Jul 15-16 piece comes back, your itinerary is sequenced end to end.</p>
 </div>
 
 <a class="card-link gold" href="flights.html">
@@ -157,6 +182,7 @@ footer a { color:var(--teal); }
     <li>Drafting your <strong>Zambia KAZA UNIVISA</strong> application instructions (you'll apply ~May 28)</li>
     <li>Setting your <strong>Mmilo balance reminder</strong> for Thu May 21 (ZAR 44,606)</li>
     <li>Building out the <strong>UK ground transport</strong> options (Norwich coach, Loganair, BA back to London)</li>
+    <li>Watching for Banie's reply on the <strong>Jul 15–16 piece</strong> of the Kruger leg</li>
   </ul>
 </div>
 
@@ -165,12 +191,18 @@ footer a { color:var(--teal); }
 <p style="color:var(--ink-soft); font-size:16px; margin-top:-6px;">✅ done · 🔄 today · ⏳ this month.</p>
 
 <div class="tracker">
-  <div class="tracker-header">Project Tracker — May 1 morning</div>
+  <div class="tracker-header">Project Tracker — May 1 (5:30 AM)</div>
 
   <div class="tracker-row done">
     <div class="icon">✅</div>
     <div class="body"><span class="name">All 4 United flights booked (7 segments)</span>
       <span class="when">Apr 30 night · Conf I4N1RT · $19,268.06 · refundable to ~10:30 PM PT Friday May 1 · <a href="flights.html">→ details</a></span></div>
+  </div>
+
+  <div class="tracker-row done">
+    <div class="icon">✅</div>
+    <div class="body"><span class="name">Kruger lodging confirmed — Hans Hoheisen Research Station</span>
+      <span class="when">Banie hosting you Jul 11–15 · 2 units · $0 · plus Pretoria buffer Jul 9–10 + game-drive transport in his Toyota Fortuner · Jul 15–16 piece pending Banie's reply</span></div>
   </div>
 
   <div class="tracker-row done">
@@ -188,7 +220,7 @@ footer a { color:var(--teal); }
   <div class="tracker-row done">
     <div class="icon">✅</div>
     <div class="body"><span class="name">Zambia Airways Lusaka → Johannesburg (Thu Jul 9)</span>
-      <span class="when">ZN 307 · Conf YDHXGT · seat 12A · $277</span></div>
+      <span class="when">ZN 307 · Conf YDHXGT · seat 12A · $277 · Banie picks you up at arrivals</span></div>
   </div>
 
   <div class="tracker-row done">
@@ -213,6 +245,12 @@ footer a { color:var(--teal); }
     <div class="icon">🔄</div>
     <div class="body"><span class="name">Book 3:30 AM car service for Sun Jun 28 SMF departure</span>
       <span class="when">UA 1889 leaves at 5 AM — early start. Concierge can handle this on Saturday if you'd like.</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">Banie reply on Jul 15–16 logistics</span>
+      <span class="when">Where you sleep Tue Jul 15 + Pretoria → JNB transfer Wed Jul 16 for 10 PM UA 187 departure · reply queued</span></div>
   </div>
 
   <div class="tracker-row">
@@ -306,6 +344,7 @@ footer a { color:var(--teal); }
   <p style="margin:0 0 10px;"><strong>IMG (insurance):</strong> 1-866-243-7524 · enrollment URL <a href="https://www.imglobal.com/travel-insurance/itravelinsured-travel-se">imglobal.com</a></p>
   <p style="margin:0 0 10px;"><strong>Medjet:</strong> 1-800-527-7478 (US) · enrollment confirmation watching</p>
   <p style="margin:0 0 10px;"><strong>Mmilo:</strong> info@mmilotours.com · +27 12 654 5308 · ref Y9ABNJ · <strong>balance ZAR 44,606 due Thu May 21</strong></p>
+  <p style="margin:0 0 10px;"><strong>Banie Penzhorn (Kruger host):</strong> banie.penzhorn@gmail.com · driving his Toyota Fortuner</p>
   <p style="margin:0;"><strong>Trip dates:</strong> Sun Jun 28 (SMF 5 AM departure) → Thu Jul 30 (SMF arrival 6:16 PM) · 33 days</p>
 </div>
 </div>
