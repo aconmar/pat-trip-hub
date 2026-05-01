@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#2d5a4a">
+<title>Insurance comparison — Pat's Trip Hub</title>
+<style>
+:root {
+  --cream:#fbf6ed;--paper:#ffffff;--ink:#1f1f23;--ink-soft:#4a4a55;
+  --teal:#2d5a4a;--teal-2:#1f3f33;--teal-light:#e6efea;
+  --gold:#c8893a;--gold-2:#a86f24;
+  --coral:#d4684c;--coral-bg:#fbe9e3;
+  --rule:#e6dcc8;--green-bg:#e6f0e9;--green-2:#4a7058;
+  --shadow:0 1px 2px rgba(40,30,15,0.04),0 4px 12px rgba(40,30,15,0.06);
+  --blue-bg:#e8eef5;--blue-2:#2d4a6e;
+  --amber-bg:#fef3e0;
+}
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body { margin:0;padding:0; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;
+  background:var(--cream); color:var(--ink); font-size:18px; line-height:1.6; min-height:100vh;
+}
+.container { max-width:780px; margin:0 auto; padding:24px 22px 100px; }
+.topbar {
+  background:var(--teal); color:white; padding:18px 22px;
+  position:sticky; top:0; z-index:50;
+  display:flex; justify-content:space-between; align-items:center;
+  border-bottom:3px solid var(--gold);
+}
+.topbar .home { color:white; text-decoration:none; font-weight:600; font-size:15px; letter-spacing:0.05em; }
+.topbar .stamp { font-size:12px; color:rgba(255,255,255,0.75); }
+h1 { font-family:Georgia,serif; font-weight:600; font-size:32px; line-height:1.2; color:var(--teal-2); margin:14px 0 12px; letter-spacing:-0.01em; }
+h2 { font-family:Georgia,serif; font-size:24px; line-height:1.3; color:var(--teal-2); margin:28px 0 12px; }
+h3 { font-size:19px; line-height:1.35; color:var(--teal-2); margin:18px 0 8px; font-weight:700; }
+p, li { font-size:17px; line-height:1.6; }
+.eyebrow { color:var(--teal); font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:8px; }
+.lede { color:var(--ink-soft); font-size:18px; margin:0 0 18px; }
+.callout { border-radius:14px; padding:16px 20px; margin:18px 0; font-size:16px; line-height:1.55; }
+.callout.gold { background:#fdf5e3; border:2px solid var(--gold); color:var(--teal-2); }
+.callout.gold strong { color:var(--gold-2); }
+.callout.note { background:#eef4f1; border:1px solid #bfd4c9; color:var(--teal-2); }
+.callout.amber { background:var(--amber-bg); border:1px solid #e8c98a; color:#7a4a14; }
+.callout.amber strong { color:#a06b15; }
+.callout.coral { background:var(--coral-bg); border:1px solid var(--coral); color:#7a2e18; }
+.callout.coral strong { color:var(--coral); }
+.callout.green { background:var(--green-bg); border:1px solid #b5c9b8; color:var(--teal-2); }
+
+.matrix {
+  width:100%; border-collapse:separate; border-spacing:0;
+  background:var(--paper); border:1.5px solid var(--rule); border-radius:14px;
+  overflow:hidden; box-shadow:var(--shadow); margin:18px 0;
+  font-size:14px;
+}
+.matrix th, .matrix td { padding:11px 12px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top; }
+.matrix thead th { background:var(--teal); color:white; font-size:13px; letter-spacing:0.05em; text-transform:uppercase; }
+.matrix thead th.recommend { background:var(--gold-2); position:relative; }
+.matrix thead th.recommend::after { content:'★'; position:absolute; top:6px; right:8px; font-size:14px; }
+.matrix tbody tr:last-child td { border-bottom:none; }
+.matrix tbody tr:nth-child(even) { background:#fbf6ed; }
+.matrix .row-head { font-weight:700; color:var(--teal-2); width:30%; background:#f3ede0; }
+.matrix .col-recommend { background:#fdf5e3; }
+.matrix .ok { color:var(--green-2); font-weight:600; }
+.matrix .bad { color:var(--coral); font-weight:600; }
+.matrix .meh { color:#a06b15; font-weight:600; }
+
+.plan-card {
+  background:var(--paper); border:1.5px solid var(--rule); border-radius:14px;
+  padding:22px 24px; margin:14px 0; box-shadow:var(--shadow);
+}
+.plan-card.winner { border:2px solid var(--gold); background:#fffaef; }
+.plan-card h3 { margin-top:0; }
+.plan-card .price { font-family:Georgia,serif; font-size:24px; color:var(--teal-2); font-weight:600; margin:8px 0; }
+.plan-card .tag { display:inline-block; background:var(--gold); color:white; padding:3px 10px; border-radius:99px; font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px; }
+.plan-card .tag.alt { background:var(--ink-soft); }
+
+.scenario {
+  background:var(--paper); border:1.5px solid var(--rule); border-radius:12px;
+  padding:14px 18px; margin:10px 0; font-size:15px; line-height:1.5;
+}
+.scenario strong { color:var(--teal-2); }
+.scenario .when { color:var(--ink-soft); font-size:13px; font-style:italic; display:block; margin-top:4px; }
+
+ul.tight, ol.tight { padding-left:22px; }
+ul.tight li, ol.tight li { margin-bottom:6px; }
+
+.btn { display:inline-block; padding:12px 22px; background:var(--teal); color:white; text-decoration:none; border-radius:99px; font-weight:600; font-size:15px; margin:6px 4px; }
+.btn.secondary { background:var(--paper); color:var(--teal); border:1.5px solid var(--teal); }
+.btn.alt { background:var(--gold); color:white; }
+
+.src { font-size:13px; color:var(--ink-soft); margin-top:10px; padding-top:8px; border-top:1px dashed var(--rule); }
+.src a { color:var(--teal); }
+
+footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:13px; padding:0 22px; }
+footer a { color:var(--teal); }
+
+@media (max-width:560px) {
+  .matrix { font-size:13px; }
+  .matrix th, .matrix td { padding:8px 9px; }
+  h1 { font-size:26px; }
+  h2 { font-size:21px; }
+}
+</style>
+</head><body>
+<header class="topbar">
+  <a class="home" href="index.html">← Back to home</a>
+  <div class="stamp">May 1, 2026 — 3:30 PM PT</div>
+</header>
+<div class="container">
+
+<p class="eyebrow">Insurance — careful comparison for your tonight's decision</p>
+<h1>Generali &amp; AmEx vs IMG SE — head-to-head</h1>
+<p class="lede">Pat — Jonna flagged Generali and American Express as alternatives worth considering. Here's the careful comparison you asked for. Bottom line at the top, then the detail. Sources cited at the bottom.</p>
+
+<!-- BOTTOM LINE FIRST -->
+<div class="callout gold">
+  <strong>★ Bottom line:</strong> After researching all three carefully against your specific situation, <strong>my recommendation is still IMG iTravelInsured Travel SE</strong>, but the reasoning is now sharper and more transparent. The two alternatives are legitimate products with serious backing — they're just structurally less well-suited to <em>your</em> trip than IMG SE is. <em>Why</em> matters more than <em>which</em>, so I've laid that out below in plain language. If after reading you still want to switch, all three are real options.
+</div>
+
+<div class="callout amber">
+  <strong>One important honest caveat:</strong> The prices below for Generali and AmEx are estimates from public reviews and pricing models for travelers your age and trip type. I have <em>not</em> actually run live quotes through their websites for your specific trip. If you want me to do that — Generali's quote tool is fast (~3 min) and so is AmEx's — I can do it on Saturday morning. But none of the three providers is going to come back with shocking pricing surprises. The qualitative differences below are what actually decide this.
+</div>
+
+<!-- THE THREE PLANS AT A GLANCE -->
+<h2>The three options at a glance</h2>
+
+<div class="plan-card winner">
+  <span class="tag">★ Recommended</span>
+  <h3>IMG iTravelInsured Travel SE</h3>
+  <p class="price">~$462 (with $153 CFAR add-on) · or ~$309 without CFAR</p>
+  <p><strong>Underwriter:</strong> SiriusPoint America Insurance Co · A- (Excellent) by AM Best</p>
+  <p><strong>Why it's still the right pick for you:</strong> It's the only one of the three that pays the South African or UK hospital <strong>directly</strong>, doesn't make you go through Medicare paperwork first, and lets you lock in your pre-existing condition waiver <strong>now</strong> against your Apr 17 Mmilo deposit. Both alternatives have structural disadvantages for your specific situation — explained below.</p>
+</div>
+
+<div class="plan-card">
+  <span class="tag alt">Alternative 1</span>
+  <h3>Generali Premium Plan</h3>
+  <p class="price">~$650–$900 (estimated) · CFAR add-on optional, 60% reimbursement, ~+25%</p>
+  <p><strong>Underwriter:</strong> Generali U.S. Branch · A+ (Superior) by AM Best</p>
+  <p><strong>What's appealing:</strong> Generali is a major global insurance brand (180+ years old, A+ financial rating). Their Premium tier offers strong evacuation coverage ($1M, double IMG's $500K) and trip interruption at 175% (vs IMG's 150%).</p>
+  <p><strong>Two real concerns for you specifically</strong> (more detail below): (1) <strong>secondary medical coverage</strong> — you'd file with Medicare first, get a denial letter, then file with Generali, vs. IMG paying the hospital directly; and (2) the <strong>pre-existing condition waiver requires purchase before final trip payment</strong>, which is more confusing and less protective than IMG's clean "20-day-from-deposit" rule.</p>
+</div>
+
+<div class="plan-card">
+  <span class="tag alt">Alternative 2</span>
+  <h3>AmEx Travel Insurance — Platinum tier (standalone product)</h3>
+  <p class="price">~$700–$1,100 (estimated) for a 71-year-old on a 33-day Africa+UK trip</p>
+  <p><strong>Underwriter:</strong> New Hampshire Insurance (an AIG company) for cancellation; AMEX Assurance for baggage; AXA Assistance for medical evacuation</p>
+  <p><strong>Important first:</strong> there are <strong>two completely different things</strong> sometimes called "AmEx travel insurance." The card-included benefits (Platinum card, etc.) provide <strong>zero medical coverage</strong> for US customers — confirmed by NerdWallet, Upgraded Points, and AmEx's own benefits guide. So Jonna almost certainly meant the standalone product (AmEx Travel Insurance Platinum tier), which actually has medical coverage. That's what I'm comparing here.</p>
+  <p><strong>Two real concerns for you specifically:</strong> (1) <strong>medical limit caps at $100,000</strong> (vs IMG's $250K and Generali's $250K), and (2) the company has a known reputation in 2026 reviews for being <strong>more expensive than equivalent specialist plans</strong> for the same coverage — you're paying a brand premium.</p>
+</div>
+
+<!-- THE DETAILED COMPARISON MATRIX -->
+<h2>Side-by-side on every dimension that matters</h2>
+
+<table class="matrix">
+  <thead>
+    <tr>
+      <th></th>
+      <th class="recommend">IMG SE (Recommended)</th>
+      <th>Generali Premium</th>
+      <th>AmEx Travel Insurance Platinum</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="row-head">Medical limit</td>
+      <td class="col-recommend ok">$250,000</td>
+      <td class="ok">$250,000</td>
+      <td class="meh">$100,000</td>
+    </tr>
+    <tr>
+      <td class="row-head">Medical evacuation limit</td>
+      <td class="col-recommend ok">$500,000</td>
+      <td class="ok">$1,000,000</td>
+      <td class="meh">$250,000</td>
+    </tr>
+    <tr>
+      <td class="row-head">Primary or secondary medical?</td>
+      <td class="col-recommend ok"><strong>PRIMARY</strong> — IMG pays the hospital directly. No Medicare paperwork.</td>
+      <td class="bad">SECONDARY — file with Medicare first, get denial, <em>then</em> file with Generali. Medicare doesn't cover abroad, so you'd be filing for a denial just to get a paper trail.</td>
+      <td class="meh">"Excess" (functionally secondary).</td>
+    </tr>
+    <tr>
+      <td class="row-head">Pre-existing condition waiver</td>
+      <td class="col-recommend ok"><strong>20 days from initial deposit</strong> — your Apr 17 Mmilo deposit makes the deadline Wed May 7. Crystal clear, anchored, and well-documented.</td>
+      <td class="meh">Within <strong>24 hours of FINAL trip payment</strong> — but final payment isn't a clean event for you (Mmilo balance May 21, hotels later). This makes the timing fuzzy and risky.</td>
+      <td class="bad">90-day look-back, no waiver option in standard plan</td>
+    </tr>
+    <tr>
+      <td class="row-head">Trip cancellation</td>
+      <td class="col-recommend ok">100% of insured trip cost</td>
+      <td class="ok">100% of insured trip cost</td>
+      <td class="ok">100% of insured trip cost (Platinum tier)</td>
+    </tr>
+    <tr>
+      <td class="row-head">Trip interruption</td>
+      <td class="col-recommend ok">150%</td>
+      <td class="ok">175%</td>
+      <td class="ok">150%</td>
+    </tr>
+    <tr>
+      <td class="row-head">Cancel For Any Reason (CFAR)</td>
+      <td class="col-recommend ok"><strong>Available, 75% reimbursement, $153 add-on</strong></td>
+      <td class="meh">Available on Premium only, <strong>60% reimbursement</strong>, ~25% premium increase</td>
+      <td class="bad">Not available as standalone add-on (only via separate "Trip Cancel Guard" through AmEx Travel portal, applies to airfare only)</td>
+    </tr>
+    <tr>
+      <td class="row-head">Multi-country coverage (US, ZA, ZM, UK)</td>
+      <td class="col-recommend ok">Single policy covers all destinations</td>
+      <td class="ok">Single policy covers all destinations</td>
+      <td class="ok">Single policy covers all destinations</td>
+    </tr>
+    <tr>
+      <td class="row-head">Age 71 underwriting</td>
+      <td class="col-recommend ok">No age cap</td>
+      <td class="ok">No age cap</td>
+      <td class="meh">No cap, but premiums increase ~40%+ at age 65 vs younger</td>
+    </tr>
+    <tr>
+      <td class="row-head">Pays the foreign hospital directly?</td>
+      <td class="col-recommend ok"><strong>Yes</strong> — well-known South African hospital network</td>
+      <td class="meh">Sometimes. Generali says it "may" arrange direct billing, capped at $1,000 advance per their own policy summary</td>
+      <td class="meh">Routed through AXA Assistance USA — usually requires you to pay first, claim later</td>
+    </tr>
+    <tr>
+      <td class="row-head">Insurer financial rating</td>
+      <td class="col-recommend ok">A- (Excellent), AM Best</td>
+      <td class="ok"><strong>A+ (Superior), AM Best</strong> — best-in-class</td>
+      <td class="ok">A (Excellent), AM Best</td>
+    </tr>
+    <tr>
+      <td class="row-head">Estimated total cost (incl. CFAR where available)</td>
+      <td class="col-recommend ok"><strong>~$462</strong></td>
+      <td class="meh">~$650–$900</td>
+      <td class="meh">~$700–$1,100</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- WHY THE SECONDARY MEDICAL ISSUE MATTERS -->
+<h2>Why "primary vs. secondary medical" matters specifically for you</h2>
+<div class="callout note">
+  <p>This is the single biggest difference between IMG and Generali, and it's worth 60 seconds of attention because it's a confusing topic that's poorly explained in most marketing.</p>
+
+  <p><strong>You're 71 and on Medicare.</strong> Medicare provides <strong>no coverage outside the US</strong> — none. So when people compare "primary vs. secondary" travel insurance, the practical question for someone on Medicare is: <em>how much paperwork is between you and getting paid?</em></p>
+
+  <p><strong>With IMG (primary):</strong> You're hospitalized in Johannesburg. IMG calls the hospital, agrees to direct billing, the hospital treats you, IMG pays the hospital. You sign one form. Done.</p>
+
+  <p><strong>With Generali (secondary):</strong> You're hospitalized in Johannesburg. You pay the hospital out-of-pocket (or your travel companion does). When you get home, you file a claim with Medicare. Medicare denies it (because it's not US-based). You then file with Generali, attaching the Medicare denial letter and itemized hospital bills, and wait 30-60 days for Generali to reimburse you. <em>(Source: Squaremouth Generali review and Generali's own claims process documentation)</em></p>
+
+  <p>Both end with the same financial outcome eventually. But "eventually" with a foreign hospital bill in the tens of thousands of dollars on your credit card and a 60-day reimbursement wait is meaningfully worse than "directly paid by IMG." This is the structural difference that shows up only when you're actually using the policy.</p>
+</div>
+
+<!-- WHY THE PRE-EXISTING WAIVER STRUCTURE MATTERS -->
+<h2>Why Generali's pre-existing waiver structure is a real problem for your trip</h2>
+<div class="callout amber">
+  <p>This is more subtle but more important than it sounds.</p>
+
+  <p>The pre-existing condition waiver protects you if any chronic condition you have flares up before/during the trip and causes you to need to cancel or get medical care. <strong>For someone 71, this is the single most valuable feature of any travel insurance policy.</strong> Without it, the most likely cause of a claim — your existing health stuff — is the one thing not covered.</p>
+
+  <p><strong>IMG SE waiver rule:</strong> "Within 20 days of your initial trip deposit." Your initial deposit is verifiably April 17, 2026 (Mmilo PayFast receipt). Counting forward, deadline is <strong>Wednesday May 7</strong>. Buy the policy by May 7 and the waiver is locked. <em>Clean. Documented. Anchored to a single date you can verify.</em></p>
+
+  <p><strong>Generali Premium waiver rule:</strong> "Before or within 24 hours of FINAL trip payment, AND all prepaid nonrefundable costs must be insured." For your trip, "final trip payment" is fuzzy — Mmilo balance is due May 21, UA flights are now booked, hotels haven't been booked yet. There's no clean "final payment" event. You'd have to either (a) buy the policy in May before booking hotels — but then later hotel bookings might void the waiver if they're considered non-refundable additions, or (b) buy it after your last booking, which could be late June. <em>This is genuinely confusing and creates real risk.</em></p>
+
+  <p><em>The IMG approach was specifically designed for trips like yours where deposits and final payments are spread over months. Generali's approach was designed for simpler "book it, pay it, insure it" cruise-style trips.</em></p>
+</div>
+
+<!-- THE SPECIFIC SCENARIOS -->
+<h2>How each plan handles 4 scenarios you might actually face</h2>
+
+<div class="scenario">
+  <strong>Scenario 1: Your blood pressure flares up in mid-June and your doctor tells you not to fly.</strong>
+  <span class="when">Pre-existing condition cancellation</span>
+  <p style="margin:8px 0 0;"><strong>IMG (with waiver locked May 7):</strong> Full reimbursement of insured trip cost. ✅<br>
+  <strong>Generali (waiver only valid if purchased correctly relative to "final payment"):</strong> Probably covered if waiver is valid, denied if waiver was lost due to timing technicality.<br>
+  <strong>AmEx Platinum tier:</strong> Pre-existing conditions excluded — denied.</p>
+</div>
+
+<div class="scenario">
+  <strong>Scenario 2: You break a hip in Kruger Park; need medical evacuation to Johannesburg or Cape Town.</strong>
+  <span class="when">Big medical event in remote Africa</span>
+  <p style="margin:8px 0 0;"><strong>IMG:</strong> $500K evacuation limit. They coordinate the air ambulance and pay it directly. Treatment in Johannesburg covered up to $250K, paid directly to hospital.<br>
+  <strong>Generali:</strong> $1M evacuation limit (best of the three). Treatment up to $250K, but secondary — you front the bill, file with Medicare first, then Generali.<br>
+  <strong>AmEx:</strong> $250K evacuation, $100K medical — both routed through AXA Assistance, you pay first.</p>
+</div>
+
+<div class="scenario">
+  <strong>Scenario 3: You change your mind and want to cancel 3 weeks before departure for a non-medical reason.</strong>
+  <span class="when">Cancel for any reason (CFAR)</span>
+  <p style="margin:8px 0 0;"><strong>IMG with CFAR add-on ($153):</strong> 75% of insured trip cost reimbursed.<br>
+  <strong>Generali with CFAR add-on (~+25% on premium):</strong> 60% reimbursed.<br>
+  <strong>AmEx:</strong> Only available on airfare via separate Trip Cancel Guard product, not the comprehensive policy.</p>
+</div>
+
+<div class="scenario">
+  <strong>Scenario 4: A relative of yours is seriously ill back home and you want to come home early.</strong>
+  <span class="when">Trip interruption</span>
+  <p style="margin:8px 0 0;"><strong>IMG:</strong> 150% of insured trip cost (covers the unused portion + the cost of the new flight home).<br>
+  <strong>Generali:</strong> 175% of insured trip cost — best of the three.<br>
+  <strong>AmEx:</strong> 150% of insured trip cost.</p>
+</div>
+
+<!-- WHEN GENERALI OR AMEX MIGHT ACTUALLY BE BETTER -->
+<h2>When would Generali or AmEx actually be the better choice?</h2>
+<div class="callout green">
+  <p>I want to be honest about this rather than just defending the original recommendation.</p>
+
+  <p><strong>Generali Premium would be the better pick if:</strong></p>
+  <ul class="tight">
+    <li>Your single biggest concern was <strong>medical evacuation cost</strong> from a very remote location (their $1M limit beats IMG's $500K). For Kruger Park, both are sufficient — air ambulance to Johannesburg is ~$100-200K. Only matters if you'd need transport all the way back to the US, which is rare.</li>
+    <li>You preferred a stronger <strong>parent company</strong> (Generali Group is much larger and older than SiriusPoint). Both are A-rated and reliable, but Generali Group has 180 years of history.</li>
+    <li>You weren't going to use the pre-existing condition waiver at all. Without that constraint, the timing issue disappears.</li>
+  </ul>
+
+  <p><strong>AmEx Platinum standalone would be the better pick if:</strong></p>
+  <ul class="tight">
+    <li>You strongly prefer <strong>brand familiarity</strong> over feature optimization. AmEx is a household name and their service is generally regarded as competent.</li>
+    <li>You'd already booked your trip on an AmEx card and wanted everything in one place.</li>
+  </ul>
+
+  <p><strong>For the trip you're actually taking — 33 days, Africa + UK, age 71, with the Apr 17 Mmilo deposit already on the books — IMG SE remains the structurally best fit.</strong> Not because the others are bad, but because IMG specifically solves the problems your trip has.</p>
+</div>
+
+<!-- WHAT JONNA MIGHT BE SEEING -->
+<h2>What Jonna might be seeing that I'm not</h2>
+<div class="callout note">
+  <p>I want to honor Jonna's recommendation thoughtfully. There are a few things she might know that I'm not weighing properly:</p>
+  <ul class="tight">
+    <li><strong>She may have personally used Generali or AmEx and had a great claims experience.</strong> The single biggest variable in travel insurance is "do they actually pay your claim quickly when you file?" Reviews are mixed for all three, and a personal good experience is worth more than my paper analysis.</li>
+    <li><strong>She may have a specific AmEx card that comes with built-in coverage.</strong> If Jonna meant her own AmEx Platinum card's insurance, she may not have realized the medical coverage there is actually nominal — but that's a feature of <em>her</em> situation, not necessarily wrong as a recommendation.</li>
+    <li><strong>She may value the brand strength of Generali Group very highly.</strong> If you're more comfortable with a 180-year-old global insurer than a smaller US-based one, that's a legitimate consideration even if the policy mechanics are a bit weaker.</li>
+  </ul>
+
+  <p>If you'd like, when you're home tonight, you could call Jonna for 5 minutes and ask her: <em>"Did you use Generali yourself? Were claims filed?"</em> Her concrete experience would change the analysis if she has it.</p>
+</div>
+
+<!-- DECISION TREE -->
+<h2>Decision tree for tonight</h2>
+<div class="callout gold">
+  <p><strong>Path A (my recommendation):</strong> Buy IMG SE tonight. The waiver-deadline-Wed-May-7 is the active constraint, and IMG's structural advantages for your specific situation are real. Fastest, cleanest, locks the most-valuable feature.</p>
+
+  <p><strong>Path B (if you want to be sure):</strong> Wait until Saturday morning. I'll run live quotes on Generali Premium and AmEx Platinum on the actual websites for your specific trip details. If the numbers come back significantly different from my estimates above, we re-evaluate. <strong>Risk:</strong> none, really — you have until Wed May 7 to lock IMG's pre-existing waiver, so 1-2 days is fine.</p>
+
+  <p><strong>Path C (if Jonna's recommendation specifically resonates with you):</strong> Tell me which one she actually meant — Generali or AmEx, and which channel — and I'll do a much deeper dive on that one specifically. This is also fine; you have until May 7.</p>
+</div>
+
+<p style="margin-top:30px;">
+  <a href="index.html" class="btn">← Back to home</a>
+  <a href="insurance.html" class="btn secondary">Original IMG SE walkthrough</a>
+</p>
+
+<div class="src" style="margin-top:30px; font-size:12px;">
+  <strong>Sources for this comparison (all checked May 1, 2026):</strong>
+  <ul style="margin:8px 0; padding-left:20px;">
+    <li>IMG iTravelInsured Travel SE: <a href="https://www.imglobal.com/travel-insurance/itravelinsured-travel-se">imglobal.com</a> Certificate of Insurance Form Series SA-ITI-19-1000</li>
+    <li>Generali Premium plan: <a href="https://www.generalitravelinsurance.com">generalitravelinsurance.com</a>; Squaremouth Generali review (Feb 2026); MoneyGeek Generali review (Feb 2026); HelloSafe Generali analysis (Apr 2026)</li>
+    <li>AmEx standalone Travel Insurance: NerdWallet "Guide to American Express Travel Insurance" (Apr 2026); Upgraded Points Amex Platinum benefits guide (Jan 2026); FinanceBuzz AmEx Travel Insurance review (Apr 2026)</li>
+    <li>Primary vs. secondary medical: Squaremouth and Allianz explainers (Feb 2026); Generali's own "Excess Health Insurance" page</li>
+    <li>AM Best ratings: ambest.com (current as of May 1, 2026)</li>
+  </ul>
+</div>
+
+</div>
+<footer>
+  <p>Built for Pat with care by Claude Concierge · <a href="index.html">bit.ly/4t57nqv</a></p>
+</footer>
+</body></html>
