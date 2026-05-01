@@ -39,7 +39,8 @@ p, li { font-size:18px; line-height:1.6; }
 .card { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:22px 24px; margin:14px 0; box-shadow:var(--shadow); }
 .card-link { display:block; text-decoration:none; color:inherit; transition:all 0.18s ease; }
 .card-link:hover { border-color:var(--gold); transform:translateY(-2px); box-shadow:0 4px 16px rgba(40,30,15,0.10); }
-.card-link.urgent .card { border-color:var(--coral); background:var(--coral-bg); }
+.card-link.urgent .card { border-color:var(--coral); background:var(--coral-bg); border-width:2px; }
+.card-link.urgent.priority .card { border-color:var(--coral); background:var(--coral-bg); border-width:3px; box-shadow:0 4px 18px rgba(212,104,76,0.18); }
 .card-link.done .card { background:var(--green-bg); border-color:#b5c9b8; }
 .card-link.info .card { background:var(--blue-bg); border-color:#bccadb; }
 .card-icon { font-size:34px; margin-bottom:6px; display:block; }
@@ -60,27 +61,6 @@ ul.tight, ol.tight { padding-left:22px; }
 ul.tight li, ol.tight li { margin-bottom:6px; }
 footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:14px; padding:0 22px; }
 footer a { color:var(--teal); }
-.update-block { background:var(--paper); border:2px solid var(--gold); border-radius:14px; padding:0; margin:18px 0 28px; box-shadow:0 2px 12px rgba(168,111,36,0.10); overflow:hidden; }
-.update-header { background:var(--gold); color:white; padding:14px 22px; font-family:Georgia,serif; font-weight:700; font-size:17px; letter-spacing:0.04em; }
-.update-section { padding:18px 22px; border-bottom:1px solid var(--rule); }
-.update-section:last-child { border-bottom:none; }
-.update-section h4 { margin:0 0 10px; font-size:13px; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-2); font-weight:700; }
-.update-section p { margin:0 0 8px; font-size:17px; line-height:1.55; }
-.update-section ul { margin:6px 0; padding-left:22px; }
-.update-section li { font-size:17px; line-height:1.5; margin-bottom:4px; }
-.tracker { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:0; margin:18px 0; overflow:hidden; }
-.tracker-header { background:var(--teal); color:white; padding:12px 18px; font-family:Georgia,serif; font-weight:600; font-size:16px; letter-spacing:0.04em; }
-.tracker-row { display:grid; grid-template-columns:36px 1fr; gap:12px; padding:12px 18px; border-bottom:1px solid var(--rule); align-items:start; font-size:15px; }
-.tracker-row:last-child { border-bottom:none; }
-.tracker-row .icon { font-size:22px; line-height:1; padding-top:1px; }
-.tracker-row .body { line-height:1.45; }
-.tracker-row .name { font-weight:700; color:var(--teal-2); display:block; margin-bottom:2px; }
-.tracker-row .when { font-size:13px; color:var(--ink-soft); }
-.tracker-row .when a { color:var(--teal); text-decoration:underline; }
-.tracker-row.done { background:var(--green-bg); }
-.tracker-row.urgent { background:var(--coral-bg); }
-.tracker-row.removed { background:#f5f0e8; opacity:0.85; }
-.tracker-row.removed .name { text-decoration:line-through; color:var(--ink-soft); }
 .cabin-table { width:100%; border-collapse:collapse; margin:14px 0; background:var(--paper); border-radius:10px; overflow:hidden; box-shadow:var(--shadow); }
 .cabin-table th, .cabin-table td { padding:10px 12px; text-align:left; font-size:15px; border-bottom:1px solid var(--rule); }
 .cabin-table th { background:var(--teal-light); color:var(--teal-2); font-size:13px; letter-spacing:0.05em; text-transform:uppercase; font-weight:700; }
@@ -90,249 +70,51 @@ footer a { color:var(--teal); }
 .cabin-polaris { background:#0d4f3f; color:white; }
 .cabin-prem { background:#5a85a4; color:white; }
 .cabin-econplus { background:#7a8b6c; color:white; }
-.cabin-first { background:var(--gold-2); color:white; }
 @media (max-width:480px) {
-  .tracker-row { grid-template-columns:30px 1fr; gap:10px; padding:10px 14px; font-size:14px; }
   .cabin-table th, .cabin-table td { padding:8px 8px; font-size:13px; }
 }
 </style>
 </head><body>
 <header class="topbar">
   <a class="home" href="index.html">✈️ Pat's Trip Hub · Home</a>
-  <div class="stamp">Apr 29, 2026 — 8:30 PM PT</div>
+  <div class="stamp">Apr 30, 2026 — 7:25 PM PT</div>
 </header>
 <div class="container">
-<p class="eyebrow">Pat's Trip Hub · Apr 29, 8:30 PM update</p>
+<p class="eyebrow">Pat's Trip Hub · For tonight's 8 PM call</p>
 <h1>Hi Pat ❤️</h1>
-<p class="lede">Welcome home. Here's where we are right now: <strong>your insurance walkthrough is ready below</strong> for tonight's 8 PM purchase. Your full cabin breakdown is integrated. Both your questions answered. Audit recap of what changed today is right below this.</p>
+<p class="lede">Read the call briefing first — the six things that matter most for your United phone booking are on that page. Insurance walkthrough below it. I'm on iMessage during your call.</p>
 
-<a class="card-link urgent" href="insurance.html#tonight">
+<a class="card-link urgent priority" href="call-briefing.html">
   <div class="card">
-    <span class="card-icon">🛡️</span>
-    <div class="card-title">Tonight at 8 PM: your insurance purchase walkthrough</div>
-    <p class="card-desc">Step-by-step for IMG SE first ($2,800 placeholder, ~$1,506) then Medjet Annual (~$252 with AARP). Everything you'll need in front of you (passport, card, AARP #), exact answers to enter on each form, both online and phone options, and the pre-existing waiver setting that locks the deadline. Want me on the call? Text Alex.</p>
-    <div class="card-meta meta-urgent">⏱ ~25 min total · Reasoning + sources on the page</div>
+    <span class="card-icon">📞</span>
+    <div class="card-title">Tonight at 8 PM — your United call briefing</div>
+    <p class="card-desc">Six things that matter most. Which flights to request (numbers, not just routes). The SFO connection problem and how to avoid it. Why "Standard Polaris" — not Basic. Expected price range so you're not shocked. Pay with your Select Visa. Confirm seat assignments before hanging up. Scripts to read to the rep verbatim.</p>
+    <div class="card-meta meta-urgent">⏱ 5 min to read · keep open during the call</div>
   </div>
 </a>
 
-<h2>📋 What changed today (audit recap)</h2>
-<p style="color:var(--ink-soft); font-size:16px; margin-top:-6px;">After your gut-check on UA 1565 this afternoon, I ran a full primary-source audit before continuing. Here's what was wrong, what's now right, and where you can verify each one yourself.</p>
-
-<div class="card" style="border-color:var(--gold);">
-  <h3 style="margin-top:0;">10 corrections made (all visible on flights and insurance pages)</h3>
-  <ul class="tight" style="margin-bottom:0;">
-    <li><strong>UA 1565 is NOT a SMF→EWR nonstop</strong> — FlightAware confirms it's currently Chicago→Cleveland. Your outbound is now SMF→DEN→EWR (Denver hub). <a href="flights.html#ua-outbound">→ flights page</a></li>
-    <li><strong>IMG SE medical max is $250K, not $1M</strong> — still 5× Travel Guard's $50K, still strong, but I had the figure wrong this morning. <a href="insurance.html">→ insurance page</a></li>
-    <li><strong>Pre-existing waiver deadline is Wed May 7, not May 1</strong> — IMG's actual rule is 20 days from initial deposit (Apr 17), giving you a full week of margin instead of a few days.</li>
-    <li><strong>IMG SE preserves waiver with partial trip-cost insured</strong> — feature unique to SE plan; this is why we're not waiting for UA flights to book before buying tonight.</li>
-    <li><strong>UA 14 EWR→LHR is now a Boeing 777-200ER</strong>, not a 767-300ER. AeroRoutes confirms aircraft swap effective May 1, 2026. Better seat product on Premium Plus.</li>
-    <li><strong>UA 187 JNB→EWR arrives 07:20 EDT</strong>, not 06:00. Departure 22:00 SAST holds. United's published schedule.</li>
-    <li><strong>Loganair Norwich→Aberdeen is an Embraer ERJ-145</strong> (50-seat regional jet), not the ATR turboprop I had earlier. Loganair fleet page.</li>
-    <li><strong>Heathrow inter-terminal Pod doesn't go T5 ↔ T2</strong> — that's the Heathrow Express train (free, every 15 min, 5-min ride). Heathrow.com.</li>
-    <li><strong>SMF↔EWR nonstop service is thin in summer 2026</strong>, only one flight per week. Denver connection is the cleaner outbound.</li>
-    <li><strong>Million-mile crossing is preserved</strong> on the new return routing — UA 900/939/949 LHR→SFO are UA-operated and count. About 85 min into the flight, somewhere over Scotland.</li>
-  </ul>
-</div>
-
-<div class="update-block">
-  <div class="update-header">📋 Status Update — Apr 29 evening</div>
-
-  <div class="update-section">
-    <h4>1. Quick Status Recap</h4>
-    <ul>
-      <li><strong>Insurance:</strong> Plan A (IMG SE + Medjet) confirmed by you 2:57 PM. <strong>Tonight's purchase walkthrough is on the <a href="insurance.html#tonight">insurance page</a></strong> — step-by-step for both purchases.</li>
-      <li><strong>Flights:</strong> Your cabin choices for every leg are now the plan (table below). Audit corrections applied. Return is rerouted to LHR → SFO Premium Plus per your recommendation.</li>
-      <li><strong>Tonight:</strong> You buy IMG + Medjet. Alex stands by to book UA flights once insurance is in. I'm on the line via Alex's phone if you'd like backup.</li>
-    </ul>
-  </div>
-
-  <div class="update-section">
-    <h4>2. Your confirmed cabin choices (from your 5:51 PM message)</h4>
-    <p>This is exactly what Alex will book:</p>
-    <table class="cabin-table">
-      <thead><tr><th>Leg</th><th>Cabin</th><th>Why</th></tr></thead>
-      <tbody>
-        <tr><td class="leg">SMF → EWR<br><span style="font-size:13px; color:var(--ink-soft);">Sun Jun 28 day</span></td><td><span class="cabin-tag cabin-econplus">Economy Plus</span></td><td>Domestic day flight — extra legroom is enough</td></tr>
-        <tr><td class="leg">EWR → JNB<br><span style="font-size:13px; color:var(--ink-soft);">Sun Jun 28 night · UA 188</span></td><td><span class="cabin-tag cabin-polaris">Polaris</span></td><td><strong>The splurge.</strong> Night flight, you need to sleep across to arrive in shape.</td></tr>
-        <tr><td class="leg">JNB → EWR<br><span style="font-size:13px; color:var(--ink-soft);">Thu Jul 16 night · UA 187</span></td><td><span class="cabin-tag cabin-prem">Premium Plus</span></td><td>Newark Marriott catches you in the morning — you can sleep there if needed</td></tr>
-        <tr><td class="leg">EWR → LHR<br><span style="font-size:13px; color:var(--ink-soft);">Fri Jul 17 night · UA 14</span></td><td><span class="cabin-tag cabin-prem">Premium Plus</span></td><td>You'll be rested and on a different schedule by then — Premium Plus is plenty</td></tr>
-        <tr><td class="leg">LHR → SFO<br><span style="font-size:13px; color:var(--ink-soft);">Thu Jul 30 day · UA 900/939/949</span></td><td><span class="cabin-tag cabin-prem">Premium Plus</span></td><td>Daytime, you'll be rested. <strong>This is your million-mile crossing flight.</strong></td></tr>
-        <tr><td class="leg">SFO → SMF<br><span style="font-size:13px; color:var(--ink-soft);">Thu Jul 30 evening</span></td><td><span class="cabin-tag cabin-econplus">Economy Plus</span></td><td>Consistent with the international ticket — short hop home</td></tr>
-      </tbody>
-    </table>
-    <p style="font-size:15px; color:var(--ink-soft); margin-top:8px;">Note on domestic: international Premium Plus tickets include Economy Plus (extra-legroom economy) on the connecting domestic legs at no extra cost. If you ever want to upgrade SMF→EWR or SFO→SMF to domestic First, it's typically $50-100 per segment — we can add it later. You said "no advantage to first class on domestic" so I'm taking that as a no.</p>
-  </div>
-
-  <div class="update-section">
-    <h4>3. Your two questions, answered</h4>
-    <p><strong>Q: Price difference Polaris vs Premium Plus on JNB → EWR?</strong></p>
-    <p>Approximate range based on summer 2026 published fares: <strong>Polaris one-way ~$5,500-$7,500. Premium Plus one-way ~$2,500-$4,500.</strong> So your savings going Premium Plus on this leg is roughly <strong>$2,500-$3,500</strong>. Alex will pull the exact number when he opens the booking — I'd rather give you a verified number than guess. Either way, your call to do Premium Plus here is sound: this is a long flight but Newark Marriott is <strong>in</strong> Terminal B, so if you arrive tired you're in bed within 25 minutes and have the whole next day to recover before UA 14 in the evening.</p>
-
-    <p><strong>Q: At what point do I cross 1,000,000 miles, and does Gold status auto-apply?</strong></p>
-    <p>You're at 977,330 lifetime miles. The trip adds approximately <strong>27,710 paid United miles</strong>. Cumulative through each leg (UA-operated paid only):</p>
-    <ul style="margin-top:6px;">
-      <li>After SMF → EWR (~2,530): 979,860</li>
-      <li>After EWR → JNB (~7,990): 987,850</li>
-      <li>After JNB → EWR (~7,990): 995,840</li>
-      <li>After EWR → LHR (~3,450): 999,290 — still 710 short of 1M ✨</li>
-      <li><strong>During LHR → SFO (~5,360 mi total):</strong> you cross 1,000,000 about <strong>710 miles into the flight</strong>, which on UA 900's 11-hour timing is roughly <strong>85-90 minutes after takeoff</strong> — you'll be somewhere over Scotland or the North Atlantic when it happens.</li>
-      <li>After LHR → SFO: 1,004,650</li>
-      <li>After SFO → SMF: 1,005,040 final</li>
-    </ul>
-    <p style="margin-top:10px;"><strong>About Gold status auto-apply:</strong> United's lifetime status posts after the qualifying segment <em>credits</em> to your account, which typically takes 1-3 days after each flight (not real-time). So you won't get a "ding" on your phone mid-flight, but Premier Gold for life will appear in your account within a few days of the LHR-SFO segment posting — and Alex will pre-notify United so the LHR ground crew and SFO arrival crew know it's the milestone flight. (You also keep the companion benefit at the level it was when you crossed — UA is downgrading it for 2027 crossings, but you're in 2026 so you're grandfathered in.)</p>
-  </div>
-
-  <div class="update-section">
-    <h4>4. Actionable next steps</h4>
-    <ol>
-      <li><strong>You — tonight at 8 PM:</strong> Walk through the IMG SE + Medjet purchase. <a href="insurance.html#tonight">Step-by-step on the insurance page</a>. ~25 min total. iMessage me a "done" when finished.</li>
-      <li><strong>Alex — tonight after your insurance buy:</strong> validates pricing on the cabin plan above, books all four UA flights with your confirmed cabin selections.</li>
-      <li><strong>You — nothing else this week.</strong> I'll iMessage when UA tickets are issued and again when it's time to amend IMG upward (takes ~3 min each amendment).</li>
-    </ol>
-  </div>
-</div>
-
 <a class="card-link urgent" href="insurance.html#tonight">
   <div class="card">
     <span class="card-icon">🛡️</span>
-    <div class="card-title">Quick link back to tonight's insurance walkthrough</div>
-    <p class="card-desc">Step-by-step for IMG SE + Medjet · what to have in front of you · exact answers to enter · ~25 min · standing by if you want me on the call.</p>
+    <div class="card-title">IMG insurance — pick up where you left off</div>
+    <p class="card-desc">Your $462.05 quote is correct (based on $2,800 placeholder). Multi-country question is the key one for the IMG callback before you submit. Pre-existing waiver deadline still Wed May 7.</p>
     <div class="card-meta meta-urgent">⏱ Insurance page</div>
   </div>
 </a>
 
-<h2>📍 Project tracker</h2>
-<p style="color:var(--ink-soft); font-size:16px; margin-top:-6px;">✅ done · 🔄 in progress · ⏳ waiting · ❌ removed.</p>
-
-<div class="tracker">
-  <div class="tracker-header">Project Tracker — Apr 29 evening</div>
-
-  <div class="tracker-row done">
-    <div class="icon">✅</div>
-    <div class="body"><span class="name">Mmilo safari deposit paid</span>
-      <span class="when">R44,606 · Apr 17 · Visa ****4788 · ref Y9ABNJ · <a href="archive.html#mmilo">receipt</a></span></div>
-  </div>
-
-  <div class="tracker-row done">
-    <div class="icon">✅</div>
-    <div class="body"><span class="name">Airlink JNB → Livingstone (Wed Jul 1) ticketed</span>
-      <span class="when">4Z 482 · Seat 3F · USD $131 · <a href="archive.html#airlink">e-ticket</a></span></div>
-  </div>
-
-  <div class="tracker-row done">
-    <div class="icon">✅</div>
-    <div class="body"><span class="name">Zambia Airways Lusaka → Johannesburg (Thu Jul 9) ticketed</span>
-      <span class="when">ZN 307 · Seat 12A · USD $277 · <a href="archive.html#zn">e-ticket</a></span></div>
-  </div>
-
-  <div class="tracker-row done">
-    <div class="icon">✅</div>
-    <div class="body"><span class="name">Insurance research + Pat's pick (Plan A)</span>
-      <span class="when">Confirmed Apr 29 2:57 PM PT · IMG SE + Medjet Annual</span></div>
-  </div>
-
-  <div class="tracker-row done">
-    <div class="icon">✅</div>
-    <div class="body"><span class="name">Independent primary-source flight + plan audit</span>
-      <span class="when">10 corrections applied · Apr 29 ~5:30 PM PT · UA 14 aircraft, UA 187 timing, Loganair, Heathrow inter-terminal, IMG facts</span></div>
-  </div>
-
-  <div class="tracker-row done">
-    <div class="icon">✅</div>
-    <div class="body"><span class="name">Pat's return-flight reroute (LHR → SFO Prem Plus) integrated</span>
-      <span class="when">Pat's recommendation Apr 29 4:00 PM, verified 6:00 PM · UA 900/939/949 daily</span></div>
-  </div>
-
-  <div class="tracker-row done">
-    <div class="icon">✅</div>
-    <div class="body"><span class="name">Pat's full cabin breakdown (every leg) integrated</span>
-      <span class="when">Pat's message Apr 29 5:51 PM PT · table on this page</span></div>
-  </div>
-
-  <div class="tracker-row urgent">
-    <div class="icon">🔄</div>
-    <div class="body"><span class="name">Insurance — Pat purchasing IMG SE + Medjet tonight at 8 PM</span>
-      <span class="when">Walkthrough live on <a href="insurance.html#tonight">insurance page</a> · ~25 min total · waiver deadline Wed May 7 (full week of margin)</span></div>
-  </div>
-
-  <div class="tracker-row">
-    <div class="icon">⏳</div>
-    <div class="body"><span class="name">UA outbound — SMF → EWR → JNB (Sun Jun 28)</span>
-      <span class="when">Economy Plus + Polaris on UA 188 · Alex books tonight</span></div>
-  </div>
-
-  <div class="tracker-row">
-    <div class="icon">⏳</div>
-    <div class="body"><span class="name">UA mid-trip — JNB → EWR → LHR (Thu Jul 16 → Fri Jul 17)</span>
-      <span class="when">Premium Plus on UA 187 + UA 14 · Newark Marriott in-terminal between · Alex books tonight</span></div>
-  </div>
-
-  <div class="tracker-row">
-    <div class="icon">⏳</div>
-    <div class="body"><span class="name">UA return — LHR → SFO → SMF (Thu Jul 30) ✨ million-mile crossing</span>
-      <span class="when">Premium Plus on UA 900/939/949 + Economy Plus on SFO-SMF · Alex books tonight · pre-notify UA</span></div>
-  </div>
-
-  <div class="tracker-row">
-    <div class="icon">⏳</div>
-    <div class="body"><span class="name">Mmilo safari balance R44,606</span>
-      <span class="when">Due Thu May 21 · same Pay Fast link · calendar reminder set</span></div>
-  </div>
-
-  <div class="tracker-row">
-    <div class="icon">⏳</div>
-    <div class="body"><span class="name">Newark Marriott (Thu Jul 16 night, late checkout Jul 17)</span>
-      <span class="when">In-terminal · 24-hr free shuttle from T-B · ~$250-350 · book after UA flights ticketed</span></div>
-  </div>
-
-  <div class="tracker-row">
-    <div class="icon">⏳</div>
-    <div class="body"><span class="name">London T2-T3 hotel (Wed Jul 29 night)</span>
-      <span class="when">Hilton Garden Inn Heathrow T2/T3 · 5-min covered walkway to T2 · ~£200</span></div>
-  </div>
-
-  <div class="tracker-row">
-    <div class="icon">⏳</div>
-    <div class="body"><span class="name">National Express coach 727 LHR → Norwich (Sat Jul 18)</span>
-      <span class="when">£35-44 · 7-9 daily · 4h 25m fastest · book ~3 weeks ahead</span></div>
-  </div>
-
-  <div class="tracker-row">
-    <div class="icon">⏳</div>
-    <div class="body"><span class="name">Loganair Norwich → Aberdeen (Wed Jul 22)</span>
-      <span class="when">Embraer ERJ-145 · 08:35 or 16:15 · ~£100-200 · book ~3 weeks ahead</span></div>
-  </div>
-
-  <div class="tracker-row">
-    <div class="icon">⏳</div>
-    <div class="body"><span class="name">BA Inverness → Heathrow T5 (Tue or Wed Jul 28-29)</span>
-      <span class="when">Afternoon/early evening · A319/A320 · book ~3 weeks ahead</span></div>
-  </div>
-
-  <div class="tracker-row">
-    <div class="icon">⏳</div>
-    <div class="body"><span class="name">Vaccinations / yellow fever / malaria check</span>
-      <span class="when">Target Sun Jun 14 · CDC-current checklist coming next week</span></div>
-  </div>
-
-  <div class="tracker-row removed">
-    <div class="icon">❌</div>
-    <div class="body"><span class="name">Original UA 1565 SMF → EWR routing</span>
-      <span class="when">Removed Apr 29 · audit found UA 1565 is currently ORD→CLE per FlightAware</span></div>
-  </div>
-
-  <div class="tracker-row removed">
-    <div class="icon">❌</div>
-    <div class="body"><span class="name">Sabi Sabi / Kruger lodging research</span>
-      <span class="when">Removed Apr 26 · Banie handling Kruger directly</span></div>
-  </div>
-
-  <div class="tracker-row removed">
-    <div class="icon">❌</div>
-    <div class="body"><span class="name">France stop</span>
-      <span class="when">Removed Apr 29 · Pat cancelled · Norwich + Inverness only</span></div>
-  </div>
-</div>
+<h2>📋 Your confirmed flight plan (signed off Apr 30 morning)</h2>
+<table class="cabin-table">
+  <thead><tr><th>Leg</th><th>Flight</th><th>Cabin</th></tr></thead>
+  <tbody>
+    <tr><td class="leg">Sun Jun 28<br>SMF → EWR</td><td>One-stop UA-metal via DEN/IAH/ORD<br><span style="font-size:12px; color:var(--ink-soft);">morning or midday departure</span></td><td><span class="cabin-tag cabin-econplus">Economy Plus</span></td></tr>
+    <tr><td class="leg">Sun Jun 28<br>EWR → JNB</td><td><strong>UA 188</strong> · 9:45 PM EDT → 6:30 PM SAST Mon<br><span style="font-size:12px; color:var(--ink-soft);">Boeing 787-9</span></td><td><span class="cabin-tag cabin-polaris">Polaris STANDARD</span></td></tr>
+    <tr><td class="leg">Thu Jul 16<br>JNB → EWR</td><td><strong>UA 187</strong> · 10:00 PM SAST → 8:20 AM EDT Fri<br><span style="font-size:12px; color:var(--ink-soft);">Boeing 787-9 · EWR Terminal B</span></td><td><span class="cabin-tag cabin-prem">Premium Plus STANDARD</span></td></tr>
+    <tr><td class="leg">Fri Jul 17<br>EWR → LHR</td><td><strong>UA 14</strong> · 6:45 PM EDT → 7:15 AM BST Sat<br><span style="font-size:12px; color:var(--ink-soft);">Boeing 777-200ER · EWR Terminal C → LHR T2</span></td><td><span class="cabin-tag cabin-prem">Premium Plus STANDARD</span></td></tr>
+    <tr><td class="leg">Thu Jul 30<br>LHR → SFO ✨</td><td><strong>UA 900</strong> 10:35 AM → 1:35 PM (best for SMF)<br><strong>or UA 949</strong> 12:20 → 3:20 PM<br><span style="font-size:12px; color:var(--coral);">⛔ AVOID UA 939 — too tight</span></td><td><span class="cabin-tag cabin-prem">Premium Plus STANDARD</span></td></tr>
+    <tr><td class="leg">Thu Jul 30<br>SFO → SMF</td><td>2.5+ hours after SFO arrival<br><span style="font-size:12px; color:var(--ink-soft);">last UA SFO-SMF ~10:30 PM</span></td><td><span class="cabin-tag cabin-econplus">Economy Plus</span></td></tr>
+  </tbody>
+</table>
+<p style="font-size:14px; color:var(--ink-soft);">✨ The LHR→SFO leg is your million-mile crossing flight — about 85 minutes after takeoff over Scotland.</p>
 
 <h2>📚 Reference</h2>
 
@@ -365,7 +147,8 @@ footer a { color:var(--teal); }
 
 <h2>📞 Quick contact card</h2>
 <div class="card">
-  <p style="margin:0 0 10px;"><strong>Claude Concierge (me):</strong> reach me by texting Alex at 530-219-8094 — he relays anything urgent.</p>
+  <p style="margin:0 0 10px;"><strong>Claude Concierge (me):</strong> iMessage me directly during your call. I'll respond in under a minute.</p>
+  <p style="margin:0 0 10px;"><strong>Alex:</strong> 530-219-8094 — text him if you want a human voice on the call.</p>
   <p style="margin:0 0 10px;"><strong>Mmilo (safari):</strong> info@mmilotours.com · +27 12 654 5308 · Booking ref Y9ABNJ · <strong>Balance ZAR 44,606 due Thu May 21</strong></p>
   <p style="margin:0;"><strong>Trip dates:</strong> Sun Jun 28 (depart Sacramento) → Thu Jul 30 (return Sacramento) · 33 days</p>
 </div>
