@@ -40,9 +40,9 @@ p, li { font-size:18px; line-height:1.6; }
 .card-link { display:block; text-decoration:none; color:inherit; transition:all 0.18s ease; }
 .card-link:hover { border-color:var(--gold); transform:translateY(-2px); box-shadow:0 4px 16px rgba(40,30,15,0.10); }
 .card-link.urgent .card { border-color:var(--coral); background:var(--coral-bg); border-width:2px; }
-.card-link.urgent.priority .card { border-color:var(--coral); background:var(--coral-bg); border-width:3px; box-shadow:0 4px 18px rgba(212,104,76,0.18); }
 .card-link.done .card { background:var(--green-bg); border-color:#b5c9b8; }
 .card-link.info .card { background:var(--blue-bg); border-color:#bccadb; }
+.card-link.gold .card { background:#fdf5e3; border:2px solid var(--gold); box-shadow:0 4px 18px rgba(200,137,58,0.18); }
 .card-icon { font-size:34px; margin-bottom:6px; display:block; }
 .card-title { font-family:Georgia,serif; font-weight:600; font-size:21px; color:var(--teal-2); margin:0 0 6px; }
 .card-desc { color:var(--ink-soft); font-size:16px; line-height:1.5; margin:0; }
@@ -50,89 +50,243 @@ p, li { font-size:18px; line-height:1.6; }
 .meta-urgent { color:var(--coral); }
 .meta-info { color:var(--teal); }
 .meta-done { color:var(--green-2); }
+.meta-gold { color:var(--gold-2); }
+.celebration-banner { background:linear-gradient(135deg,#fdf5e3 0%,#f5e9c8 100%); border:2px solid var(--gold); border-radius:18px; padding:28px 28px; margin:18px 0 28px; box-shadow:0 6px 22px rgba(200,137,58,0.18); position:relative; overflow:hidden; }
+.celebration-banner::before { content:'✨'; position:absolute; top:14px; right:18px; font-size:26px; opacity:0.5; }
+.celebration-banner .label { font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-2); font-weight:700; margin-bottom:10px; }
+.celebration-banner h2 { color:var(--teal-2); font-size:28px; margin:0 0 12px; line-height:1.2; }
+.celebration-banner p { font-size:17px; line-height:1.55; margin:8px 0; color:var(--ink); }
+.celebration-banner .conf { font-family:'SF Mono',Menlo,monospace; font-size:24px; font-weight:700; color:var(--gold-2); display:inline-block; padding:4px 12px; background:white; border-radius:8px; margin:8px 0; letter-spacing:0.05em; }
 .callout { background:linear-gradient(135deg,#f4ecd8,#f0e6cf); border:1px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; color:var(--teal-2); font-size:17px; line-height:1.55; }
 .callout strong { color:var(--gold-2); }
-.callout.urgent { background:var(--coral-bg); border-color:var(--coral); }
-.callout.done { background:var(--green-bg); border-color:#b5c9b8; }
 .callout.note { background:#eef4f1; border-color:#bfd4c9; }
-.callout.blue { background:var(--blue-bg); border-color:#bccadb; color:var(--blue-2); }
-.callout.gold { background:#fdf5e3; border:2px solid var(--gold); }
+.callout.coral { background:var(--coral-bg); border-color:var(--coral); }
+.callout.coral strong { color:var(--coral); }
 ul.tight, ol.tight { padding-left:22px; }
-ul.tight li, ol.tight li { margin-bottom:6px; }
+ul.tight li, ol.tight li { margin-bottom:8px; }
 footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:14px; padding:0 22px; }
 footer a { color:var(--teal); }
-.cabin-table { width:100%; border-collapse:collapse; margin:14px 0; background:var(--paper); border-radius:10px; overflow:hidden; box-shadow:var(--shadow); }
-.cabin-table th, .cabin-table td { padding:10px 12px; text-align:left; font-size:15px; border-bottom:1px solid var(--rule); }
-.cabin-table th { background:var(--teal-light); color:var(--teal-2); font-size:13px; letter-spacing:0.05em; text-transform:uppercase; font-weight:700; }
-.cabin-table tr:last-child td { border-bottom:none; }
-.cabin-table .leg { font-weight:600; color:var(--teal-2); }
-.cabin-tag { display:inline-block; padding:2px 8px; border-radius:99px; font-size:12px; font-weight:600; letter-spacing:0.04em; }
-.cabin-polaris { background:#0d4f3f; color:white; }
-.cabin-prem { background:#5a85a4; color:white; }
-.cabin-econplus { background:#7a8b6c; color:white; }
-@media (max-width:480px) {
-  .cabin-table th, .cabin-table td { padding:8px 8px; font-size:13px; }
-}
+
+.tracker { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:0; margin:18px 0; overflow:hidden; }
+.tracker-header { background:var(--teal); color:white; padding:12px 18px; font-family:Georgia,serif; font-weight:600; font-size:16px; letter-spacing:0.04em; }
+.tracker-row { display:grid; grid-template-columns:36px 1fr; gap:12px; padding:12px 18px; border-bottom:1px solid var(--rule); align-items:start; font-size:15px; }
+.tracker-row:last-child { border-bottom:none; }
+.tracker-row .icon { font-size:22px; line-height:1; padding-top:1px; }
+.tracker-row .body { line-height:1.45; }
+.tracker-row .name { font-weight:700; color:var(--teal-2); display:block; margin-bottom:2px; }
+.tracker-row .when { font-size:13px; color:var(--ink-soft); }
+.tracker-row .when a { color:var(--teal); text-decoration:underline; }
+.tracker-row.done { background:var(--green-bg); }
+.tracker-row.tomorrow { background:#fdf5e3; }
+
+.checklist { background:var(--paper); border:2px solid var(--gold); border-radius:14px; padding:0; margin:18px 0 28px; overflow:hidden; box-shadow:0 4px 14px rgba(200,137,58,0.10); }
+.checklist-header { background:var(--gold); color:white; padding:14px 22px; font-family:Georgia,serif; font-weight:700; font-size:18px; }
+.checklist-body { padding:18px 22px; }
+.checklist-item { display:grid; grid-template-columns:32px 1fr; gap:12px; padding:10px 0; border-bottom:1px dashed var(--rule); align-items:start; }
+.checklist-item:last-child { border-bottom:none; }
+.checklist-item .check { font-size:22px; padding-top:1px; color:var(--gold-2); }
+.checklist-item .what { font-weight:700; color:var(--teal-2); margin-bottom:3px; line-height:1.4; }
+.checklist-item .why { font-size:14px; color:var(--ink-soft); line-height:1.45; }
 </style>
 </head><body>
 <header class="topbar">
   <a class="home" href="index.html">✈️ Pat's Trip Hub · Home</a>
-  <div class="stamp">Apr 30, 2026 — 7:25 PM PT</div>
+  <div class="stamp">May 1, 2026 — 12:30 AM PT</div>
 </header>
 <div class="container">
-<p class="eyebrow">Pat's Trip Hub · For tonight's 8 PM call</p>
-<h1>Hi Pat ❤️</h1>
-<p class="lede">Read the call briefing first — the six things that matter most for your United phone booking are on that page. Insurance walkthrough below it. I'm on iMessage during your call.</p>
+<p class="eyebrow">Pat's Trip Hub · Morning brief, Friday May 1</p>
+<h1>Good morning, Pat ❤️</h1>
+<p class="lede">Big news first: <strong>your flights are booked</strong>, and the million-mile crossing is mathematically secured. Today's checklist is short — three things — and the dashboard reflects it all.</p>
 
-<a class="card-link urgent priority" href="call-briefing.html">
+<!-- BOOKING CONFIRMATION BANNER -->
+<div class="celebration-banner">
+  <div class="label">✈️ All 7 segments ticketed last night</div>
+  <h2>You did it. The trip is real now.</h2>
+  <p><strong>Confirmation:</strong> <span class="conf">I4N1RT</span></p>
+  <p><strong>Total:</strong> $19,268.06 on your Visa ending 6226 · <strong>Status:</strong> Fully refundable until ~10:30 PM tonight</p>
+  <p style="margin-top:12px;"><strong>I reviewed the booking carefully and recommend keeping it as-is. No mistakes.</strong> The full breakdown — including math confirming you cross 1,000,000 lifetime miles mid-flight on UA 900 between Ireland and Iceland on July 30 — is on the flights page.</p>
+</div>
+
+<a class="card-link gold" href="flights.html">
   <div class="card">
-    <span class="card-icon">📞</span>
-    <div class="card-title">Tonight at 8 PM — your United call briefing</div>
-    <p class="card-desc">Six things that matter most. Which flights to request (numbers, not just routes). The SFO connection problem and how to avoid it. Why "Standard Polaris" — not Basic. Expected price range so you're not shocked. Pay with your Select Visa. Confirm seat assignments before hanging up. Scripts to read to the rep verbatim.</p>
-    <div class="card-meta meta-urgent">⏱ 5 min to read · keep open during the call</div>
+    <span class="card-icon">🛫</span>
+    <div class="card-title">See your full flight plan with seats, times, and the million-mile math</div>
+    <p class="card-desc">All 7 segments laid out in order with cabin, seat, aircraft, and lounge access. Mile-by-mile math showing exactly when you cross 1,000,000. Verification of every concern (UA 904 vs UA 14, the SkyWest hop, the "0 award miles" line on your receipt). Purchase summary and baggage allowance.</p>
+    <div class="card-meta meta-gold">⏱ 5 min read · keep handy when packing</div>
   </div>
 </a>
 
-<a class="card-link urgent" href="insurance.html#tonight">
-  <div class="card">
-    <span class="card-icon">🛡️</span>
-    <div class="card-title">IMG insurance — pick up where you left off</div>
-    <p class="card-desc">Your $462.05 quote is correct (based on $2,800 placeholder). Multi-country question is the key one for the IMG callback before you submit. Pre-existing waiver deadline still Wed May 7.</p>
-    <div class="card-meta meta-urgent">⏱ Insurance page</div>
-  </div>
-</a>
+<!-- TODAY'S CHECKLIST -->
+<div class="checklist">
+  <div class="checklist-header">📋 Friday May 1 — three things to do today</div>
+  <div class="checklist-body">
 
-<h2>📋 Your confirmed flight plan (signed off Apr 30 morning)</h2>
-<table class="cabin-table">
-  <thead><tr><th>Leg</th><th>Flight</th><th>Cabin</th></tr></thead>
-  <tbody>
-    <tr><td class="leg">Sun Jun 28<br>SMF → EWR</td><td>One-stop UA-metal via DEN/IAH/ORD<br><span style="font-size:12px; color:var(--ink-soft);">morning or midday departure</span></td><td><span class="cabin-tag cabin-econplus">Economy Plus</span></td></tr>
-    <tr><td class="leg">Sun Jun 28<br>EWR → JNB</td><td><strong>UA 188</strong> · 9:45 PM EDT → 6:30 PM SAST Mon<br><span style="font-size:12px; color:var(--ink-soft);">Boeing 787-9</span></td><td><span class="cabin-tag cabin-polaris">Polaris STANDARD</span></td></tr>
-    <tr><td class="leg">Thu Jul 16<br>JNB → EWR</td><td><strong>UA 187</strong> · 10:00 PM SAST → 8:20 AM EDT Fri<br><span style="font-size:12px; color:var(--ink-soft);">Boeing 787-9 · EWR Terminal B</span></td><td><span class="cabin-tag cabin-prem">Premium Plus STANDARD</span></td></tr>
-    <tr><td class="leg">Fri Jul 17<br>EWR → LHR</td><td><strong>UA 14</strong> · 6:45 PM EDT → 7:15 AM BST Sat<br><span style="font-size:12px; color:var(--ink-soft);">Boeing 777-200ER · EWR Terminal C → LHR T2</span></td><td><span class="cabin-tag cabin-prem">Premium Plus STANDARD</span></td></tr>
-    <tr><td class="leg">Thu Jul 30<br>LHR → SFO ✨</td><td><strong>UA 900</strong> 10:35 AM → 1:35 PM (best for SMF)<br><strong>or UA 949</strong> 12:20 → 3:20 PM<br><span style="font-size:12px; color:var(--coral);">⛔ AVOID UA 939 — too tight</span></td><td><span class="cabin-tag cabin-prem">Premium Plus STANDARD</span></td></tr>
-    <tr><td class="leg">Thu Jul 30<br>SFO → SMF</td><td>2.5+ hours after SFO arrival<br><span style="font-size:12px; color:var(--ink-soft);">last UA SFO-SMF ~10:30 PM</span></td><td><span class="cabin-tag cabin-econplus">Economy Plus</span></td></tr>
-  </tbody>
-</table>
-<p style="font-size:14px; color:var(--ink-soft);">✨ The LHR→SFO leg is your million-mile crossing flight — about 85 minutes after takeoff over Scotland.</p>
+    <div class="checklist-item">
+      <div class="check">①</div>
+      <div>
+        <div class="what">Finish your IMG insurance enrollment online</div>
+        <div class="why">Their phone team is overwhelmed (Middle East situation) so the callback didn't happen — go ahead and complete the enrollment online today. <strong>Pre-existing waiver deadline is Wed May 7.</strong> Your $462.05 quote is still saved. <a href="insurance.html#tonight">→ Walkthrough on insurance page</a></div>
+      </div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check">②</div>
+      <div>
+        <div class="what">Confirm your Medjet AARP discount went through</div>
+        <div class="why">You said you weren't asked for your AARP membership number during enrollment. Once you get the Medjet confirmation email (within 2 days), check the price you paid. <strong>If it's $252 or less, the AARP discount applied.</strong> If it's $295 (the non-discount price), call Medjet at 1-800-527-7478 with your AARP membership number — they'll credit the difference. I'll watch your inbox and flag it when the confirmation arrives.</div>
+      </div>
+    </div>
+
+    <div class="checklist-item">
+      <div class="check">③</div>
+      <div>
+        <div class="what">Book a 3:30 AM car service for Sun Jun 28</div>
+        <div class="why">Your UA 1889 leaves SMF at 5:00 AM — that's a very early morning. Pre-book a car service (Davis-area: try Yolo Cab 530-758-7222 or a black-car service like Davis Airporter) for ~3:30 AM pickup so you don't have to think about it. I can research and book this for you on Saturday if you'd prefer — just say the word.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- WHAT I'M HANDLING -->
+<div class="callout note">
+  <strong>What I'm handling for you this week (no action needed from you):</strong>
+  <ul class="tight" style="margin-top:8px; margin-bottom:0;">
+    <li>Booking your <strong>Newark Marriott day room</strong> for Fri Jul 17 (9 AM–5 PM, free 24-hr shuttle from Terminal B)</li>
+    <li>Booking the <strong>Hilton Garden Inn LHR T2/T3</strong> for Wed Jul 29 (5-min covered walkway to terminal)</li>
+    <li>Drafting your <strong>Zambia KAZA UNIVISA</strong> application instructions (you'll apply ~May 28)</li>
+    <li>Setting your <strong>Mmilo balance reminder</strong> for Thu May 21 (ZAR 44,606)</li>
+    <li>Building out the <strong>UK ground transport</strong> options (Norwich coach, Loganair, BA back to London)</li>
+  </ul>
+</div>
+
+<!-- PROJECT TRACKER -->
+<h2>📍 Project tracker</h2>
+<p style="color:var(--ink-soft); font-size:16px; margin-top:-6px;">✅ done · 🔄 today · ⏳ this month.</p>
+
+<div class="tracker">
+  <div class="tracker-header">Project Tracker — May 1 morning</div>
+
+  <div class="tracker-row done">
+    <div class="icon">✅</div>
+    <div class="body"><span class="name">All 4 United flights booked (7 segments)</span>
+      <span class="when">Apr 30 night · Conf I4N1RT · $19,268.06 · refundable to ~10:30 PM PT Friday May 1 · <a href="flights.html">→ details</a></span></div>
+  </div>
+
+  <div class="tracker-row done">
+    <div class="icon">✅</div>
+    <div class="body"><span class="name">Mmilo safari deposit paid</span>
+      <span class="when">ZAR 44,606 · Apr 17 · receipt on file</span></div>
+  </div>
+
+  <div class="tracker-row done">
+    <div class="icon">✅</div>
+    <div class="body"><span class="name">Airlink JNB → Livingstone (Wed Jul 1)</span>
+      <span class="when">4Z 482 · Conf Y9ABNJ · seat 3F · $131</span></div>
+  </div>
+
+  <div class="tracker-row done">
+    <div class="icon">✅</div>
+    <div class="body"><span class="name">Zambia Airways Lusaka → Johannesburg (Thu Jul 9)</span>
+      <span class="when">ZN 307 · Conf YDHXGT · seat 12A · $277</span></div>
+  </div>
+
+  <div class="tracker-row done">
+    <div class="icon">✅</div>
+    <div class="body"><span class="name">Medjet Annual purchased</span>
+      <span class="when">~$252 with AARP · awaiting email confirmation (within 2 days) — Pat to verify discount applied when it arrives</span></div>
+  </div>
+
+  <div class="tracker-row tomorrow">
+    <div class="icon">🔄</div>
+    <div class="body"><span class="name">IMG SE travel insurance — finish enrollment online today</span>
+      <span class="when">$462.05 quote saved · waiver deadline Wed May 7 · <a href="insurance.html#tonight">walkthrough</a></span></div>
+  </div>
+
+  <div class="tracker-row tomorrow">
+    <div class="icon">🔄</div>
+    <div class="body"><span class="name">Verify Medjet AARP discount when confirmation arrives</span>
+      <span class="when">If price > $252, call 1-800-527-7478 with membership number for credit</span></div>
+  </div>
+
+  <div class="tracker-row tomorrow">
+    <div class="icon">🔄</div>
+    <div class="body"><span class="name">Book 3:30 AM car service for Sun Jun 28 SMF departure</span>
+      <span class="when">UA 1889 leaves at 5 AM — early start. Concierge can handle this on Saturday if you'd like.</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">Mmilo safari balance ZAR 44,606</span>
+      <span class="when">Due Thu May 21 · same PayFast link as deposit · I'll send you a reminder</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">Newark Marriott day room (Fri Jul 17, 9 AM–5 PM)</span>
+      <span class="when">Concierge handling · ~$120-180 day rate · free shuttle from EWR Terminal B</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">London T2/T3 hotel (Wed Jul 29 night)</span>
+      <span class="when">Concierge handling · Hilton Garden Inn Heathrow T2/T3 · ~£200</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">National Express coach LHR → Norwich (Sat Jul 18)</span>
+      <span class="when">~£44 · Concierge to book ~3 weeks out</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">Loganair Norwich → Aberdeen (Wed Jul 22)</span>
+      <span class="when">Embraer ERJ-145 · ~£100-200 · Concierge to book</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">BA Inverness → Heathrow T5 (Tue Jul 28 or Wed Jul 29)</span>
+      <span class="when">Pat to confirm exact Inverness departure date with Fiona Reed</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">Zambia KAZA UNIVISA application</span>
+      <span class="when">$50 · single-entry, covers Zambia + Zimbabwe + day-trips Botswana · apply by May 28 · Concierge will draft instructions</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">Yellow fever vaccination</span>
+      <span class="when">Cert needed by Sun Jun 21 · Pat to schedule with doctor</span></div>
+  </div>
+
+  <div class="tracker-row">
+    <div class="icon">⏳</div>
+    <div class="body"><span class="name">Confirm passport expiration (must be ≥ Jan 30, 2027)</span>
+      <span class="when">Zambia 6-month rule · Pat to check passport when convenient</span></div>
+  </div>
+</div>
 
 <h2>📚 Reference</h2>
 
 <a class="card-link" href="flights.html">
   <div class="card">
     <span class="card-icon">🛫</span>
-    <div class="card-title">Full flights page</div>
-    <p class="card-desc">Every leg with your confirmed cabin selection, full schedules, audit corrections applied.</p>
-    <div class="card-meta meta-info">Updated Apr 29 evening</div>
+    <div class="card-title">Full flight plan</div>
+    <p class="card-desc">All 7 booked segments, seat assignments, aircraft details, million-mile crossing math, baggage rules, and verification notes.</p>
+    <div class="card-meta meta-info">Updated May 1</div>
   </div>
 </a>
 
-<a class="card-link" href="insurance.html">
+<a class="card-link urgent" href="insurance.html">
   <div class="card">
     <span class="card-icon">🛡️</span>
-    <div class="card-title">Full insurance page</div>
-    <p class="card-desc">IMG SE corrected facts, Travel Guard comparison, Medjet eligibility, buy-today reasoning, all sources.</p>
-    <div class="card-meta meta-info">Updated Apr 29 evening</div>
+    <div class="card-title">IMG insurance walkthrough</div>
+    <p class="card-desc">$462.05 quote saved · 20-day waiver deadline Wed May 7 · pick up where you left off online today.</p>
+    <div class="card-meta meta-urgent">⏱ Today's task #1</div>
   </div>
 </a>
 
@@ -140,17 +294,19 @@ footer a { color:var(--teal); }
   <div class="card">
     <span class="card-icon">📖</span>
     <div class="card-title">Decision &amp; document log</div>
-    <p class="card-desc">Tickets, receipts, dated decisions, Medicare answers, every step in one timeline.</p>
+    <p class="card-desc">Tickets, receipts, dated decisions, every step in one timeline.</p>
     <div class="card-meta meta-info">Always available</div>
   </div>
 </a>
 
 <h2>📞 Quick contact card</h2>
 <div class="card">
-  <p style="margin:0 0 10px;"><strong>Claude Concierge (me):</strong> iMessage me directly during your call. I'll respond in under a minute.</p>
-  <p style="margin:0 0 10px;"><strong>Alex:</strong> 530-219-8094 — text him if you want a human voice on the call.</p>
-  <p style="margin:0 0 10px;"><strong>Mmilo (safari):</strong> info@mmilotours.com · +27 12 654 5308 · Booking ref Y9ABNJ · <strong>Balance ZAR 44,606 due Thu May 21</strong></p>
-  <p style="margin:0;"><strong>Trip dates:</strong> Sun Jun 28 (depart Sacramento) → Thu Jul 30 (return Sacramento) · 33 days</p>
+  <p style="margin:0 0 10px;"><strong>Claude Concierge (me):</strong> just iMessage me anytime. I'll respond quickly.</p>
+  <p style="margin:0 0 10px;"><strong>United Airlines:</strong> 1-800-864-8331 · Conf <strong>I4N1RT</strong> · 24-hr cancel deadline ~10:30 PM PT today</p>
+  <p style="margin:0 0 10px;"><strong>IMG (insurance):</strong> 1-866-243-7524 · enrollment URL <a href="https://www.imglobal.com/travel-insurance/itravelinsured-travel-se">imglobal.com</a></p>
+  <p style="margin:0 0 10px;"><strong>Medjet:</strong> 1-800-527-7478 (US) · enrollment confirmation watching</p>
+  <p style="margin:0 0 10px;"><strong>Mmilo:</strong> info@mmilotours.com · +27 12 654 5308 · ref Y9ABNJ · <strong>balance ZAR 44,606 due Thu May 21</strong></p>
+  <p style="margin:0;"><strong>Trip dates:</strong> Sun Jun 28 (SMF 5 AM departure) → Thu Jul 30 (SMF arrival 6:16 PM) · 33 days</p>
 </div>
 </div>
 <footer>
