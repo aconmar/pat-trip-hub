@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#2d5a4a">
+<title>Tonight's UA Call Briefing — Pat's Trip Hub</title>
+<style>
+:root {
+  --cream:#fbf6ed;--paper:#ffffff;--ink:#1f1f23;--ink-soft:#4a4a55;
+  --teal:#2d5a4a;--teal-2:#1f3f33;--teal-light:#e6efea;
+  --gold:#c8893a;--gold-2:#a86f24;
+  --coral:#d4684c;--coral-bg:#fbe9e3;
+  --rule:#e6dcc8;--green-bg:#e6f0e9;--green-2:#4a7058;
+  --shadow:0 1px 2px rgba(40,30,15,0.04),0 4px 12px rgba(40,30,15,0.06);
+  --blue-bg:#e8eef5;--blue-2:#2d4a6e;
+}
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body { margin:0;padding:0; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;
+  background:var(--cream); color:var(--ink); font-size:19px; line-height:1.6; min-height:100vh;
+}
+.container { max-width:740px; margin:0 auto; padding:24px 22px 100px; }
+.topbar {
+  background:var(--coral); color:white; padding:18px 22px;
+  position:sticky; top:0; z-index:50;
+  display:flex; justify-content:space-between; align-items:center;
+  border-bottom:3px solid var(--gold);
+}
+.topbar .home { color:white; text-decoration:none; font-weight:600; font-size:15px; letter-spacing:0.05em; }
+.topbar .stamp { font-size:12px; color:rgba(255,255,255,0.85); }
+h1 { font-family:Georgia,serif; font-weight:600; font-size:32px; line-height:1.2; color:var(--coral); margin:14px 0 12px; letter-spacing:-0.01em; }
+h2 { font-family:Georgia,serif; font-size:23px; line-height:1.3; color:var(--teal-2); margin:30px 0 12px; }
+h3 { font-size:18px; line-height:1.35; color:var(--teal-2); margin:18px 0 8px; font-weight:700; }
+p, li { font-size:18px; line-height:1.55; }
+.eyebrow { color:var(--coral); font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:8px; }
+.lede { color:var(--ink-soft); font-size:18px; margin:0 0 18px; }
+.card { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:22px 24px; margin:14px 0; box-shadow:var(--shadow); }
+.card.urgent { border-color:var(--coral); background:var(--coral-bg); }
+.card.warn { border-color:var(--gold); background:#fdf5e3; }
+.card.info { border-color:#bccadb; background:var(--blue-bg); }
+.card.action { border-color:var(--teal); background:var(--teal-light); }
+.callout { background:linear-gradient(135deg,#f4ecd8,#f0e6cf); border:1px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; color:var(--teal-2); font-size:17px; line-height:1.55; }
+.callout.urgent { background:var(--coral-bg); border-color:var(--coral); }
+.callout strong { color:var(--coral); }
+.flight-row { display:grid; grid-template-columns:1fr; gap:8px; padding:12px 0; border-bottom:1px solid var(--rule); }
+.flight-row:last-child { border-bottom:none; }
+.flight-leg { font-family:Georgia,serif; font-weight:700; color:var(--teal-2); font-size:18px; }
+.flight-detail { font-size:16px; color:var(--ink-soft); }
+.flight-cabin { font-weight:700; color:var(--teal); }
+.script { background:var(--paper); border-left:4px solid var(--coral); padding:14px 18px; margin:14px 0; font-style:italic; color:var(--ink); border-radius:0 10px 10px 0; }
+.script strong { font-style:normal; color:var(--coral); }
+ul.tight, ol.tight { padding-left:22px; }
+ul.tight li, ol.tight li { margin-bottom:8px; }
+.btn-back { display:inline-block; padding:10px 18px; background:var(--teal); color:white; text-decoration:none; border-radius:99px; font-weight:600; font-size:15px; margin:10px 0; }
+footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:14px; padding:0 22px; }
+.big-num { font-size:30px; font-weight:700; color:var(--coral); font-family:Georgia,serif; line-height:1.1; }
+</style>
+</head><body>
+<header class="topbar">
+  <a class="home" href="index.html">✈️ Pat's Trip Hub · Home</a>
+  <div class="stamp">Apr 30 · 7:25 PM PT</div>
+</header>
+<div class="container">
+
+<p class="eyebrow">Tonight · 8 PM PT · United phone booking</p>
+<h1>Your call briefing 📞</h1>
+<p class="lede">Six things that matter most. Read this once before you dial — keep it open during the call. I'm on iMessage if anything goes sideways.</p>
+
+<div class="card urgent">
+  <h3 style="margin-top:0; color:var(--coral);">⚠️ #1 — The SFO connection problem</h3>
+  <p>The 1-hour SFO→SMF connection on Jul 30 is too tight. United's own minimum is <strong>1h 20m</strong> for international-to-domestic, and realistic with bags is more like <strong>2h 30m</strong>.</p>
+  <div class="script">
+    <strong>Tell the rep:</strong> "I want at least 2.5 hours between my LHR→SFO arrival and my SFO→SMF flight. Last UA SFO-SMF is around 10:30 PM, so there's flexibility."
+  </div>
+</div>
+
+<div class="card warn">
+  <h3 style="margin-top:0;">✈️ #2 — Which LHR→SFO flight to request</h3>
+  <p>Two good options for Jul 30. Both are UA-operated metal (so they count for your million-miler crossing).</p>
+  <div class="flight-row">
+    <div class="flight-leg">UA 900 — best for SMF same-day</div>
+    <div class="flight-detail">London 10:35 AM → SFO 1:35 PM. Boeing 787-9 (newest plane).</div>
+  </div>
+  <div class="flight-row">
+    <div class="flight-leg">UA 949 — also good</div>
+    <div class="flight-detail">London 12:20 PM → SFO 3:20 PM. Boeing 777-200ER.</div>
+  </div>
+  <div class="flight-row">
+    <div class="flight-leg" style="color:var(--coral);">⛔ AVOID UA 939</div>
+    <div class="flight-detail">London 4:15 PM → SFO 7:20 PM. Too tight for last SMF flight, especially with international arrival.</div>
+  </div>
+  <div class="script">
+    <strong>Tell the rep:</strong> "I'd like UA 900 LHR to SFO on July 30. If that's full in Premium Plus, my second choice is UA 949."
+  </div>
+</div>
+
+<div class="card warn">
+  <h3 style="margin-top:0;">🌅 #3 — SMF → EWR Sun Jun 28 is tricky</h3>
+  <p>UA's only nonstop SMF→EWR is a late-night red-eye that arrives Monday morning. <strong>That misses your UA 188 to JNB which leaves Sunday at 9:45 PM.</strong></p>
+  <p>You need a <strong>one-stop on Sunday morning or midday</strong>, ON UNITED METAL (not codeshare), arriving EWR by ~6 PM EDT for safety.</p>
+  <div class="script">
+    <strong>Tell the rep:</strong> "I need to fly Sacramento to Newark on Sunday June 28, morning or midday departure, arriving Newark by 6 PM Eastern at the latest. Connection through Denver, Houston, or Chicago is fine. <strong>It must be on United-operated flights all the way — no codeshare partners</strong> because I'm working toward million-mile status."
+  </div>
+</div>
+
+<div class="card urgent">
+  <h3 style="margin-top:0; color:var(--coral);">🎫 #4 — Say "STANDARD POLARIS" — not Basic</h3>
+  <p>United just rolled out a new <strong>"Basic Polaris"</strong> tier that strips advance seat selection AND Polaris Lounge access. The rep may default to it because it's cheaper. <strong>Don't accept it.</strong></p>
+  <p>Same warning for Premium Plus — there's now a Basic Premium Plus that strips seat selection.</p>
+  <div class="script">
+    <strong>Every time you book a long-haul cabin, say:</strong> "I want STANDARD Polaris [or STANDARD Premium Plus], not the Basic tier. I need advance seat selection and lounge access included."
+  </div>
+</div>
+
+<div class="card info">
+  <h3 style="margin-top:0;">💰 #5 — Expected price range</h3>
+  <p>Based on my research today, the realistic total for the full 6-leg itinerary in your cabin mix:</p>
+  <p class="big-num">$14,000 – $19,500</p>
+  <p style="font-size:16px; color:var(--ink-soft); margin-top:6px;">If they quote much higher than $19,500, ask them to re-price with mixed cabins (you don't need Polaris on the return — Premium Plus is fine there). If they quote much lower than $14,000, double-check it includes all 6 segments and the right cabin classes.</p>
+</div>
+
+<div class="card action">
+  <h3 style="margin-top:0;">💳 #6 — Pay with United Mileage Plus Select Visa</h3>
+  <p>Your legacy card. Earns 9× miles on this booking (6× cardmember fare + 3× card).</p>
+  <p style="margin-top:10px;"><strong>Before hanging up:</strong></p>
+  <ul class="tight" style="margin-bottom:0;">
+    <li>Confirm <strong>specific seat numbers</strong> on every long-haul leg (not just "window assigned")</li>
+    <li>Get the <strong>confirmation number / record locator</strong></li>
+    <li>Ask them to <strong>email the itinerary</strong> while you're still on the line, and check it arrives</li>
+    <li>Forward me that email when it lands</li>
+  </ul>
+</div>
+
+<h2>📋 Your full booking list — request these flights</h2>
+
+<div class="card">
+<div class="flight-row">
+  <div class="flight-leg">Sun Jun 28 · SMF → EWR</div>
+  <div class="flight-detail">One-stop UA-metal (via DEN, IAH, or ORD), morning/midday departure. <span class="flight-cabin">Economy Plus</span></div>
+</div>
+
+<div class="flight-row">
+  <div class="flight-leg">Sun Jun 28 · UA 188 EWR → JNB</div>
+  <div class="flight-detail">9:45 PM EDT departure → arrives JNB Mon 6:30 PM SAST. Boeing 787-9. <span class="flight-cabin">Polaris STANDARD</span></div>
+</div>
+
+<div class="flight-row">
+  <div class="flight-leg">Thu Jul 16 · UA 187 JNB → EWR</div>
+  <div class="flight-detail">10:00 PM SAST departure → arrives EWR Fri 8:20 AM EDT, Terminal B. Boeing 787-9. <span class="flight-cabin">Premium Plus STANDARD</span></div>
+</div>
+
+<div class="flight-row">
+  <div class="flight-leg">Fri Jul 17 · UA 14 EWR → LHR</div>
+  <div class="flight-detail">6:45 PM EDT departure (Terminal C) → arrives LHR Sat 7:15 AM BST, Terminal 2. Boeing 777-200ER. <span class="flight-cabin">Premium Plus STANDARD</span></div>
+</div>
+
+<div class="flight-row">
+  <div class="flight-leg">Thu Jul 30 · UA 900 (or UA 949) LHR → SFO ✨</div>
+  <div class="flight-detail">UA 900: 10:35 AM BST → 1:35 PM PDT (787-9). UA 949: 12:20 PM BST → 3:20 PM PDT (777-200ER). <span class="flight-cabin">Premium Plus STANDARD</span><br><strong style="color:var(--gold-2);">This is your million-mile crossing flight — about 85 minutes after takeoff over Scotland.</strong></div>
+</div>
+
+<div class="flight-row">
+  <div class="flight-leg">Thu Jul 30 · SFO → SMF</div>
+  <div class="flight-detail">At least 2.5 hours after your SFO arrival. Last UA SFO-SMF is ~10:30 PM. <span class="flight-cabin">Economy Plus</span></div>
+</div>
+</div>
+
+<h2>🛡️ Quick note on IMG insurance</h2>
+<div class="card info">
+  <p>The <strong>$462.05 quote is correct</strong> — that's based on the $2,800 placeholder trip cost. After tonight's UA booking, you'll call IMG to amend the trip cost upward, and the premium will rise then (probably another $700-900). The pre-existing waiver stays valid through all amendments because we're inside the 20-day window from your Apr 17 deposit.</p>
+  <p style="margin-top:10px;">For tomorrow's IMG callback, your <strong>most important question is multi-country coverage</strong> — confirming the policy covers South Africa, Zambia, AND the UK as a single trip. The full question list I sent yesterday is still good. Don't submit the policy until you've heard from them.</p>
+</div>
+
+<h2>📱 If anything goes wrong on the call</h2>
+<div class="callout urgent">
+  <p><strong>iMessage me anything during the call.</strong> I'll respond in under a minute. Send a screenshot if a number on the screen confuses you. If the rep pushes back on any of the above (especially the Standard tier or the connection time), text me their exact words and I'll give you the counter-argument.</p>
+  <p style="margin-top:10px;">If you want a human voice on the call, Alex (530-219-8094) can join — text him.</p>
+</div>
+
+<a class="btn-back" href="index.html">← Back to home</a>
+
+<footer>
+  Pat's Trip Hub · <a href="https://aconmar.github.io/pat-trip-hub/">aconmar.github.io/pat-trip-hub</a>
+</footer>
+</div>
+</body></html>
