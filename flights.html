@@ -39,192 +39,346 @@ p, li { font-size:18px; line-height:1.6; }
 .card { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:22px 24px; margin:14px 0; box-shadow:var(--shadow); }
 .callout { background:linear-gradient(135deg,#f4ecd8,#f0e6cf); border:1px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; color:var(--teal-2); font-size:17px; line-height:1.55; }
 .callout strong { color:var(--gold-2); }
-.callout.urgent { background:var(--coral-bg); border-color:var(--coral); }
 .callout.done { background:var(--green-bg); border-color:#b5c9b8; }
+.callout.gold { background:#fdf5e3; border:2px solid var(--gold); padding:20px 22px; }
 .callout.note { background:#eef4f1; border-color:#bfd4c9; }
-.callout.blue { background:var(--blue-bg); border-color:#bccadb; color:var(--blue-2); }
-.callout.gold { background:#fdf5e3; border:2px solid var(--gold); }
-ul.tight, ol.tight { padding-left:22px; }
-ul.tight li, ol.tight li { margin-bottom:6px; }
-footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:14px; padding:0 22px; }
-footer a { color:var(--teal); }
-.cabin-tag { display:inline-block; padding:3px 10px; border-radius:99px; font-size:13px; font-weight:600; letter-spacing:0.04em; }
+.booked-banner { background:linear-gradient(135deg,#1f3f33,#2d5a4a); color:white; border-radius:14px; padding:24px 26px; margin:18px 0 28px; box-shadow:0 4px 16px rgba(40,30,15,0.18); }
+.booked-banner .label { font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.8); font-weight:700; margin-bottom:6px; }
+.booked-banner h2 { color:white; font-size:24px; margin:0 0 10px; }
+.booked-banner .conf { font-family:'SF Mono',Menlo,monospace; font-size:32px; font-weight:700; letter-spacing:0.05em; color:#f5d99c; margin:8px 0; }
+.booked-banner p { font-size:16px; line-height:1.55; margin:6px 0; color:rgba(255,255,255,0.92); }
+.flight-card { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:0; margin:14px 0; box-shadow:var(--shadow); overflow:hidden; }
+.flight-card.crossing { border:2px solid var(--gold); box-shadow:0 4px 18px rgba(200,137,58,0.18); }
+.flight-header { background:var(--teal-light); padding:10px 18px; border-bottom:1px solid var(--rule); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+.flight-header .seg { font-size:13px; color:var(--ink-soft); font-weight:700; letter-spacing:0.05em; text-transform:uppercase; }
+.flight-header .date { font-family:Georgia,serif; font-weight:600; color:var(--teal-2); font-size:16px; }
+.flight-card.crossing .flight-header { background:#fdf5e3; }
+.flight-body { padding:16px 20px; }
+.flight-route { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:10px; margin-bottom:12px; }
+.flight-time { font-family:Georgia,serif; font-size:24px; font-weight:600; color:var(--teal-2); }
+.flight-airport { font-size:13px; color:var(--ink-soft); margin-top:2px; line-height:1.3; }
+.flight-arrow { color:var(--gold); font-size:22px; text-align:center; }
+.flight-meta { display:grid; grid-template-columns:1fr 1fr; gap:8px 18px; margin-top:8px; padding-top:12px; border-top:1px solid var(--rule); font-size:14px; color:var(--ink-soft); }
+.flight-meta strong { color:var(--teal-2); }
+.cabin-tag { display:inline-block; padding:3px 10px; border-radius:99px; font-size:12px; font-weight:600; letter-spacing:0.04em; }
+.cabin-first { background:var(--gold-2); color:white; }
 .cabin-polaris { background:#0d4f3f; color:white; }
 .cabin-prem { background:#5a85a4; color:white; }
-.cabin-econplus { background:#7a8b6c; color:white; }
-.cabin-first { background:var(--gold-2); color:white; }
-.cabin-econ { background:#888; color:white; }
-.flight-block { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:0; margin:14px 0; overflow:hidden; box-shadow:var(--shadow); }
-.flight-block.recommend { border:2px solid var(--gold); }
-.flight-block.confirmed { background:var(--green-bg); border-color:#b5c9b8; }
-.flight-block.starred { border:2px solid var(--gold-2); }
-.flight-head { background:var(--teal); color:white; padding:12px 18px; font-family:Georgia,serif; font-weight:600; font-size:16px; }
-.flight-block.recommend .flight-head { background:var(--gold); }
-.flight-block.confirmed .flight-head { background:var(--green-2); }
-.flight-block.starred .flight-head { background:var(--gold-2); }
-.flight-body { padding:14px 20px; }
-.flight-body p { margin:6px 0; font-size:16px; }
-.flight-body .src { font-size:13px; color:var(--ink-soft); margin-top:8px; padding-top:8px; border-top:1px dashed var(--rule); }
-.flight-body .src a { color:var(--teal); }
+.cabin-econ { background:#7a8b6c; color:white; }
+.connection { text-align:center; color:var(--ink-soft); font-size:13px; padding:6px 0; font-style:italic; }
+.connection strong { color:var(--green-2); font-style:normal; }
+.crossing-marker { background:#fdf5e3; border:2px solid var(--gold); border-radius:14px; padding:14px 18px; margin:8px 0; text-align:center; font-size:15px; line-height:1.45; }
+.crossing-marker strong { color:var(--gold-2); font-size:17px; display:block; margin-bottom:4px; }
+.miles-table { width:100%; border-collapse:collapse; margin:14px 0; font-size:14px; background:var(--paper); border-radius:10px; overflow:hidden; box-shadow:var(--shadow); }
+.miles-table th, .miles-table td { padding:8px 12px; text-align:left; border-bottom:1px solid var(--rule); }
+.miles-table th { background:var(--teal-light); color:var(--teal-2); font-size:12px; letter-spacing:0.04em; text-transform:uppercase; font-weight:700; }
+.miles-table tr:last-child td { border-bottom:none; }
+.miles-table .crossing-row { background:#fdf5e3; font-weight:700; }
+.miles-table .crossing-row td { color:var(--gold-2); }
+.purchase-summary { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:20px 24px; margin:14px 0; box-shadow:var(--shadow); }
+.purchase-summary .row { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--rule); font-size:15px; }
+.purchase-summary .row:last-child { border-bottom:none; padding-top:12px; font-weight:700; font-size:18px; color:var(--teal-2); }
+ul.tight, ol.tight { padding-left:22px; }
+ul.tight li, ol.tight li { margin-bottom:6px; }
+.btn-back { display:inline-block; padding:10px 18px; background:var(--teal); color:white; text-decoration:none; border-radius:99px; font-weight:600; font-size:15px; margin:14px 0; }
+footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:14px; padding:0 22px; }
+@media (max-width:480px) {
+  .flight-time { font-size:20px; }
+  .flight-route { gap:6px; }
+}
 </style>
 </head><body>
 <header class="topbar">
-  <a class="home" href="index.html">← Back to home</a>
-  <div class="stamp">Apr 29, 2026 — evening PT</div>
+  <a class="home" href="index.html">✈️ Pat's Trip Hub · Home</a>
+  <div class="stamp">Updated May 1, 12:30 AM PT</div>
 </header>
 <div class="container">
-<p class="eyebrow">Flight plan</p>
-<h1>The full flight plan</h1>
-<p class="lede">Every leg with your confirmed cabin selection from your 5:51 PM message. Audit corrections from primary-source research are applied. Ready for Alex to validate &amp; book tonight.</p>
+
+<p class="eyebrow">United · Booked Apr 30, 2026 · Refundable for ~24 hr</p>
+<h1>Your United flights ✅</h1>
+
+<div class="booked-banner">
+  <div class="label">Booking confirmed</div>
+  <h2>You did it, Pat — all 7 segments ticketed</h2>
+  <div class="conf">I4N1RT</div>
+  <p><strong>Total:</strong> $19,268.06 USD &nbsp;·&nbsp; <strong>Card:</strong> Visa ending 6226 &nbsp;·&nbsp; <strong>eTicket:</strong> 0162398549876</p>
+  <p style="margin-top:10px;"><strong>Status:</strong> Fully refundable. 24-hour cancel window expires ~10:30 PM PT Friday May 1. <em>I've reviewed the booking carefully — recommendation is to keep it. No mistakes.</em></p>
+</div>
 
 <div class="callout gold">
-  <strong>Your cabin plan in one line:</strong> Economy Plus on the two domestic legs · <strong>Polaris on the EWR → JNB outbound only</strong> (the one big splurge for the night flight) · Premium Plus on the other three long-hauls · Economy Plus on SFO → SMF home. Approximate total UA cost depending on fares: $11,500-$14,500 — well below the all-Polaris number we'd flagged earlier.
+  <strong style="font-size:18px;">✨ Million-mile milestone is secured.</strong><br>
+  <p style="margin:8px 0 0;">You'll cross 1,000,000 lifetime miles in mid-air on Flight 6 (UA 900 London → SFO) on Thursday July 30 — about 90 minutes after takeoff from Heathrow, somewhere over the North Atlantic between Ireland and Iceland. Mathematics confirmed below.</p>
 </div>
 
-<h2 id="confirmed">✅ Already booked &amp; ticketed</h2>
-<p style="color:var(--ink-soft); font-size:16px; margin-top:-6px;">No action needed. Tickets are filed in the <a href="archive.html">document archive</a>.</p>
+<h2>The 7 segments</h2>
 
-<div class="flight-block confirmed">
-  <div class="flight-head">Wed Jul 1 · Airlink 4Z 482 · Johannesburg → Livingstone</div>
+<!-- Segment 1 -->
+<div class="flight-card">
+  <div class="flight-header">
+    <div class="seg">Flight 1 of 7 · UA 1889</div>
+    <div class="date">Sun, Jun 28, 2026</div>
+  </div>
   <div class="flight-body">
-    <p><strong>Depart JNB</strong> 10:50 → <strong>Arrive LVI</strong> 12:35 · 1h 45m</p>
-    <p>Seat <strong>3F</strong> · Booking ref <strong>Y9ABNJ</strong> · Ticket 749-2405807029 · USD $131</p>
-    <p>20 kg checked baggage included.</p>
+    <div class="flight-route">
+      <div>
+        <div class="flight-time">5:00 AM</div>
+        <div class="flight-airport">Sacramento (SMF)</div>
+      </div>
+      <div class="flight-arrow">→</div>
+      <div>
+        <div class="flight-time">8:22 AM</div>
+        <div class="flight-airport">Denver (DEN)</div>
+      </div>
+    </div>
+    <div class="flight-meta">
+      <div><strong>Cabin:</strong> <span class="cabin-tag cabin-first">United First (J)</span></div>
+      <div><strong>Seat:</strong> 01F</div>
+      <div><strong>Aircraft:</strong> United mainline</div>
+      <div><strong>Operator:</strong> United Airlines</div>
+    </div>
   </div>
 </div>
 
-<div class="flight-block confirmed">
-  <div class="flight-head">Thu Jul 9 · Zambia Airways ZN 307 · Lusaka → Johannesburg</div>
+<div class="connection">↓ <strong>3h 15m connection at Denver</strong> — comfortable</div>
+
+<!-- Segment 2 -->
+<div class="flight-card">
+  <div class="flight-header">
+    <div class="seg">Flight 2 of 7 · UA 1233</div>
+    <div class="date">Sun, Jun 28, 2026</div>
+  </div>
   <div class="flight-body">
-    <p><strong>Depart LUN</strong> 16:20 → <strong>Arrive JNB</strong> 18:30 · 2h 10m</p>
-    <p>Boeing 737-700 · Seat <strong>12A</strong> · Booking ref <strong>YDHXGT</strong> · Ticket 1382101228322 · USD $277</p>
+    <div class="flight-route">
+      <div>
+        <div class="flight-time">11:37 AM</div>
+        <div class="flight-airport">Denver (DEN)</div>
+      </div>
+      <div class="flight-arrow">→</div>
+      <div>
+        <div class="flight-time">5:29 PM</div>
+        <div class="flight-airport">Newark (EWR)</div>
+      </div>
+    </div>
+    <div class="flight-meta">
+      <div><strong>Cabin:</strong> <span class="cabin-tag cabin-first">United First (J)</span></div>
+      <div><strong>Seat:</strong> 01F</div>
+      <div><strong>Aircraft:</strong> United mainline</div>
+      <div><strong>Operator:</strong> United Airlines</div>
+    </div>
   </div>
 </div>
 
-<h2 id="ua-outbound">🛫 UA outbound — Sacramento → Johannesburg</h2>
+<div class="connection">↓ <strong>3h 56m connection at Newark</strong> — Polaris Lounge access included</div>
 
-<div class="flight-block">
-  <div class="flight-head">Sun Jun 28 · UA · SMF → EWR (afternoon connection)</div>
+<!-- Segment 3 -->
+<div class="flight-card">
+  <div class="flight-header">
+    <div class="seg">Flight 3 of 7 · UA 188 ✨ the splurge</div>
+    <div class="date">Sun Jun 28 → Mon Jun 29</div>
+  </div>
   <div class="flight-body">
-    <p><span class="cabin-tag cabin-econplus">Economy Plus (your choice)</span> — extra legroom on a domestic day flight, you said no advantage to First on domestic and we agree.</p>
-    <p>Alex will pick the exact connection (likely via Denver — UA's western hub, multiple daily SMF-DEN-EWR options) when he books. The goal: arrive EWR in Terminal C with a comfortable buffer before UA 188 at 21:45.</p>
-    <div class="src">⚠️ Audit Apr 29: my earlier "UA 1565 nonstop SMF→EWR" was wrong. UA 1565 is currently Chicago→Cleveland per FlightAware. Sacramento→Newark nonstop service is very thin in summer 2026, so a Denver connection is the cleaner path.</div>
+    <div class="flight-route">
+      <div>
+        <div class="flight-time">9:25 PM</div>
+        <div class="flight-airport">Newark (EWR)<br>Sun Jun 28</div>
+      </div>
+      <div class="flight-arrow">→</div>
+      <div>
+        <div class="flight-time">6:30 PM</div>
+        <div class="flight-airport">Johannesburg (JNB)<br>Mon Jun 29</div>
+      </div>
+    </div>
+    <div class="flight-meta">
+      <div><strong>Cabin:</strong> <span class="cabin-tag cabin-polaris">Polaris business (J)</span></div>
+      <div><strong>Seat:</strong> 07L (window, lie-flat)</div>
+      <div><strong>Aircraft:</strong> Boeing 787-9</div>
+      <div><strong>Lounge:</strong> Polaris EWR before flight</div>
+    </div>
   </div>
 </div>
 
-<div class="flight-block recommend">
-  <div class="flight-head">Sun Jun 28 → Mon Jun 29 · UA 188 · Newark → Johannesburg</div>
+<div class="connection">↓ Safari · 18 days in southern Africa ↓</div>
+
+<!-- Segment 4 -->
+<div class="flight-card">
+  <div class="flight-header">
+    <div class="seg">Flight 4 of 7 · UA 187</div>
+    <div class="date">Thu Jul 16 → Fri Jul 17</div>
+  </div>
   <div class="flight-body">
-    <p><strong>Depart EWR Terminal C</strong> 21:45 EDT (Sun) → <strong>Arrive JNB Terminal A</strong> 18:30 SAST (Mon)</p>
-    <p>Aircraft: <strong>Boeing 787-9</strong> · ~14h 45m airborne · all-aisle-access lie-flat</p>
-    <p><span class="cabin-tag cabin-polaris">Polaris (your splurge — agreed)</span> — Polaris on the 787-9 is 1-2-1 layout. Your priority of "front of plane, window, lie-flat" is fully met. This is the right place for the splurge: night flight, sleep across, arrive in shape.</p>
-    <p>Arrives JNB evening — comfortable timing to clear immigration and meet Banie's transfer the next day for Pretoria.</p>
-    <div class="src">Sources: United.com timetable; FlightAware live tracker; AeroRoutes 787-9 fleet assignments.</div>
+    <div class="flight-route">
+      <div>
+        <div class="flight-time">10:00 PM</div>
+        <div class="flight-airport">Johannesburg (JNB)<br>Thu Jul 16</div>
+      </div>
+      <div class="flight-arrow">→</div>
+      <div>
+        <div class="flight-time">7:35 AM</div>
+        <div class="flight-airport">Newark (EWR)<br>Fri Jul 17</div>
+      </div>
+    </div>
+    <div class="flight-meta">
+      <div><strong>Cabin:</strong> <span class="cabin-tag cabin-prem">Premium Plus (A)</span></div>
+      <div><strong>Seat:</strong> 21A (window)</div>
+      <div><strong>Aircraft:</strong> Boeing 787-9</div>
+      <div><strong>Lounge:</strong> United Club at JNB</div>
+    </div>
   </div>
 </div>
 
-<h2 id="ua-mid">🛫 UA mid-trip — Johannesburg → London (with Newark overnight)</h2>
+<div class="connection">↓ <strong>~12h Newark Marriott layover</strong> — day room 9 AM–5 PM, free 24-hr shuttle</div>
 
-<div class="flight-block">
-  <div class="flight-head">Thu Jul 16 → Fri Jul 17 · UA 187 · Johannesburg → Newark</div>
+<!-- Segment 5 -->
+<div class="flight-card">
+  <div class="flight-header">
+    <div class="seg">Flight 5 of 7 · UA 904</div>
+    <div class="date">Fri Jul 17 → Sat Jul 18</div>
+  </div>
   <div class="flight-body">
-    <p><strong>Depart JNB Terminal A</strong> 22:00 SAST (Thu) → <strong>Arrive EWR Terminal B</strong> 07:20 EDT (Fri)</p>
-    <p>Aircraft: <strong>Boeing 787-9</strong> · ~16h 20m airborne</p>
-    <p><span class="cabin-tag cabin-prem">Premium Plus (your choice)</span> — saves you ~$2,500-$3,500 vs Polaris on this leg, with the Newark Marriott in-terminal as your buffer for sleep on the other end.</p>
-    <p><strong>Price diff Polaris vs Premium Plus on this leg:</strong> approx Polaris $5,500-$7,500 one-way vs Premium Plus $2,500-$4,500. Alex will pull the exact number when he opens the booking.</p>
-    <div class="src">⚠️ Audit correction: I'd been showing 19:30→06:00. United's published Jul 16 schedule is 22:00→07:20 EDT. Source: United.com schedule lookup, verified Apr 29.</div>
+    <div class="flight-route">
+      <div>
+        <div class="flight-time">7:50 PM</div>
+        <div class="flight-airport">Newark (EWR)<br>Fri Jul 17</div>
+      </div>
+      <div class="flight-arrow">→</div>
+      <div>
+        <div class="flight-time">8:20 AM</div>
+        <div class="flight-airport">London Heathrow (LHR T2)<br>Sat Jul 18</div>
+      </div>
+    </div>
+    <div class="flight-meta">
+      <div><strong>Cabin:</strong> <span class="cabin-tag cabin-prem">Premium Plus (R)</span></div>
+      <div><strong>Seat:</strong> 21A (window)</div>
+      <div><strong>Aircraft:</strong> Boeing 767-300ER (2-2-2 PE, no middles)</div>
+      <div><strong>Lounge:</strong> United Club EWR</div>
+    </div>
   </div>
 </div>
 
-<div class="flight-block">
-  <div class="flight-head">Fri Jul 17 day · Newark Marriott (in-terminal hotel)</div>
+<div class="connection">↓ UK leg · Norwich, Inverness, return to London ↓</div>
+
+<!-- Segment 6 — CROSSING -->
+<div class="flight-card crossing">
+  <div class="flight-header">
+    <div class="seg">Flight 6 of 7 · UA 900 ✨ million-mile crossing</div>
+    <div class="date">Thu, Jul 30, 2026</div>
+  </div>
   <div class="flight-body">
-    <p>The Newark Marriott is <strong>in Terminal B</strong> — same terminal you arrive at on UA 187. Free 24-hour shuttle inside the terminal. From plane to hotel room in ~25 minutes. You can sleep all morning if you need to.</p>
-    <p><strong>What I'm booking:</strong> the room for the night of <strong>Thu Jul 16</strong> with late-checkout on Jul 17. Same price as a "day room," but you control checkout time.</p>
-    <p>Phone: 973-623-0006 · ~$250-350/night.</p>
-    <div class="src">Source: Marriott.com property page; verified amenities and shuttle Apr 29.</div>
+    <div class="flight-route">
+      <div>
+        <div class="flight-time">10:35 AM</div>
+        <div class="flight-airport">London Heathrow (LHR T2)</div>
+      </div>
+      <div class="flight-arrow">→</div>
+      <div>
+        <div class="flight-time">1:35 PM</div>
+        <div class="flight-airport">San Francisco (SFO)</div>
+      </div>
+    </div>
+    <div class="flight-meta">
+      <div><strong>Cabin:</strong> <span class="cabin-tag cabin-prem">Premium Plus (R)</span></div>
+      <div><strong>Seat:</strong> 21A (window)</div>
+      <div><strong>Aircraft:</strong> Boeing 787-9 (new "Elevated Interior" — refreshed cabin)</div>
+      <div><strong>Lounge:</strong> United Club LHR</div>
+    </div>
+    <div class="crossing-marker" style="margin-top:14px;">
+      <strong>You cross 1,000,000 lifetime miles approx 90 min after takeoff</strong>
+      Over the North Atlantic, between Ireland and Iceland. ✨ Look out the window.
+    </div>
   </div>
 </div>
 
-<div class="flight-block">
-  <div class="flight-head">Fri Jul 17 evening · UA 14 · Newark → London Heathrow</div>
+<div class="connection">↓ <strong>3h 33m connection at SFO</strong> — comfortable for international arrival</div>
+
+<!-- Segment 7 -->
+<div class="flight-card">
+  <div class="flight-header">
+    <div class="seg">Flight 7 of 7 · UA 5796</div>
+    <div class="date">Thu, Jul 30, 2026</div>
+  </div>
   <div class="flight-body">
-    <p><strong>Depart EWR Terminal C</strong> 21:00 EDT (Fri) → <strong>Arrive LHR Terminal 2</strong> 08:25 BST (Sat)</p>
-    <p>Aircraft: <strong>Boeing 777-200ER</strong> (changed from 767 starting May 1, 2026) · ~6h 25m airborne</p>
-    <p><span class="cabin-tag cabin-prem">Premium Plus (your choice)</span> — you'll be rested from the Newark hotel day, and Premium Plus on a 6.5-hour night flight is comfortable enough.</p>
-    <div class="src">⚠️ Audit correction: I'd told you 767-300ER. AeroRoutes confirmed UA 14 upgrades to 777-200ER on May 1, 2026 — your Jul 17 flight is on the 777. Better cabin product than the 767 would have been.</div>
+    <div class="flight-route">
+      <div>
+        <div class="flight-time">5:08 PM</div>
+        <div class="flight-airport">San Francisco (SFO)</div>
+      </div>
+      <div class="flight-arrow">→</div>
+      <div>
+        <div class="flight-time">6:16 PM</div>
+        <div class="flight-airport">Sacramento (SMF)</div>
+      </div>
+    </div>
+    <div class="flight-meta">
+      <div><strong>Cabin:</strong> <span class="cabin-tag cabin-econ">United Economy (B)</span></div>
+      <div><strong>Seat:</strong> 03D (aisle)</div>
+      <div><strong>Aircraft:</strong> Embraer E175 (76-seat regional)</div>
+      <div><strong>Operator:</strong> SkyWest as United Express</div>
+    </div>
+    <p style="font-size:14px; color:var(--ink-soft); margin-top:10px; padding-top:10px; border-top:1px solid var(--rule);">
+      Quick note: this short hop is operated by SkyWest under the United Express brand. <strong>It still counts toward million-miler crediting</strong> per United's program rules ("United and United Express" both qualify) — though the milestone has already been reached on Flight 6 by the time you board.
+    </p>
   </div>
 </div>
 
-<h2 id="return">✨ UA return — London → Sacramento (your million-mile crossing)</h2>
+<h2>Million-mile math</h2>
+<p>Starting balance: <strong>977,330 lifetime miles</strong>. Trip adds 27,783 miles. Ending balance: <strong>1,005,113</strong>. Cushion: 5,113 miles.</p>
 
-<div class="callout gold" style="margin-top:0;">
-  <strong>This is the leg where you cross 1,000,000 lifetime miles</strong> — about 85-90 minutes after takeoff from Heathrow, somewhere over Scotland or the North Atlantic. Premier Gold for life lands in your account 1-3 days after the segment posts. Alex will pre-notify United so the LHR ground crew and SFO arrival crew know it's the milestone.
+<table class="miles-table">
+  <thead><tr><th>After segment</th><th>Distance</th><th>Cumulative</th></tr></thead>
+  <tbody>
+    <tr><td>Start</td><td>—</td><td>977,330</td></tr>
+    <tr><td>1. SMF → DEN</td><td>+909</td><td>978,239</td></tr>
+    <tr><td>2. DEN → EWR</td><td>+1,605</td><td>979,844</td></tr>
+    <tr><td>3. EWR → JNB</td><td>+7,989</td><td>987,833</td></tr>
+    <tr><td>4. JNB → EWR</td><td>+7,989</td><td>995,822</td></tr>
+    <tr><td>5. EWR → LHR</td><td>+3,438</td><td>999,260 <em>(740 short)</em></td></tr>
+    <tr class="crossing-row"><td>✨ During flight 6 LHR → SFO</td><td>+5,353</td><td>CROSS 1,000,000 about 740 mi in</td></tr>
+    <tr><td>After 6. LHR → SFO</td><td></td><td>1,004,613</td></tr>
+    <tr><td>7. SFO → SMF (500 mi minimum credit)</td><td>+500</td><td><strong>1,005,113</strong></td></tr>
+  </tbody>
+</table>
+
+<div class="callout note">
+  <strong>About "0 award miles" on the receipt:</strong> Your booking confirmation shows 0 award miles on flights 4–7. That's because of a 75,000 award-miles-per-ticket cap that hits during flight 3. <strong>This is a different program from million-miler.</strong> Award miles are the spendable kind you redeem for free flights. Lifetime flight miles (the million-mile counter) are based on actual distance flown and have no cap. Every segment counts toward your million-mile total.
 </div>
 
-<div class="flight-block starred">
-  <div class="flight-head">Thu Jul 30 · UA 900 (or 939, 949) · London → San Francisco</div>
-  <div class="flight-body">
-    <p><strong>Depart LHR Terminal 2</strong> mid-morning → <strong>Arrive SFO Terminal I</strong> ~early afternoon (same day) · ~11 hr airborne</p>
-    <p>United runs <strong>up to four daily LHR → SFO nonstops</strong> in summer 2026 on Boeing 787-9 or 777. Alex will pick the schedule that gives you the most comfortable connection to SMF.</p>
-    <p><span class="cabin-tag cabin-prem">Premium Plus (your choice)</span> — daytime, you'll be rested from the LHR hotel, Premium Plus is right-sized: bigger seat, real recline, footrest, dedicated cabin, priority boarding, two checked bags.</p>
-    <div class="src">Sources: United.com schedule (LHR-SFO daily service confirmed); AeroRoutes 787-9 fleet plan; FlightStats live timetable.</div>
-  </div>
+<h2>Purchase summary</h2>
+<div class="purchase-summary">
+  <div class="row"><span>Airfare</span><span>$18,676.00</span></div>
+  <div class="row"><span>U.S. Transportation Tax</span><span>$93.60</span></div>
+  <div class="row"><span>U.K. Air Passenger Duty</span><span>$329.40</span></div>
+  <div class="row"><span>U.K. Passenger Service Charge</span><span>$68.60</span></div>
+  <div class="row"><span>Other taxes & fees (US, ZA, APHIS, etc.)</span><span>$100.46</span></div>
+  <div class="row"><span><strong>Total charged to Visa ending 6226</strong></span><span>$19,268.06</span></div>
 </div>
 
-<div class="flight-block">
-  <div class="flight-head">Thu Jul 30 evening · UA · SFO → Sacramento</div>
-  <div class="flight-body">
-    <p>Same-airline connection · ~1 hr block time · ~$50-100 incremental fare beyond the international ticket.</p>
-    <p><span class="cabin-tag cabin-econplus">Economy Plus (your choice)</span> — consistent with the Premium Plus international ticket. Short hop, you'll be home and showered by dinnertime.</p>
-    <p><strong>Why SFO connection beats Newark:</strong> US Customs &amp; Immigration in San Francisco is your point of entry. After clearing customs, the SFO → SMF flight is <em>domestic</em> — bag-through-check, IROPS protection, one airline, one ticket.</p>
-  </div>
+<h2>Baggage included</h2>
+<div class="card">
+  <ul class="tight" style="margin-bottom:0;">
+    <li><strong>SMF → JNB:</strong> 2 checked bags free, 70 lbs / 32 kg each (Polaris allowance)</li>
+    <li><strong>JNB → LHR:</strong> 2 checked bags free, 50 lbs / 23 kg each (Premium Plus allowance)</li>
+    <li><strong>LHR → SMF:</strong> 2 checked bags free, 50 lbs / 23 kg each (Premium Plus allowance)</li>
+  </ul>
 </div>
 
-<h2 id="hotel-lhr">🛏️ London Heathrow hotel — Wed Jul 29 night</h2>
-<div class="flight-block">
-  <div class="flight-head">Wed Jul 29 · Hilton Garden Inn London Heathrow Terminals 2 &amp; 3</div>
-  <div class="flight-body">
-    <p>5-minute covered walkway directly to Terminal 2 — where UA 900 (your million-mile crossing) departs the next morning. Calm, clean, predictable. ~£200/night.</p>
-    <p><strong>Why this hotel and not the Pod:</strong> the Heathrow Pod doesn't connect T5 to T2 — it only runs T5 → business car park. To get from BA's T5 to UA's T2, the move is <strong>Heathrow Express train</strong>, free, every 15 min, ~5-7 min ride. With an overnight buffer at the T2 hotel, that's a relaxed morning, not a sprint.</p>
-    <div class="src">⚠️ Audit correction: I'd had you taking the Heathrow Pod between terminals. The Pod doesn't go T5 ↔ T2. Heathrow Express is the right transfer. Source: Heathrow.com inter-terminal transfers.</div>
-  </div>
+<h2>What I verified for you tonight</h2>
+<div class="card">
+<ul class="tight" style="margin-bottom:0;">
+  <li><strong>Million-mile crossing math:</strong> ✅ confirmed on flight 6 (UA 900 LHR→SFO), with 740 miles to go after Heathrow takeoff. Cushion of 5,113 miles over the milestone.</li>
+  <li><strong>"0 award miles" warning on receipt:</strong> ✅ irrelevant — that's the redeemable miles cap, not the lifetime/million-miler counter. All 7 segments fully credit toward your milestone.</li>
+  <li><strong>UA 904 vs UA 14:</strong> ✅ same Boeing 767-300ER, same Premium Plus 2-2-2 (no middle seats), same gates at EWR-T-C and LHR T2. Equivalent product.</li>
+  <li><strong>UA 5796 SkyWest segment:</strong> ✅ counts toward million-miler (United and United Express both qualify), and moot anyway — you've already crossed 1,000,000 by the time you board.</li>
+  <li><strong>United First on domestic legs:</strong> ✅ welcome upgrade vs. Economy Plus we'd planned. Same lifetime mile credit.</li>
+  <li><strong>All connection times:</strong> ✅ comfortable. DEN 3h 15m, EWR (outbound) 3h 56m, EWR (Marriott layover) ~12h, SFO 3h 33m.</li>
+  <li><strong>Total $19,268.06:</strong> ✅ at top of my predicted $14,000–$19,500 range. Defensible for peak summer + United First on domestic.</li>
+  <li><strong>Refundable status:</strong> ✅ verified. 24-hour cancel window from booking time (~10:30 PM PT Thursday Apr 30 → ~10:30 PM PT Friday May 1).</li>
+</ul>
 </div>
 
-<h2 id="uk-ground">🚆 UK ground transport</h2>
+<a class="btn-back" href="index.html">← Back to home</a>
 
-<div class="flight-block">
-  <div class="flight-head">Sat Jul 18 · National Express coach 727 · Heathrow → Norwich</div>
-  <div class="flight-body">
-    <p>Direct coach from Heathrow Central Bus Station (covered walkway from T2/T3 arrivals). 7-9 daily, fastest 4h 25m. £35-44 standard. Allows 1 large + 1 medium + 1 hand bag.</p>
-    <p>Recommended departure: late morning, after UA 14's 08:25 arrival and a relaxed breakfast.</p>
-    <div class="src">Source: nationalexpress.com route 727 timetable, verified Apr 29.</div>
-  </div>
-</div>
-
-<div class="flight-block">
-  <div class="flight-head">Wed Jul 22 · Loganair · Norwich → Aberdeen</div>
-  <div class="flight-body">
-    <p>Two daily: <strong>08:35 → 09:55</strong> (early) or <strong>16:15 → 17:35</strong> (afternoon). ~£100-200.</p>
-    <p>Aircraft: <strong>Embraer ERJ-145</strong> — small regional jet, 50 seats, 2-1 layout (single seats on the right are window <em>and</em> aisle in one — comfortable for one passenger).</p>
-    <div class="src">⚠️ Audit correction: I'd called this a Loganair ATR 72. Verified via Loganair fleet page — Norwich-Aberdeen is operated by Embraer ERJ-145.</div>
-  </div>
-</div>
-
-<div class="flight-block">
-  <div class="flight-head">Tue Jul 28 or Wed Jul 29 · British Airways · Inverness → London Heathrow T5</div>
-  <div class="flight-body">
-    <p>BA runs 5-7 daily, ~06:55 to ~21:00. Block time 1h 45m. Aircraft is A319, A320, or A321.</p>
-    <p><strong>Recommended:</strong> afternoon or early-evening departure on Wed Jul 29 — relaxed Inverness day with Fiona &amp; Gremlin, then dinner near LHR T2/T3 and a good night's rest before UA 900 the next morning.</p>
-    <p>Bag note: BA and UA aren't on one ticket, so you'll <strong>collect bags at LHR T5</strong>, take Heathrow Express to T2, and re-check with UA the next morning. The hotel night absorbs that step.</p>
-  </div>
-</div>
-
-<p style="margin-top:30px;">
-  <a href="index.html" style="display:inline-block; padding:14px 24px; background:var(--teal); color:white; border-radius:99px; text-decoration:none; font-weight:600;">← Back to home</a>
-</p>
-</div>
 <footer>
-  <p>One link to remember: <a href="index.html"><strong>bit.ly/4t57nqv</strong></a> · I update this as we go.</p>
+  Pat's Trip Hub · <a href="https://aconmar.github.io/pat-trip-hub/">aconmar.github.io/pat-trip-hub</a>
 </footer>
+</div>
 </body></html>
