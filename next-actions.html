@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#2d5a4a">
+<title>Tomorrow's Action Items — Pat's Trip Hub</title>
+<style>
+:root {
+  --cream:#fbf6ed;--paper:#ffffff;--ink:#1f1f23;--ink-soft:#4a4a55;
+  --teal:#2d5a4a;--teal-2:#1f3f33;--teal-light:#e6efea;
+  --gold:#c8893a;--gold-2:#a86f24;
+  --coral:#d4684c;--coral-bg:#fbe9e3;
+  --rule:#e6dcc8;--green-bg:#e6f0e9;--green-2:#4a7058;
+  --shadow:0 1px 2px rgba(40,30,15,0.04),0 4px 12px rgba(40,30,15,0.06);
+  --blue-bg:#e8eef5;--blue-2:#2d4a6e;
+  --amber-bg:#fef3e0;--sage:#7a8b6c;--sage-bg:#eef2e8;
+}
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body { margin:0;padding:0; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;
+  background:var(--cream); color:var(--ink); font-size:18px; line-height:1.6; min-height:100vh;
+}
+.container { max-width:780px; margin:0 auto; padding:24px 22px 100px; }
+.topbar {
+  background:var(--teal); color:white; padding:18px 22px;
+  position:sticky; top:0; z-index:50;
+  display:flex; justify-content:space-between; align-items:center;
+  border-bottom:3px solid var(--gold);
+}
+.topbar .home { color:white; text-decoration:none; font-weight:600; font-size:15px; letter-spacing:0.05em; }
+.topbar .stamp { font-size:12px; color:rgba(255,255,255,0.75); }
+h1 { font-family:Georgia,serif; font-weight:600; font-size:32px; line-height:1.2; color:var(--teal-2); margin:14px 0 12px; letter-spacing:-0.01em; }
+h2 { font-family:Georgia,serif; font-size:25px; line-height:1.3; color:var(--teal-2); margin:34px 0 14px; padding-top:14px; border-top:2px solid var(--rule); }
+h2:first-of-type { border-top:none; padding-top:0; margin-top:18px; }
+h3 { font-size:19px; line-height:1.35; color:var(--teal-2); margin:18px 0 8px; font-weight:700; }
+p, li { font-size:17px; line-height:1.6; }
+.eyebrow { color:var(--teal); font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:8px; }
+.lede { color:var(--ink-soft); font-size:18px; margin:0 0 18px; }
+
+.task-card {
+  background:var(--paper); border:1.5px solid var(--rule); border-radius:14px;
+  padding:20px 24px; margin:14px 0 22px; box-shadow:var(--shadow);
+}
+.task-card.urgent { border:2px solid var(--coral); background:var(--coral-bg); }
+.task-card.tomorrow { border:2px solid var(--gold); background:#fdf5e3; box-shadow:0 4px 14px rgba(200,137,58,0.10); }
+.task-card.info { background:var(--blue-bg); border-color:#bccadb; }
+.task-card.note { background:#eef4f1; border-color:#bfd4c9; }
+.task-card .tag { display:inline-block; background:var(--gold); color:white; padding:3px 12px; border-radius:99px; font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:10px; }
+.task-card .tag.coral { background:var(--coral); }
+.task-card .tag.teal { background:var(--teal); }
+.task-card h3 { margin-top:0; }
+.task-card .keystat { font-family:Georgia,serif; font-size:22px; color:var(--teal-2); font-weight:600; margin:8px 0; }
+
+.spec-list { list-style:none; padding:0; margin:14px 0; }
+.spec-list li { padding:8px 0; border-bottom:1px dashed var(--rule); display:grid; grid-template-columns:160px 1fr; gap:14px; align-items:start; }
+.spec-list li:last-child { border-bottom:none; }
+.spec-list .lab { font-weight:700; color:var(--teal-2); font-size:15px; }
+.spec-list .val { font-size:15px; color:var(--ink); line-height:1.4; }
+.spec-list .val a { color:var(--teal); }
+.spec-list .val code { font-family:'SF Mono',Menlo,monospace; background:#f3ede0; padding:2px 6px; border-radius:4px; font-size:14px; }
+
+.email-box { background:#fbf9f4; border:1.5px solid var(--rule); border-radius:10px; padding:16px 18px; font-family:Georgia,serif; font-size:15px; line-height:1.55; margin:14px 0; white-space:pre-wrap; }
+.email-box .h { font-weight:700; color:var(--teal-2); }
+
+.btn { display:inline-block; padding:10px 18px; background:var(--teal); color:white; text-decoration:none; border-radius:99px; font-weight:600; font-size:14px; margin:6px 4px 6px 0; }
+.btn.secondary { background:var(--paper); color:var(--teal); border:1.5px solid var(--teal); }
+.btn.gold { background:var(--gold); color:white; }
+
+footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:13px; padding:0 22px; }
+footer a { color:var(--teal); }
+
+@media (max-width:560px) {
+  .spec-list li { grid-template-columns:1fr; gap:2px; }
+  h1 { font-size:26px; }
+  h2 { font-size:21px; }
+}
+</style>
+</head><body>
+<header class="topbar">
+  <a class="home" href="index.html">← Back to home</a>
+  <div class="stamp">May 4, 2026 — late evening</div>
+</header>
+<div class="container">
+
+<p class="eyebrow">Tuesday morning action items</p>
+<h1>Everything you need for tomorrow morning, in one place</h1>
+<p class="lede">Pat — gathered everything from your messages tonight. Below: the Medjet email ready to copy-paste-and-send, the Newark Marriott specifics for your phone call, the Heathrow hotel info, plus Norwich/Inverness/Zambia notes. Take it slow tomorrow — no rush, your fall comes first.</p>
+
+<!-- ITEM 1: MEDJET AARP EMAIL -->
+<h2>① Medjet AARP discount — email draft</h2>
+
+<div class="task-card tomorrow">
+  <span class="tag">Copy &amp; send tomorrow</span>
+  <h3>From: paconrad@ucdavis.edu → To: customerservice@medjet.com</h3>
+  <p>Best approach: a short, factual email. They'll respond within 1–2 business days. If the discount applies, they'll either credit the difference back to your card automatically or send instructions.</p>
+
+  <p style="font-weight:700; margin-top:14px; margin-bottom:6px;">Subject line:</p>
+  <div class="email-box">AARP Discount Request — Member T0430376452</div>
+
+  <p style="font-weight:700; margin-top:14px; margin-bottom:6px;">Email body (copy below):</p>
+  <div class="email-box"><span class="h">Hello Medjet Customer Service,</span>
+
+I recently enrolled in an Annual Individual Membership (member number <span class="h">T0430376452</span>, effective June 28, 2026), and I was charged $315.00.
+
+I am an AARP member and I understand AARP members receive a discount on annual memberships, but during my online enrollment I was not asked to provide my AARP membership number. I would like to apply that discount retroactively if possible.
+
+My AARP membership number is: <span class="h">[INSERT YOUR AARP NUMBER HERE]</span>
+
+Could you please confirm whether the AARP discount can be applied to my recent enrollment, and if so, refund the difference to the card on file?
+
+Thank you for your help.
+
+Best regards,
+Patricia A Conrad
+Member #T0430376452
+653 Bianco Court
+Davis, CA 95616</div>
+
+  <p style="font-size:14px; color:var(--ink-soft); margin-top:14px;">📌 <strong>Before sending:</strong> Replace <code style="background:#f3ede0; padding:2px 6px; border-radius:4px;">[INSERT YOUR AARP NUMBER HERE]</code> with your AARP membership number. Then send.</p>
+
+  <p style="font-size:14px; color:var(--ink-soft); margin-top:8px;">📞 <strong>If you'd rather call:</strong> Medjet Customer Service is at <strong>1-800-527-7478</strong> (USA &amp; Canada). They're typically responsive on the phone — should be a 5-minute call.</p>
+</div>
+
+<!-- ITEM 2: NEWARK MARRIOTT -->
+<h2>② Newark Marriott Day Room — phone-call cheat sheet</h2>
+
+<div class="task-card urgent">
+  <span class="tag coral">Phone tomorrow morning</span>
+  <h3>Call: 973-623-0006</h3>
+  <p>This is the hotel's direct line (verified from Marriott.com). Ask for "in-house reservations" if the agent doesn't immediately know what a day room is.</p>
+
+  <ul class="spec-list">
+    <li><div class="lab">Hotel</div><div class="val">Newark Liberty International Airport Marriott<br>1 Hotel Road, Newark, NJ 07114<br>(Located ON the EWR airport grounds)</div></li>
+    <li><div class="lab">Direct line</div><div class="val"><strong>973-623-0006</strong> (Verified — open 24 hours)</div></li>
+    <li><div class="lab">Date you need</div><div class="val"><strong>Friday, July 17, 2026</strong></div></li>
+    <li><div class="lab">Window you need</div><div class="val">Approximately <strong>9:00 AM to 5:00 PM</strong><br><em>(UA 187 from JNB lands EWR at 7:35 AM. UA 904 to LHR departs EWR at 7:50 PM. So you want the room as long as possible after collecting bags & customs.)</em></div></li>
+    <li><div class="lab">What to ask for</div><div class="val">"I'd like to book a <strong>day-use room</strong> at your published day rate for Friday July 17. I'll be in transit from a long-haul flight and need a room from approximately 9 AM to 5 PM that day. Can you confirm price, terminal shuttle pickup, and check-in/check-out times?"</div></li>
+    <li><div class="lab">Expected price</div><div class="val">~$120–180 (their day rate is published 7 AM–7 PM)</div></li>
+    <li><div class="lab">Free shuttle</div><div class="val">24-hour complimentary shuttle to/from <strong>all EWR terminals</strong>. Terminal B is your United arrival terminal. Just call the hotel from the courtesy phone in baggage claim or look for the shuttle pickup at the curb.</div></li>
+  </ul>
+
+  <p style="margin-top:14px;"><strong>💳 Recommended card: Chase Sapphire</strong> — same logic as IMG insurance. Sapphire earns <strong>2x points on travel</strong> (hotels count), and offers <strong>built-in trip delay protection</strong> (up to $500/person if your flight is delayed 6+ hours, kicks in even before this hotel charge would be relevant). United Mileage Plus Visa would only earn 1x on hotels (no UA-direct multiplier here).</p>
+
+  <p style="margin-top:10px; font-size:14px; color:var(--ink-soft);">💡 <strong>Tip:</strong> If they tell you the day-rate program is only available for booking 24-48 hours in advance (some Marriotts limit advance booking on day rates), ask them to take your details now and call you 2 days before your arrival to confirm. Most hotels will accommodate this for a known booking date.</p>
+</div>
+
+<!-- ITEM 3: HEATHROW HOTEL -->
+<h2>③ Heathrow Hotel for Wed Jul 29 — book online</h2>
+
+<div class="task-card tomorrow">
+  <span class="tag">Book online tomorrow if you'd like</span>
+  <h3>Hilton Garden Inn London Heathrow T2 &amp; T3</h3>
+  <p>This is the hotel of choice for your Heathrow night because it's <strong>physically attached to Terminal 2 by a covered walkway</strong> — and your UA 900 SFO flight on Thu Jul 30 departs from Terminal 2. You walk from your room to security in about 5 minutes, undercover, with no shuttle needed.</p>
+
+  <ul class="spec-list">
+    <li><div class="lab">Hotel</div><div class="val">Hilton Garden Inn London Heathrow Terminals 2 and 3<br>Heathrow T2, Hillingdon, TW6 1AH, UK</div></li>
+    <li><div class="lab">Booking website</div><div class="val"><a href="https://www.hilton.com/en/hotels/lhrhegi-hilton-garden-inn-london-heathrow-terminals-2-and-3/" target="_blank">https://www.hilton.com/en/hotels/lhrhegi-hilton-garden-inn-london-heathrow-terminals-2-and-3/</a><br><em>(Best to book direct on Hilton.com — they offer up to 17% off advance-booking rate, double Hilton Honors points, and breakfast included on many rates.)</em></div></li>
+    <li><div class="lab">Date</div><div class="val"><strong>Check in: Wed Jul 29, 2026 (afternoon — flexible)</strong><br><strong>Check out: Thu Jul 30 (your flight is 10:35 AM — easy walk over after breakfast)</strong></div></li>
+    <li><div class="lab">Walkway to terminal</div><div class="val">Covered walkway directly to Terminal 2 (~3-5 min). Pedestrian underpass to Terminal 3 (~12 min walk).</div></li>
+    <li><div class="lab">Expected price</div><div class="val">£162–250/night (~$210–325 USD) depending on rate type. Cooked breakfast is £19.95 if not included.</div></li>
+    <li><div class="lab">Phone (if preferred)</div><div class="val">+44 20 8757 7777 (front desk)</div></li>
+  </ul>
+
+  <p style="margin-top:14px;"><strong>💳 Recommended card: Chase Sapphire</strong> for same reasons as Newark Marriott. Foreign transaction fee = $0 on Sapphire (vs. 3% on most cards). For a £200 charge, that's ~$8 saved.</p>
+
+  <p style="margin-top:10px; font-size:14px; color:var(--ink-soft);">📌 <strong>Why book this far out (vs. waiting):</strong> Late July is high season at Heathrow. The directly-attached hotels fill up first, and prices typically rise 15–25% in the final 6 weeks. Booking now locks the lowest rate. Most rates allow free cancellation up to 24-48 hours before — so there's essentially no risk.</p>
+</div>
+
+<!-- ITEM 4: HEATHROW → NORWICH BUS -->
+<h2>④ Heathrow → Norwich coach (Sat Jul 18)</h2>
+
+<div class="task-card info">
+  <span class="tag teal">For dashboard reference — book ~3 weeks before</span>
+  <h3>National Express service 728</h3>
+  <p>One operator runs this route directly: National Express. Ticket prices are typically lowest 4–6 weeks before travel, then climb. I recommend booking around late June.</p>
+
+  <ul class="spec-list">
+    <li><div class="lab">Operator &amp; website</div><div class="val">National Express — <a href="https://www.nationalexpress.com/en/destinations/norwich/heathrow-to-norwich" target="_blank">nationalexpress.com → Heathrow to Norwich</a></div></li>
+    <li><div class="lab">Service number</div><div class="val">728 (with some 727 services)</div></li>
+    <li><div class="lab">Departure point</div><div class="val">Heathrow Airport <strong>Central Bus Station</strong> (located between T2 and T3 — accessible via free Heathrow Express train shuttle from any terminal)</div></li>
+    <li><div class="lab">Arrival point</div><div class="val">Norwich Bus Station (city center)</div></li>
+    <li><div class="lab">Frequency</div><div class="val">Up to 9 services per day</div></li>
+    <li><div class="lab">Journey time</div><div class="val">4 hours 15 minutes (fastest direct service)</div></li>
+    <li><div class="lab">Fare</div><div class="val">From £35–44 one-way</div></li>
+    <li><div class="lab">First/last service</div><div class="val">First: 7:35 AM from Heathrow · Last: 11:30 PM from Heathrow</div></li>
+    <li><div class="lab">Best for Pat</div><div class="val">UA 904 lands LHR <strong>Sat Jul 18 at 8:20 AM</strong>. Allow 2 hrs for customs/baggage/transfer to bus station → target a coach around <strong>10:30 AM-12:00 PM departure</strong> for a comfortable transition without rushing.</div></li>
+  </ul>
+
+  <p style="margin-top:14px; font-size:14px; color:var(--ink-soft);">📌 <strong>Why wait to book:</strong> National Express prices change but rarely sell out for off-peak Saturdays. Booking 3 weeks before (around <strong>late June</strong>) gives the best price/availability balance. Concierge will handle this — no action needed from you yet.</p>
+</div>
+
+<!-- ITEM 5: NORWICH → INVERNESS -->
+<h2>⑤ Norwich → Inverness — clarification needed</h2>
+
+<div class="task-card note">
+  <span class="tag teal">One question for you</span>
+  <h3>Quick question: are you flying to Aberdeen, or Inverness?</h3>
+  <p>You mentioned "Norwich → Inverness" but the routing options are different than I had in my earlier notes. Let me lay out what's available so you can confirm:</p>
+
+  <ul class="spec-list">
+    <li><div class="lab">Option A: NWI → ABZ</div><div class="val"><strong>Direct on Loganair</strong>, ~1h 20min, ~£110-200 one-way<br><a href="https://www.loganair.co.uk/en-gb/flights-from-norwich-to-aberdeen" target="_blank">loganair.co.uk/flights-from-norwich-to-aberdeen</a><br>Then if Inverness is the goal: ABZ→INV by ScotRail train (2h 20m, ~£25, very scenic) or rental car (~3 hrs).<br><em>Aberdeen and Inverness are both common waypoints for Highland trips.</em></div></li>
+    <li><div class="lab">Option B: NWI → INV via AMS</div><div class="val"><strong>KLM via Amsterdam</strong>, ~3h 20min total with one connection, £236-£300<br>Single-ticket convenience but a longer day, plus a passport-controlled connection.</div></li>
+    <li><div class="lab">Option C: Train end-to-end</div><div class="val">Norwich → King's Cross (London) → Inverness (Caledonian Sleeper or daytime LNER), ~£100-200, ~9-12 hours but very comfortable.</div></li>
+  </ul>
+
+  <p style="margin-top:14px; font-weight:700;">My earlier notes had you going to Aberdeen on Loganair (Option A) — that's what was on the dashboard. <span style="color:var(--coral);">Can you confirm whether Aberdeen or Inverness is your final Scotland destination?</span> Once I know, I'll book and add to the dashboard.</p>
+
+  <p style="margin-top:10px; font-size:14px; color:var(--ink-soft);">📌 <strong>Context:</strong> The earlier itinerary plan said Loganair NWI→ABZ on Wed Jul 22 (~£100-200), then BA INV→LHR on Tue/Wed Jul 28-29. That implies Aberdeen as the arrival airport but Inverness as the departure airport — meaning you'd travel ABZ to INV during your Highland time. If that's still right, just say "Aberdeen confirmed, train to Inverness later" and I'll proceed.</p>
+</div>
+
+<!-- ITEM 6: ZAMBIA VISA -->
+<h2>⑥ Zambia visa — triple-checked from primary sources</h2>
+
+<div class="task-card info">
+  <span class="tag teal">Verified from Zambia Department of Immigration directly</span>
+  <h3>Your recollection was right: visa available on arrival</h3>
+  <p>I checked this against the Zambia Department of Immigration's official site (<a href="https://www.zambiaimmigration.gov.zm" target="_blank">zambiaimmigration.gov.zm</a>) and the Ministry of Home Affairs site. Confirmed:</p>
+
+  <ul class="spec-list">
+    <li><div class="lab">Bottom line</div><div class="val">As a US citizen, you are <strong>required to have a visa</strong> for Zambia, but you can <strong>get it on arrival at Livingstone Airport (LVI)</strong> when you land Wed Jul 1. No advance application required.</div></li>
+    <li><div class="lab">Cost</div><div class="val"><strong>$50 USD</strong> in cash. Zambia immigration prefers crisp US dollar bills (clean, undamaged, post-2009 series).</div></li>
+    <li><div class="lab">What you need at the desk</div><div class="val">(1) Your passport (already valid through 2034 ✅), (2) cash $50 USD, (3) full information of your host(s) — physical address where you'll be staying, in your case Mmilo's safari camps. I'll put together a small print-out for you with the addresses closer to departure.</div></li>
+    <li><div class="lab">Single vs. KAZA Univisa</div><div class="val">Two options. <strong>Single-entry tourist visa: $50</strong> — covers Zambia only, valid 90 days. <strong>KAZA Univisa: $50</strong> — same price, but ALSO covers Zimbabwe + day trips to Botswana via Kazungula. Same cost, broader coverage.</div></li>
+    <li><div class="lab">Recommendation</div><div class="val"><strong>Take the KAZA Univisa</strong> at the same $50. Even though your itinerary doesn't include Zimbabwe, KAZA gives you the option to cross the bridge from Livingstone (Zambia) to Victoria Falls town (Zimbabwe) for a few hours — many travelers find the Zim side of the falls particularly stunning. Mmilo may even offer a half-day Zim Falls excursion.</div></li>
+    <li><div class="lab">Online option (optional)</div><div class="val">If you'd prefer to skip the on-arrival queue, you can apply for an eVisa in advance at <a href="https://evisa.zambia.gov.zm" target="_blank">evisa.zambia.gov.zm</a>. Same $50, processed in 3-5 days. <em>Not necessary — Livingstone Airport queues are usually short — but an option if you'd prefer certainty.</em></div></li>
+  </ul>
+
+  <p style="margin-top:14px; color:var(--green-2); font-weight:700;">✅ NO ACTION NEEDED FROM YOU NOW. I'll add a 1-page "Zambia arrival cheat sheet" to your trip folder closer to departure (early June) with cash-amount checklist, host addresses, and customs declaration prep.</p>
+</div>
+
+<!-- MMILO MAY 21 -->
+<h2>⑦ Mmilo final payment (May 21) — quick context</h2>
+
+<div class="task-card note">
+  <h3>Yes, your understanding is correct</h3>
+  <p>Per the Mmilo deposit confirmation in your trip folder (file <code>3. Mmilo Tours Safari - Deposit Confirmation.pdf</code>), the booking T&Cs are:</p>
+  <ul style="padding-left:22px; margin:10px 0;">
+    <li><strong>Deposit:</strong> ZAR 44,606 — paid Apr 17, 2026 ✅</li>
+    <li><strong>Final payment:</strong> ZAR 44,606 — due <strong>Thu May 21, 2026 (45 days before trip start)</strong></li>
+    <li><strong>Payment method:</strong> Same PayFast secure-card link, sent automatically by Mmilo via email closer to the date</li>
+  </ul>
+
+  <p>To answer your question: <strong>I do not believe you've forwarded me the Mmilo email about the May 21 payment timing.</strong> Whenever convenient, please forward to <code>amarkham@alumni.gsb.stanford.edu</code> — no rush. I'll keep watch for the PayFast link arriving in your inbox around mid-May.</p>
+
+  <p style="margin-top:10px;"><strong>📅 I've set a reminder to ping you on Thu May 21 if the PayFast email hasn't arrived</strong>, and to verify it once it does. Same Chase Sapphire recommendation here too — Mmilo is travel.</p>
+</div>
+
+<!-- WRAP -->
+<div style="margin-top:36px; padding-top:18px; border-top:2px solid var(--rule); text-align:center;">
+  <p style="font-size:15px; color:var(--ink-soft); font-style:italic;">Take your time tomorrow. The trip is in good shape — these are tidy-up tasks, not emergencies. Rest well. 🌷</p>
+  <p style="font-size:13px; color:var(--ink-soft); margin-top:6px;">— Claude Concierge · May 4, 2026</p>
+</div>
+
+<p style="margin-top:30px; text-align:center;">
+  <a href="index.html" class="btn">← Back to home</a>
+</p>
+
+</div>
+<footer>
+  <p>Built for Pat with care · <a href="index.html">bit.ly/4t57nqv</a></p>
+</footer>
+</body></html>
