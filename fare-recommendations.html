@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#2d5a4a">
+<title>Fare Tier Recommendations — Pat's Trip Hub</title>
+<style>
+:root {
+  --cream:#fbf6ed;--paper:#ffffff;--ink:#1f1f23;--ink-soft:#4a4a55;
+  --teal:#2d5a4a;--teal-2:#1f3f33;--teal-light:#e6efea;
+  --gold:#c8893a;--gold-2:#a86f24;
+  --coral:#d4684c;--coral-bg:#fbe9e3;
+  --rule:#e6dcc8;--selected:#f0e8d6;--green-bg:#e6f0e9;--green-2:#4a7058;
+  --shadow:0 1px 2px rgba(40,30,15,0.04),0 4px 12px rgba(40,30,15,0.06);
+  --blue-bg:#e8eef5;--blue-2:#2d4a6e;
+  --sage:#7a8b6c;--sage-bg:#eef2e8;
+}
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body { margin:0;padding:0; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;
+  background:var(--cream); color:var(--ink); font-size:19px; line-height:1.6; min-height:100vh;
+}
+.container { max-width:740px; margin:0 auto; padding:24px 22px 100px; }
+.topbar {
+  background:var(--teal); color:white; padding:18px 22px;
+  position:sticky; top:0; z-index:50;
+  display:flex; justify-content:space-between; align-items:center;
+  border-bottom:3px solid var(--gold);
+}
+.topbar .home { color:white; text-decoration:none; font-weight:600; font-size:15px; letter-spacing:0.05em; }
+.topbar .stamp { font-size:12px; color:rgba(255,255,255,0.75); }
+h1 { font-family:Georgia,serif; font-weight:600; font-size:34px; line-height:1.2; color:var(--teal-2); margin:14px 0 12px; letter-spacing:-0.01em; }
+h2 { font-family:Georgia,serif; font-size:25px; line-height:1.3; color:var(--teal-2); margin:30px 0 12px; }
+h3 { font-size:19px; line-height:1.35; color:var(--teal-2); margin:20px 0 8px; font-weight:700; }
+p, li { font-size:18px; line-height:1.6; }
+.eyebrow { color:var(--teal); font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:8px; }
+.lede { color:var(--ink-soft); font-size:18px; margin:0 0 18px; }
+.card { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:22px 24px; margin:14px 0; box-shadow:var(--shadow); }
+.callout { background:linear-gradient(135deg,#f4ecd8,#f0e6cf); border:1px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; color:var(--teal-2); font-size:17px; line-height:1.55; }
+.callout strong { color:var(--gold-2); }
+.callout.note { background:#eef4f1; border-color:#bfd4c9; }
+.callout.coral { background:var(--coral-bg); border-color:var(--coral); }
+.callout.coral strong { color:var(--coral); }
+.callout.question { background:#fdf5e3; border:2px solid var(--gold); }
+ul.tight, ol.tight { padding-left:22px; }
+ul.tight li, ol.tight li { margin-bottom:8px; }
+footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:14px; padding:0 22px; }
+footer a { color:var(--teal); }
+
+/* Recommendation banner */
+.rec-banner {
+  border-radius:18px; padding:24px 26px; margin:18px 0 28px;
+  position:relative; overflow:hidden; box-shadow:0 4px 18px rgba(0,0,0,0.08);
+}
+.rec-banner .label { font-size:12px; letter-spacing:0.18em; text-transform:uppercase; font-weight:700; margin-bottom:10px; }
+.rec-banner h2 { margin:0 0 10px; line-height:1.25; }
+.rec-banner p { font-size:16px; line-height:1.55; margin:8px 0; }
+
+.rec-loganair { background:linear-gradient(135deg,#e8eef5 0%,#d8e2f0 100%); border:2px solid var(--blue-2); }
+.rec-loganair .label { color:var(--blue-2); }
+.rec-loganair::before { content:'✈️'; position:absolute; top:14px; right:18px; font-size:28px; opacity:0.5; }
+
+.rec-ba { background:linear-gradient(135deg,#eef2e8 0%,#dde7d4 100%); border:2px solid var(--sage); }
+.rec-ba .label { color:var(--sage); }
+.rec-ba::before { content:'🇬🇧'; position:absolute; top:14px; right:18px; font-size:28px; opacity:0.5; }
+
+/* Fare comparison table */
+.fare-table { width:100%; border-collapse:collapse; margin:14px 0 18px; font-size:15px; }
+.fare-table th { background:var(--teal); color:white; padding:10px 12px; text-align:left; font-size:13px; letter-spacing:0.06em; text-transform:uppercase; }
+.fare-table th:first-child { border-radius:8px 0 0 0; }
+.fare-table th:last-child { border-radius:0 8px 0 0; }
+.fare-table td { padding:10px 12px; border-bottom:1px solid var(--rule); vertical-align:top; }
+.fare-table tr:last-child td { border-bottom:none; }
+.fare-table tr.pick { background:#e6f0e9; font-weight:600; }
+.fare-table tr.pick td:first-child::before { content:'✅ '; }
+.fare-table tr.skip { background:var(--coral-bg); }
+.fare-table tr.skip td:first-child::before { content:'⛔ '; }
+.fare-table tr.neutral td { background:var(--paper); }
+.price { font-family:'SF Mono',Menlo,monospace; font-weight:700; color:var(--gold-2); white-space:nowrap; }
+.price-skip { font-family:'SF Mono',Menlo,monospace; font-weight:700; color:var(--coral); text-decoration:line-through; white-space:nowrap; }
+
+/* Baggage matrix */
+.bag-table { width:100%; border-collapse:collapse; margin:14px 0 18px; font-size:14px; }
+.bag-table th { background:var(--teal); color:white; padding:10px 10px; text-align:left; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; }
+.bag-table th:first-child { border-radius:8px 0 0 0; }
+.bag-table th:last-child { border-radius:0 8px 0 0; }
+.bag-table td { padding:9px 10px; border-bottom:1px solid var(--rule); vertical-align:top; line-height:1.4; }
+.bag-table tr:last-child td { border-bottom:none; }
+.bag-table .carrier { font-weight:700; color:var(--teal-2); white-space:nowrap; }
+.bag-table .warn { color:var(--coral); font-weight:700; }
+.bag-table .ok { color:var(--green-2); font-weight:600; }
+
+/* Packing plan */
+.pack-card { background:var(--paper); border:2px solid var(--gold); border-radius:14px; padding:0; margin:18px 0; overflow:hidden; box-shadow:0 4px 14px rgba(200,137,58,0.10); }
+.pack-header { background:var(--gold); color:white; padding:14px 22px; font-family:Georgia,serif; font-weight:700; font-size:18px; }
+.pack-body { padding:18px 22px; }
+.pack-leg { display:grid; grid-template-columns:36px 1fr; gap:12px; padding:12px 0; border-bottom:1px dashed var(--rule); align-items:start; }
+.pack-leg:last-child { border-bottom:none; }
+.pack-leg .icon { font-size:22px; }
+.pack-leg .route { font-weight:700; color:var(--teal-2); margin-bottom:3px; }
+.pack-leg .detail { font-size:15px; color:var(--ink-soft); line-height:1.45; }
+.pack-leg .detail strong { color:var(--ink); }
+
+@media (max-width:500px) {
+  .fare-table, .bag-table { font-size:13px; }
+  .fare-table td, .fare-table th, .bag-table td, .bag-table th { padding:8px 8px; }
+  h1 { font-size:28px; }
+  h2 { font-size:22px; }
+}
+</style>
+</head><body>
+<header class="topbar">
+  <a class="home" href="index.html">✈️ Pat's Trip Hub · Home</a>
+  <div class="stamp">May 11, 2026</div>
+</header>
+<div class="container">
+<p class="eyebrow">UK flights · fare guidance</p>
+<h1>Fare Tier Recommendations</h1>
+<p class="lede">Which fare to pick on Loganair and BA, what fits in the cabin on each airline, and how to pack your bags for every leg. <strong>Bottom line: Fly Flex+ on Loganair, Euro Traveller Plus on BA.</strong></p>
+
+<!-- ━━━━━━━━ LOGANAIR ━━━━━━━━ -->
+<div class="rec-banner rec-loganair">
+  <div class="label">Loganair · Norwich → Aberdeen · Wed Jul 22</div>
+  <h2 style="color:var(--blue-2); font-size:24px;">Book Fly Flex+ at £199.99</h2>
+  <p>Skip the £257 "Fly Flex Plus Fair" — the extra £57 buys date-change flexibility you don't need (your dates are pinned). Fly Flex+ gives you 30 kg hold, fast-track security, missed-flight protection, and premium seating — all for just £25 more than the base Fly Flex.</p>
+</div>
+
+<h3>Loganair fare comparison</h3>
+<table class="fare-table">
+  <thead><tr><th>Fare tier</th><th>Price</th><th>Hold bag</th><th>Key extras</th></tr></thead>
+  <tbody>
+    <tr class="neutral"><td>Fly Flex</td><td class="price">£174.99</td><td>23 kg (1 bag)</td><td>Same-day earlier flight if available</td></tr>
+    <tr class="pick"><td>Fly Flex+ (Fly Flex Plus)</td><td class="price">£199.99</td><td><strong>30 kg</strong> (1 bag)</td><td>Premium seat, fast-track security, missed-flight protection (£60 rescue fare), 1,300 Avios</td></tr>
+    <tr class="skip"><td>Fly Flex Plus Fair</td><td class="price-skip">£257.00</td><td>30 kg (1 bag)</td><td>Free unlimited date/time changes — you won't use this</td></tr>
+  </tbody>
+</table>
+
+<div class="callout coral">
+  <strong>⚠️ Critical: Loganair cabin is tiny.</strong> Only <strong>6 kg / 40 × 35 × 18 cm</strong> allowed in the cabin. Your European-size Tumi roller won't fit — it goes in the <strong>hold</strong>. Your <strong>REI backpack becomes your one cabin bag</strong> on this flight. They weigh at the gate.
+</div>
+
+<!-- ━━━━━━━━ BRITISH AIRWAYS ━━━━━━━━ -->
+<div class="rec-banner rec-ba">
+  <div class="label">British Airways · Inverness → Heathrow T5 · Jul 28 or 29</div>
+  <h2 style="color:var(--teal-2); font-size:24px;">Book Euro Traveller Plus</h2>
+  <p>Do <strong>NOT</strong> book Basic — Basic has <strong>no checked bag</strong> and you'd pay £40–60 at the airport to add one. Plus is only ~£25–35 more and includes 1 × 23 kg checked bag, free same-day change, and seat selection. Plus Flex (unlimited changes, full refund) isn't worth the extra £60–100 since your Inverness dates are fixed.</p>
+</div>
+
+<h3>BA Euro Traveller fare comparison</h3>
+<table class="fare-table">
+  <thead><tr><th>Fare tier</th><th>Checked bag</th><th>Changes</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr class="skip"><td>Basic</td><td class="warn">❌ None included</td><td>No changes</td><td>You'd pay £40–60 to add a bag at airport — worse deal overall</td></tr>
+    <tr class="pick"><td>Plus</td><td class="ok">✅ 1 × 23 kg</td><td>Free same-day</td><td>Free seat-pick 48h before departure. Best value.</td></tr>
+    <tr class="neutral"><td>Plus Flex</td><td class="ok">✅ 1 × 23 kg</td><td>Free any time + refund on cancel</td><td>~£60–100 more than Plus. You won't change dates — skip it.</td></tr>
+  </tbody>
+</table>
+
+<!-- ━━━━━━━━ BAGGAGE MATRIX ━━━━━━━━ -->
+<h2>🧳 Baggage matrix — all three airlines</h2>
+<p class="lede">The binding constraints for each carrier, side by side.</p>
+
+<h3>Cabin (carry-on) allowance</h3>
+<table class="bag-table">
+  <thead><tr><th>Airline</th><th>Cabin bag size</th><th>Weight</th><th>Personal item</th></tr></thead>
+  <tbody>
+    <tr><td class="carrier">Loganair</td><td class="warn">40 × 35 × 18 cm (small!)</td><td class="warn">6 kg</td><td>1 small handbag (Fly Flex+ adds laptop bag)</td></tr>
+    <tr><td class="carrier">British Airways</td><td class="ok">56 × 45 × 25 cm</td><td class="ok">23 kg</td><td>1 handbag/laptop (40 × 30 × 15 cm)</td></tr>
+    <tr><td class="carrier">United (booked)</td><td class="ok">56 × 35 × 22 cm</td><td class="ok">No published limit (Polaris)</td><td>1 personal item</td></tr>
+  </tbody>
+</table>
+
+<h3>Checked / hold bag by fare tier</h3>
+<table class="bag-table">
+  <thead><tr><th>Airline</th><th>Fare tier</th><th>Hold allowance</th></tr></thead>
+  <tbody>
+    <tr><td class="carrier" rowspan="3">Loganair</td><td>Fly Flex (£174.99)</td><td>23 kg, 1 bag</td></tr>
+    <tr class="pick"><td><strong>Fly Flex+ (£199.99)</strong></td><td><strong>30 kg, 1 bag</strong></td></tr>
+    <tr><td>Fly Flex Plus Fair (£257)</td><td>30 kg, 1 bag</td></tr>
+    <tr><td class="carrier" rowspan="3">British Airways</td><td class="warn">Basic</td><td class="warn">❌ No bag included</td></tr>
+    <tr class="pick"><td><strong>Plus</strong></td><td><strong>1 × 23 kg checked</strong></td></tr>
+    <tr><td>Plus Flex</td><td>1 × 23 kg checked</td></tr>
+    <tr><td class="carrier">United (booked)</td><td>Polaris / Premium Plus</td><td class="ok">2 × 32 kg checked</td></tr>
+  </tbody>
+</table>
+
+<!-- ━━━━━━━━ PACKING PLAN ━━━━━━━━ -->
+<h2>👜 Packing plan by flight leg</h2>
+<p class="lede">Which bag goes where on each segment — based on the Tumi roller + REI backpack setup.</p>
+
+<div class="pack-card">
+  <div class="pack-header">🧳 Bag assignments per leg</div>
+  <div class="pack-body">
+
+    <div class="pack-leg">
+      <div class="icon">🇺🇸</div>
+      <div>
+        <div class="route">United: SMF → JNB (Jun 28–29) &amp; JNB → LHR (Jul 16–18)</div>
+        <div class="detail"><strong>Cabin:</strong> Euro-size Tumi roller (fits easily) + REI backpack as personal item<br><strong>Hold:</strong> US-size Tumi (2 × 32 kg included in Polaris)</div>
+      </div>
+    </div>
+
+    <div class="pack-leg">
+      <div class="icon">⚠️</div>
+      <div>
+        <div class="route">Loganair: Norwich → Aberdeen (Jul 22) — STRICT CABIN</div>
+        <div class="detail"><strong>Cabin:</strong> REI backpack ONLY (must be ≤ 6 kg, ~40 × 35 × 18 cm) + small handbag/purse<br><strong>Hold:</strong> Euro-size Tumi roller (checked, up to 30 kg on Fly Flex+)<br><strong>Second bag?</strong> If checking US-size Tumi too, add pre-paid 2nd hold bag at booking (~£25–35)</div>
+      </div>
+    </div>
+
+    <div class="pack-leg">
+      <div class="icon">🇬🇧</div>
+      <div>
+        <div class="route">British Airways: Inverness → Heathrow T5 (Jul 28 or 29)</div>
+        <div class="detail"><strong>Cabin:</strong> Euro-size Tumi roller (23 kg / 56 × 45 × 25 cm — fits fine) + REI backpack as personal item<br><strong>Hold:</strong> US-size Tumi (1 × 23 kg on Plus fare). If checking 2 bags, add 2nd at booking (~£30–40).</div>
+      </div>
+    </div>
+
+    <div class="pack-leg">
+      <div class="icon">🇺🇸</div>
+      <div>
+        <div class="route">United: LHR → SFO → SMF (Jul 30) — Million-mile crossing day!</div>
+        <div class="detail"><strong>Cabin:</strong> Euro-size Tumi roller + REI backpack<br><strong>Hold:</strong> US-size Tumi (2 × 32 kg included)</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ━━━━━━━━ QUESTION FOR PAT ━━━━━━━━ -->
+<div class="callout question">
+  <strong>❓ One question before you book Loganair:</strong><br>
+  Are you checking <strong>one bag</strong> (Euro-size Tumi only) or <strong>both Tumis</strong> on the Loganair flight?
+  <ul class="tight" style="margin-top:10px; margin-bottom:0;">
+    <li><strong>One bag:</strong> Fly Flex+ at £199.99 — all set, no extra fee.</li>
+    <li><strong>Both bags:</strong> Fly Flex+ at £199.99 + pre-paid 2nd hold bag (~£25–35). Total ~£225–235. Still cheaper than Fly Flex Plus Fair at £257.</li>
+  </ul>
+  <p style="margin-top:10px; margin-bottom:0; font-size:15px;">Same question applies on BA out of Inverness — Plus includes 1 checked bag; a 2nd costs extra at booking (~£30–40, much cheaper than at the airport).</p>
+</div>
+
+<div class="callout note">
+  <strong>Sources verified May 11, 2026:</strong> Loganair luggage guidance &amp; fare policy pages, British Airways Euro Traveller fare types &amp; baggage essentials pages. All figures are from the airline's own websites.
+</div>
+
+</div>
+<footer>
+  <p>One link to remember: <a href="index.html"><strong>bit.ly/4t57nqv</strong></a> · I update this as we go.<br>
+  Built for Pat with care by Claude Concierge.</p>
+</footer>
+</body></html>
