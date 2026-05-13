@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#2d5a4a">
+<title>Wearable Guide — Pat's Trip Hub</title>
+<style>
+:root {
+  --cream:#fbf6ed;--paper:#ffffff;--ink:#1f1f23;--ink-soft:#4a4a55;
+  --teal:#2d5a4a;--teal-2:#1f3f33;--teal-light:#e6efea;
+  --gold:#c8893a;--gold-2:#a86f24;
+  --coral:#d4684c;--coral-bg:#fbe9e3;
+  --rule:#e6dcc8;--selected:#f0e8d6;--green-bg:#e6f0e9;--green-2:#4a7058;
+  --shadow:0 1px 2px rgba(40,30,15,0.04),0 4px 12px rgba(40,30,15,0.06);
+  --blue-bg:#e8eef5;--blue-2:#2d4a6e;
+  --sage:#7a8b6c;--sage-bg:#eef2e8;
+}
+* { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html,body { margin:0;padding:0; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",sans-serif;
+  background:var(--cream); color:var(--ink); font-size:19px; line-height:1.6; min-height:100vh;
+}
+.container { max-width:740px; margin:0 auto; padding:24px 22px 100px; }
+.topbar {
+  background:var(--teal); color:white; padding:18px 22px;
+  position:sticky; top:0; z-index:50;
+  display:flex; justify-content:space-between; align-items:center;
+  border-bottom:3px solid var(--gold);
+}
+.topbar .home { color:white; text-decoration:none; font-weight:600; font-size:15px; letter-spacing:0.05em; }
+.topbar .stamp { font-size:12px; color:rgba(255,255,255,0.75); }
+h1 { font-family:Georgia,serif; font-weight:600; font-size:34px; line-height:1.2; color:var(--teal-2); margin:14px 0 12px; letter-spacing:-0.01em; }
+h2 { font-family:Georgia,serif; font-size:25px; line-height:1.3; color:var(--teal-2); margin:30px 0 12px; }
+h3 { font-size:19px; line-height:1.35; color:var(--teal-2); margin:20px 0 8px; font-weight:700; }
+p, li { font-size:18px; line-height:1.6; }
+.eyebrow { color:var(--teal); font-size:13px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; margin-bottom:8px; }
+.lede { color:var(--ink-soft); font-size:18px; margin:0 0 18px; }
+
+.card { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:22px 24px; margin:14px 0; box-shadow:var(--shadow); }
+.card-title { font-family:Georgia,serif; font-weight:600; font-size:21px; color:var(--teal-2); margin:0 0 6px; }
+.card-desc { color:var(--ink-soft); font-size:16px; line-height:1.5; margin:0; }
+
+.device-card { background:var(--paper); border:1.5px solid var(--rule); border-radius:14px; padding:22px 24px; margin:18px 0; box-shadow:var(--shadow); }
+.device-card.recommended { border:2.5px solid var(--gold); background:linear-gradient(135deg,#fdf5e3,#fef9f0); box-shadow:0 6px 22px rgba(200,137,58,0.15); }
+.device-card.recommended::before { content:'⭐ TOP PICK'; display:block; font-size:12px; font-weight:700; letter-spacing:0.15em; color:var(--gold-2); margin-bottom:8px; }
+.device-card.runner-up { border:2px solid var(--teal); background:linear-gradient(135deg,#e6efea,#f2f7f4); }
+.device-card.runner-up::before { content:'🥈 STRONG RUNNER-UP'; display:block; font-size:12px; font-weight:700; letter-spacing:0.15em; color:var(--teal); margin-bottom:8px; }
+.device-header { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:8px; }
+.device-name { font-family:Georgia,serif; font-weight:700; font-size:22px; color:var(--teal-2); margin:0; }
+.device-price { font-size:15px; font-weight:700; color:var(--gold-2); background:#fdf5e3; padding:4px 12px; border-radius:99px; white-space:nowrap; }
+.device-tagline { color:var(--ink-soft); font-size:16px; margin:6px 0 14px; font-style:italic; }
+
+.spec-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0; }
+.spec-item { background:var(--cream); border-radius:8px; padding:10px 12px; }
+.spec-label { font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:2px; }
+.spec-value { font-size:16px; font-weight:600; color:var(--teal-2); }
+
+.pros-cons { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0 0; }
+@media(max-width:500px) { .pros-cons { grid-template-columns:1fr; } .spec-grid { grid-template-columns:1fr; } }
+.pros, .cons { padding:12px 14px; border-radius:10px; font-size:15px; line-height:1.5; }
+.pros { background:var(--green-bg); }
+.cons { background:var(--coral-bg); }
+.pros strong { color:var(--green-2); }
+.cons strong { color:var(--coral); }
+.pros ul, .cons ul { margin:6px 0 0; padding-left:18px; }
+.pros li, .cons li { margin-bottom:4px; font-size:15px; }
+
+.priority-section { background:linear-gradient(135deg,#e6efea,#f2f7f4); border:2px solid var(--teal); border-radius:14px; padding:22px 24px; margin:24px 0; }
+.priority-item { display:grid; grid-template-columns:40px 1fr; gap:10px; padding:10px 0; border-bottom:1px dashed var(--rule); }
+.priority-item:last-child { border-bottom:none; }
+.priority-icon { font-size:24px; }
+.priority-need { font-weight:700; color:var(--teal-2); }
+.priority-answer { font-size:16px; color:var(--ink-soft); margin-top:2px; }
+
+.cost-table { width:100%; border-collapse:collapse; margin:18px 0; font-size:15px; border-radius:12px; overflow:hidden; border:1.5px solid var(--rule); }
+.cost-table th { background:var(--teal); color:white; padding:12px 14px; text-align:left; font-size:14px; letter-spacing:0.05em; }
+.cost-table td { padding:11px 14px; border-bottom:1px solid var(--rule); }
+.cost-table tr:last-child td { border-bottom:none; }
+.cost-table tr:nth-child(even) { background:var(--cream); }
+.cost-table .highlight { background:#fdf5e3; font-weight:700; }
+
+.voice-memo { background:linear-gradient(135deg,#f4ecd8,#f0e6cf); border:2px solid var(--gold); border-radius:14px; padding:22px 24px; margin:30px 0; }
+.voice-memo h2 { margin-top:0; }
+.voice-memo ol { padding-left:22px; }
+.voice-memo li { margin-bottom:12px; font-size:17px; }
+.voice-memo .instructions { background:white; border-radius:10px; padding:16px 18px; margin-top:16px; font-size:16px; line-height:1.55; }
+
+.callout { background:linear-gradient(135deg,#f4ecd8,#f0e6cf); border:1px solid var(--rule); border-radius:14px; padding:16px 20px; margin:18px 0; color:var(--teal-2); font-size:17px; line-height:1.55; }
+.callout strong { color:var(--gold-2); }
+.callout.note { background:#eef4f1; border-color:#bfd4c9; }
+
+footer { margin:50px auto 30px; text-align:center; color:var(--ink-soft); font-size:14px; padding:0 22px; }
+footer a { color:var(--teal); }
+</style>
+</head><body>
+<header class="topbar">
+  <a class="home" href="index.html">✈️ Pat's Trip Hub · Home</a>
+  <div class="stamp">May 12, 2026</div>
+</header>
+<div class="container">
+<p class="eyebrow">Health & Wellness</p>
+<h1>Replacing Your Oura Ring: A Side-by-Side Guide</h1>
+<p class="lede">Your Oura Ring is dying — here's a clear-eyed comparison of the best replacements in 2026, written for what matters most to you: <strong>sleep tracking, heart health, comfort, and simplicity</strong>.</p>
+
+<div class="callout note">
+  <strong>Bottom line up front:</strong> The <strong>Whoop 5.0</strong> is our top recommendation — best-in-class sleep & recovery coaching, an AI coach that learns you over time, and Alex already uses it (family discount available). The <strong>Oura Ring Gen 4</strong> is the strong runner-up if you want to stay in a ring form factor.
+</div>
+
+<!-- ============ DEVICE CARDS ============ -->
+
+<h2>The Contenders</h2>
+
+<!-- WHOOP 5.0 -->
+<div class="device-card recommended">
+  <div class="device-header">
+    <h3 class="device-name">Whoop 5.0</h3>
+    <span class="device-price">$199–359/yr (device included free)</span>
+  </div>
+  <p class="device-tagline">The health coach that happens to be a wearable — Alex's pick</p>
+
+  <div class="spec-grid">
+    <div class="spec-item"><div class="spec-label">Form Factor</div><div class="spec-value">Slim wrist band</div></div>
+    <div class="spec-item"><div class="spec-label">Battery Life</div><div class="spec-value">14 days</div></div>
+    <div class="spec-item"><div class="spec-label">Sleep Accuracy</div><div class="spec-value">99% HR, excellent staging</div></div>
+    <div class="spec-item"><div class="spec-label">Subscription</div><div class="spec-value">Required (device included)</div></div>
+    <div class="spec-item"><div class="spec-label">Heart Health</div><div class="spec-value">HRV, ECG (Life tier), AFib</div></div>
+    <div class="spec-item"><div class="spec-label">AI Coach</div><div class="spec-value">Yes — learns your patterns</div></div>
+  </div>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <strong>Why it works for you</strong>
+      <ul>
+        <li>AI Coach gives daily personalized guidance — like having a health advisor on your wrist</li>
+        <li>Best recovery/readiness scoring in the business</li>
+        <li>14-day battery — charge once every 2 weeks</li>
+        <li>No upfront device cost (included with membership)</li>
+        <li>Alex has one — family plan saves ~$25/yr each</li>
+        <li>New "Memory" feature learns your health history</li>
+        <li>Live doctor consultations coming summer 2026</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <strong>Things to know</strong>
+      <ul>
+        <li>Worn on wrist (not a ring)</li>
+        <li>Ongoing subscription required ($199–359/yr)</li>
+        <li>No screen — all data in the phone app</li>
+        <li>Looks like a fitness band, not jewelry</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- OURA RING GEN 4 -->
+<div class="device-card runner-up">
+  <div class="device-header">
+    <h3 class="device-name">Oura Ring Gen 4</h3>
+    <span class="device-price">$349 + $5.99/mo</span>
+  </div>
+  <p class="device-tagline">The device you know — now better, if reliability holds up</p>
+
+  <div class="spec-grid">
+    <div class="spec-item"><div class="spec-label">Form Factor</div><div class="spec-value">Ring (same as now)</div></div>
+    <div class="spec-item"><div class="spec-label">Battery Life</div><div class="spec-value">Up to 8 days</div></div>
+    <div class="spec-item"><div class="spec-label">Sleep Accuracy</div><div class="spec-value">96% vs clinical standard</div></div>
+    <div class="spec-item"><div class="spec-label">Subscription</div><div class="spec-value">$5.99/mo ($72/yr)</div></div>
+    <div class="spec-item"><div class="spec-label">Heart Health</div><div class="spec-value">HRV, SpO2, temp trends</div></div>
+    <div class="spec-item"><div class="spec-label">AI Coach</div><div class="spec-value">Basic insights (no conversation)</div></div>
+  </div>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <strong>Why it works for you</strong>
+      <ul>
+        <li>You already know the interface</li>
+        <li>Best pure sleep tracking accuracy (96%)</li>
+        <li>Ring form — invisible, comfortable in bed</li>
+        <li>8-day battery life</li>
+        <li>Beautiful app, easy daily scores</li>
+        <li>18 optical sensor channels (Gen 4 upgrade)</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <strong>Things to know</strong>
+      <ul>
+        <li>Your current ring died — reliability is a known issue</li>
+        <li>$349 upfront + $72/yr subscription</li>
+        <li>Limited without subscription (just basic scores)</li>
+        <li>No real AI coaching or personalized guidance</li>
+        <li>No ECG or AFib detection</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- APPLE WATCH -->
+<div class="device-card">
+  <div class="device-header">
+    <h3 class="device-name">Apple Watch Series 10</h3>
+    <span class="device-price">$399–$499 (no subscription)</span>
+  </div>
+  <p class="device-tagline">The Swiss Army knife — does everything, including health emergencies</p>
+
+  <div class="spec-grid">
+    <div class="spec-item"><div class="spec-label">Form Factor</div><div class="spec-value">Watch (larger display)</div></div>
+    <div class="spec-item"><div class="spec-label">Battery Life</div><div class="spec-value">18–36 hours</div></div>
+    <div class="spec-item"><div class="spec-label">Sleep Accuracy</div><div class="spec-value">Good, not best-in-class</div></div>
+    <div class="spec-item"><div class="spec-label">Subscription</div><div class="spec-value">None required</div></div>
+    <div class="spec-item"><div class="spec-label">Heart Health</div><div class="spec-value">ECG, AFib, sleep apnea, fall detection</div></div>
+    <div class="spec-item"><div class="spec-label">AI Coach</div><div class="spec-value">No (basic notifications)</div></div>
+  </div>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <strong>Why it works for you</strong>
+      <ul>
+        <li>Best safety features — fall detection, crash detection, emergency SOS</li>
+        <li>ECG + AFib + sleep apnea detection (medically relevant at 71)</li>
+        <li>Works perfectly with your iPhone</li>
+        <li>No subscription ever</li>
+        <li>Can take calls, show texts, give directions</li>
+        <li>Thinnest Apple Watch yet (Series 10)</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <strong>Things to know</strong>
+      <ul>
+        <li>Must charge daily — worst battery here</li>
+        <li>Bulkier to sleep in than a ring or slim band</li>
+        <li>Sleep tracking less accurate than Oura/Whoop</li>
+        <li>Can feel overwhelming — many features you may not need</li>
+        <li>Most expensive upfront ($399–499)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- GARMIN VENU 3 -->
+<div class="device-card">
+  <div class="device-header">
+    <h3 class="device-name">Garmin Venu 3</h3>
+    <span class="device-price">$449 (no subscription)</span>
+  </div>
+  <p class="device-tagline">Marathon battery + excellent sleep coaching, no monthly fees</p>
+
+  <div class="spec-grid">
+    <div class="spec-item"><div class="spec-label">Form Factor</div><div class="spec-value">Watch (41mm or 45mm)</div></div>
+    <div class="spec-item"><div class="spec-label">Battery Life</div><div class="spec-value">Up to 14 days</div></div>
+    <div class="spec-item"><div class="spec-label">Sleep Accuracy</div><div class="spec-value">Very good + nap detection</div></div>
+    <div class="spec-item"><div class="spec-label">Subscription</div><div class="spec-value">None required</div></div>
+    <div class="spec-item"><div class="spec-label">Heart Health</div><div class="spec-value">HR, HRV, SpO2, stress</div></div>
+    <div class="spec-item"><div class="spec-label">AI Coach</div><div class="spec-value">Sleep Coach + Body Battery</div></div>
+  </div>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <strong>Why it works for you</strong>
+      <ul>
+        <li>14-day battery — charge twice a month</li>
+        <li>Built-in Sleep Coach with nap detection</li>
+        <li>"Body Battery" energy score (similar to Whoop recovery)</li>
+        <li>No subscription, ever</li>
+        <li>Comfortable for sleeping (42g for smaller model)</li>
+        <li>Garmin Connect app is well-designed</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <strong>Things to know</strong>
+      <ul>
+        <li>Most expensive upfront at $449</li>
+        <li>More features than you may need (geared toward athletes)</li>
+        <li>No ECG or AFib detection</li>
+        <li>Slightly techy to set up initially</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- GARMIN LILY 2 -->
+<div class="device-card">
+  <div class="device-header">
+    <h3 class="device-name">Garmin Lily 2</h3>
+    <span class="device-price">$199–$299 (no subscription)</span>
+  </div>
+  <p class="device-tagline">Looks like jewelry, acts like a health tracker — the minimalist pick</p>
+
+  <div class="spec-grid">
+    <div class="spec-item"><div class="spec-label">Form Factor</div><div class="spec-value">Small, elegant watch</div></div>
+    <div class="spec-item"><div class="spec-label">Battery Life</div><div class="spec-value">Up to 5 days</div></div>
+    <div class="spec-item"><div class="spec-label">Sleep Accuracy</div><div class="spec-value">Basic (good, not great)</div></div>
+    <div class="spec-item"><div class="spec-label">Subscription</div><div class="spec-value">None required</div></div>
+    <div class="spec-item"><div class="spec-label">Heart Health</div><div class="spec-value">HR, SpO2, stress</div></div>
+    <div class="spec-item"><div class="spec-label">AI Coach</div><div class="spec-value">Body Battery only</div></div>
+  </div>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <strong>Why it works for you</strong>
+      <ul>
+        <li>Prettiest device here — looks like a bracelet</li>
+        <li>Very lightweight, comfortable all day and night</li>
+        <li>Simple and not overwhelming</li>
+        <li>No subscription</li>
+        <li>Least expensive option</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <strong>Things to know</strong>
+      <ul>
+        <li>Sleep tracking less detailed than Oura/Whoop</li>
+        <li>Small, hard-to-read screen</li>
+        <li>No GPS built in</li>
+        <li>Only 5-day battery</li>
+        <li>No ECG or advanced heart features</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SAMSUNG GALAXY RING -->
+<div class="device-card">
+  <div class="device-header">
+    <h3 class="device-name">Samsung Galaxy Ring</h3>
+    <span class="device-price">$399 (no subscription)</span>
+  </div>
+  <p class="device-tagline">Oura's biggest competitor — but requires Android</p>
+
+  <div class="spec-grid">
+    <div class="spec-item"><div class="spec-label">Form Factor</div><div class="spec-value">Ring</div></div>
+    <div class="spec-item"><div class="spec-label">Battery Life</div><div class="spec-value">Up to 7 days</div></div>
+    <div class="spec-item"><div class="spec-label">Sleep Accuracy</div><div class="spec-value">Very good (competitive with Oura)</div></div>
+    <div class="spec-item"><div class="spec-label">Subscription</div><div class="spec-value">None — all features free</div></div>
+    <div class="spec-item"><div class="spec-label">Heart Health</div><div class="spec-value">HR, HRV, SpO2, skin temp</div></div>
+    <div class="spec-item"><div class="spec-label">AI Coach</div><div class="spec-value">Samsung Health AI (basic)</div></div>
+  </div>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <strong>Why it could work</strong>
+      <ul>
+        <li>Ring form factor, no subscription ever</li>
+        <li>Sleep tracking competitive with Oura</li>
+        <li>7-day battery life</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <strong>Dealbreaker</strong>
+      <ul>
+        <li><strong>Requires an Android phone — won't work with your iPhone</strong></li>
+        <li>Not an option for you unless you switch phones</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAT'S PRIORITIES ============ -->
+
+<h2>Your Priorities, Matched</h2>
+
+<div class="priority-section">
+  <div class="priority-item">
+    <div class="priority-icon">😴</div>
+    <div>
+      <div class="priority-need">#1 — Sleep Tracking (most important to you)</div>
+      <div class="priority-answer"><strong>Winner: Oura Gen 4</strong> (96% accuracy) with <strong>Whoop 5.0</strong> close behind (99% HR accuracy + better coaching on what to DO about poor sleep)</div>
+    </div>
+  </div>
+  <div class="priority-item">
+    <div class="priority-icon">❤️</div>
+    <div>
+      <div class="priority-need">#2 — Heart Health & Safety</div>
+      <div class="priority-answer"><strong>Winner: Apple Watch</strong> (ECG, AFib, fall detection, sleep apnea). Whoop Life tier adds ECG + AFib for $359/yr.</div>
+    </div>
+  </div>
+  <div class="priority-item">
+    <div class="priority-icon">🔋</div>
+    <div>
+      <div class="priority-need">#3 — Battery Life (don't want to charge constantly)</div>
+      <div class="priority-answer"><strong>Winners: Whoop & Garmin Venu 3</strong> (both 14 days). Oura is 8 days. Apple Watch needs daily charging.</div>
+    </div>
+  </div>
+  <div class="priority-item">
+    <div class="priority-icon">🤖</div>
+    <div>
+      <div class="priority-need">#4 — AI Coaching (personalized health advice)</div>
+      <div class="priority-answer"><strong>Winner: Whoop 5.0</strong> — conversational AI coach that remembers your history, gives proactive suggestions, and adjusts to your travel schedule. Nothing else comes close.</div>
+    </div>
+  </div>
+  <div class="priority-item">
+    <div class="priority-icon">👍</div>
+    <div>
+      <div class="priority-need">#5 — Simplicity & Ease of Use</div>
+      <div class="priority-answer"><strong>Winners: Oura & Whoop</strong> — both give you a single daily score (Readiness/Recovery) without overwhelming menus. Apple Watch has the steepest learning curve.</div>
+    </div>
+  </div>
+  <div class="priority-item">
+    <div class="priority-icon">💎</div>
+    <div>
+      <div class="priority-need">#6 — Comfort & Appearance</div>
+      <div class="priority-answer"><strong>Winner: Oura Ring</strong> (invisible, looks like jewelry). Whoop is slim but clearly a fitness band. Garmin Lily 2 is the prettiest watch option.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ COST TABLE ============ -->
+
+<h2>💰 Total Cost: Device + First Year</h2>
+
+<table class="cost-table">
+  <thead>
+    <tr><th>Device</th><th>Upfront</th><th>Year 1 Sub</th><th>Year 1 Total</th></tr>
+  </thead>
+  <tbody>
+    <tr class="highlight"><td><strong>Whoop 5.0 Peak</strong></td><td>$0 (included)</td><td>$239</td><td><strong>$239</strong></td></tr>
+    <tr class="highlight"><td><strong>Whoop 5.0 Peak (family w/ Alex)</strong></td><td>$0</td><td>~$215</td><td><strong>~$215</strong></td></tr>
+    <tr><td>Whoop 5.0 Life (ECG/AFib)</td><td>$0</td><td>$359</td><td>$359</td></tr>
+    <tr><td>Oura Ring Gen 4</td><td>$349</td><td>$72</td><td>$421</td></tr>
+    <tr><td>Apple Watch Series 10</td><td>$399</td><td>$0</td><td>$399</td></tr>
+    <tr><td>Apple Watch Ultra 2</td><td>$799</td><td>$0</td><td>$799</td></tr>
+    <tr><td>Garmin Venu 3</td><td>$449</td><td>$0</td><td>$449</td></tr>
+    <tr><td>Garmin Lily 2</td><td>$199–299</td><td>$0</td><td>$199–299</td></tr>
+    <tr><td>Samsung Galaxy Ring</td><td colspan="3" style="color:var(--coral);font-style:italic;">❌ Requires Android — not compatible with iPhone</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Alex's referral:</strong> If Alex invites you to Whoop, you get a <strong>free Whoop 5.0 device + 1 month free</strong> to try it risk-free. After that, the family plan brings it down to ~$215/year. That's the cheapest option with the best coaching.
+</div>
+
+<!-- ============ RECOMMENDATION ============ -->
+
+<h2>🏆 Our Recommendation</h2>
+
+<div class="device-card recommended" style="margin-top:14px;">
+  <h3 class="device-name" style="font-size:24px;">Go with Whoop 5.0 (Peak tier)</h3>
+  <p style="font-size:17px; line-height:1.6; margin:12px 0 0;">
+    <strong>Here's why:</strong> Your Oura Ring failed you on reliability. Whoop gives you everything you loved about Oura (sleep scores, readiness, heart rate) plus an AI health coach that will proactively tell you things like "you should go to bed earlier tonight based on your travel schedule" or "your recovery is low — take it easy today." The 14-day battery means you'll almost forget it's there. No upfront cost, and with Alex's family plan, it's the most affordable option at ~$215/year.
+  </p>
+  <p style="font-size:17px; line-height:1.6; margin:12px 0 0;">
+    <strong>Try it free first:</strong> Alex can send you a referral link for a free 30-day trial with the device included. If you don't love it, send it back. Zero risk.
+  </p>
+  <p style="font-size:17px; line-height:1.6; margin:12px 0 0;">
+    <strong>If you really want a ring:</strong> The Oura Gen 4 is genuinely improved with 18 new sensor channels and better accuracy. Just know the reliability risk remains, and you'll pay $421 the first year vs $215 for Whoop.
+  </p>
+</div>
+
+<!-- ============ VOICE MEMO Q&A ============ -->
+
+<div class="voice-memo">
+  <h2>🎙️ Help Me Pick — Voice Memo Questions</h2>
+  <p style="margin:0 0 14px; font-size:17px;">Answer these questions and I'll send you a personalized recommendation. You can just talk through them — no need to be formal!</p>
+
+  <ol>
+    <li>What did you like most about your Oura Ring?</li>
+    <li>What frustrated you about it (besides it dying)?</li>
+    <li>How important is it that the device looks like jewelry vs. a fitness band?</li>
+    <li>Do you want something that also does notifications, calls, etc. — or just health tracking?</li>
+    <li>Would you be open to wearing something on your wrist instead of a ring?</li>
+    <li>How often are you willing to charge the device?</li>
+    <li>Is there a budget you're comfortable with for the device + monthly subscription?</li>
+  </ol>
+
+  <div class="instructions">
+    <strong>How to send your answers:</strong><br>
+    Open Voice Memos on your iPhone, hit record, talk through the questions above, then text the recording to Alex at <strong>(530) 219-8094</strong>. Claude will review your answers and send back a personalized recommendation within a day.
+  </div>
+</div>
+
+</div>
+<footer>
+  <p>One link to remember: <a href="index.html"><strong>bit.ly/4t57nqv</strong></a> · I update this as we go.<br>
+  Built for Pat with care by Claude Concierge · May 12, 2026</p>
+</footer>
+</body></html>
